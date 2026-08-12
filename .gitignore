@@ -196,3 +196,5 @@ vs_proj/Debug/
 vs_proj/*.dir/
 vs_proj/**/CMakeFiles/
 vs_proj/**/Debug/
+vs_proj/**/*.lib
+vs_proj/**/*.exe
