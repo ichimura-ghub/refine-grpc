@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AA399163-5ADE-3761-A00D-A2785F39853A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>c-ares</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c-ares.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cares</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c-ares.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cares</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">c-ares.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">cares</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">c-ares.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">cares</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4201</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789;4289;4013</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Debug\cares.pdb</ProgramDataBaseFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4201</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789;4289;4013</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Release\cares.pdb</ProgramDataBaseFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4201</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789;4289;4013</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\MinSizeRel\cares.pdb</ProgramDataBaseFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4201</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789;4289;4013</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\RelWithDebInfo\cares.pdb</ProgramDataBaseFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/cares/cares/src/lib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/src/lib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_config.h.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Makefile.inc.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/cares/cares/src/lib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/src/lib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_config.h.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Makefile.inc.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/cares/cares/src/lib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/src/lib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_config.h.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Makefile.inc.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/cares/cares/src/lib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/src/lib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_config.h.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Makefile.inc.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_addrinfo2hostent.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_addrinfo_localhost.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_android.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_cancel.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_close_sockets.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_conn.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_cookie.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_data.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_destroy.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_free_hostent.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_free_string.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_freeaddrinfo.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_getaddrinfo.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_getenv.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_gethostbyaddr.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_gethostbyname.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_getnameinfo.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_hosts_file.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_init.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_library_init.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_metrics.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_options.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_parse_into_addrinfo.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_process.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_qcache.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_query.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_search.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_send.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_set_socket_functions.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_socket.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_sortaddrinfo.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_strerror.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_sysconfig.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_sysconfig_files.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_sysconfig_mac.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_sysconfig_win.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_timeout.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_update_servers.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\ares_version.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\inet_net_pton.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\inet_ntop.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\windows_port.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_array.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable_asvp.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable_dict.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable_strvp.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable_szvp.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable_vpstr.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_htable_vpvp.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_llist.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\dsa\ares_slist.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_configchg.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_epoll.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_kqueue.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_poll.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_select.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_thread.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_wake_pipe.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\event\ares_event_win32.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_create_query.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_expand_name.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_expand_string.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_fds.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_getsock.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_a_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_aaaa_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_caa_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_mx_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_naptr_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_ns_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_ptr_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_soa_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_srv_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_txt_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\legacy\ares_parse_uri_reply.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\record\ares_dns_mapping.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\record\ares_dns_multistring.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\record\ares_dns_name.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\record\ares_dns_parse.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\record\ares_dns_record.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\record\ares_dns_write.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\str\ares_buf.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\str\ares_str.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\str\ares_strsplit.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\util\ares_iface_ips.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\util\ares_threads.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\util\ares_timeval.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\util\ares_math.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\util\ares_rand.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\util\ares_uri.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\ZERO_CHECK.vcxproj">
+      <Project>{86FC02CE-63A4-39D1-96D6-4EDACE4252E8}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\CMakeFiles\083cc520aaf8c5fefa0bd7320cbf55ab\Continuous.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\CMakeFiles\Continuous" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{55920614-C6D6-3D14-AE1E-D3CFA77D827C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

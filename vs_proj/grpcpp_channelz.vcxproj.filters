@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\channelz.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\channelz.grpc.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\channelz.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\channelz.grpc.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\service.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\service.grpc.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\src\cpp\server\channelz\channelz_service.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\src\cpp\server\channelz\channelz_service_plugin.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\channelz.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\channelz.grpc.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\channelz.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\channelz.grpc.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\service.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\channelz\v2\service.grpc.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\CMakeFiles\2ed2d12b5088f569d1c1153ba787581b\channelz.grpc.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\CMakeFiles\697ff56ee4b0c4f44ba8927e85c7dcf1\channelz.grpc.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\CMakeFiles\697ff56ee4b0c4f44ba8927e85c7dcf1\service.grpc.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{55920614-C6D6-3D14-AE1E-D3CFA77D827C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{418A1CEF-E843-35E9-B0F0-8A0B94DF500E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9366BEED-99F5-348F-8A31-2ADB864D0648}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

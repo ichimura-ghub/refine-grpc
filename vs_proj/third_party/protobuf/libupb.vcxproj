@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BCA1DB5E-E579-34F8-83C0-008E2E32F51F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>libupb</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libupb.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libupbd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libupb.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libupb</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">libupb.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">libupb</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">libupb.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">libupb</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\status.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\hash\common.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\json\decode.c">
+      <ObjectFileName>$(IntDir)/upb/json/decode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\json\encode.c">
+      <ObjectFileName>$(IntDir)/upb/json/encode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\atoi.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\round_trip.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\strtod.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\unicode.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mem\alloc.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mem\arena.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\accessors.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\array.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\compare.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\compat.c">
+      <ObjectFileName>$(IntDir)/upb/message/compat.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\copy.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\compare_unknown.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\extension.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\iterator.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\message.c">
+      <ObjectFileName>$(IntDir)/upb/message/internal/message.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\map.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\map_sorter.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\merge.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\message.c">
+      <ObjectFileName>$(IntDir)/upb/message/message.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\build_enum.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\decode.c">
+      <ObjectFileName>$(IntDir)/upb/mini_descriptor/decode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\base92.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\encode.c">
+      <ObjectFileName>$(IntDir)/upb/mini_descriptor/internal/encode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\link.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\compat.c">
+      <ObjectFileName>$(IntDir)/upb/mini_table/compat.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\debug_string.c">
+      <ObjectFileName>$(IntDir)/upb/mini_table/debug_string.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\extension_registry.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\generated_registry.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\message.c">
+      <ObjectFileName>$(IntDir)/upb/mini_table/internal/message.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\message.c">
+      <ObjectFileName>$(IntDir)/upb/mini_table/message.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\def_pool.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\def_type.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\desc_state.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\enum_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\enum_reserved_range.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\enum_value_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\extension_range.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\field_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\file_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\def_builder.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\strdup2.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message.c">
+      <ObjectFileName>$(IntDir)/upb/reflection/message.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message_reserved_range.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\method_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\oneof_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\service_def.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\debug_string.c">
+      <ObjectFileName>$(IntDir)/upb/text/debug_string.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\encode.c">
+      <ObjectFileName>$(IntDir)/upb/text/encode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\internal\encode.c">
+      <ObjectFileName>$(IntDir)/upb/text/internal/encode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\util\def_to_proto.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\util\required_fields.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\byte_size.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\decode.c">
+      <ObjectFileName>$(IntDir)/upb/wire/decode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\decode_fast\select.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\encode.c">
+      <ObjectFileName>$(IntDir)/upb/wire/encode.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\eps_copy_input_stream.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\internal\decoder.c" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\reader.c" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\descriptor_constants.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\error_handler.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\internal\endian.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\internal\log2.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\status.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\status.hpp" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\string_view.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\base\upcast.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\generated_code_support.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\hash\common.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\hash\ext_table.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\hash\int_table.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\hash\str_table.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\json\decode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\json\encode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\atoi.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\round_trip.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\strtod.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\lex\unicode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mem\alloc.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mem\arena.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mem\arena.hpp" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mem\internal\arena.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\accessors.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\array.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\compare.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\compat.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\copy.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\accessors.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\array.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\compare_unknown.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\extension.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\iterator.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\map.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\map_entry.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\map_sorter.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\message.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\internal\types.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\map.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\map_gencode_util.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\merge.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\message.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\message\value.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\build_enum.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\decode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\base92.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\decoder.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\encode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\encode.hpp" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\modifiers.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\internal\wire_constants.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_descriptor\link.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\compat.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\debug_string.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\enum.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\extension.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\extension_registry.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\field.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\file.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\generated_registry.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\enum.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\extension.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\field.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\file.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\generated_registry.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\message.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\size_log2.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\internal\sub.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\message.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\mini_table\sub.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\port\atomic.h" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\port\def.inc">
+    </None>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\port\sanitizers.h" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\port\undef.inc">
+    </None>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\port\vsnprintf_compat.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\common.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\def.hpp" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\def_pool.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\def_type.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\descriptor_bootstrap.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\enum_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\enum_reserved_range.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\enum_value_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\extension_range.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\field_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\file_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\def_pool.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\desc_state.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\enum_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\enum_reserved_range.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\enum_value_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\extension_range.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\field_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\file_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\message_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\message_reserved_range.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\method_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\oneof_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\service_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\internal\upb_edition_defaults.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message.hpp" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\message_reserved_range.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\method_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\oneof_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\service_def.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\debug_string.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\encode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\internal\encode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\text\options.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\util\def_to_proto.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\util\required_fields.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\byte_size.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\decode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\decode_fast\combinations.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\decode_fast\data.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\decode_fast\select.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\encode.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\eps_copy_input_stream.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\internal\decoder.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\internal\eps_copy_input_stream.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\internal\reader.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\reader.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\types.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\wire\writer.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake\google\protobuf\descriptor.upb.h" />
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake\google\protobuf\descriptor.upb_minitable.h" />
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake\google\protobuf\descriptor.upb_minitable.c" />
+    <ResourceCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\version.rc" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\ZERO_CHECK.vcxproj">
+      <Project>{86FC02CE-63A4-39D1-96D6-4EDACE4252E8}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\third_party\utf8_range\utf8_range.vcxproj">
+      <Project>{F6A115EB-150D-30AB-8A46-A5CBD13F321C}</Project>
+      <Name>utf8_range</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
