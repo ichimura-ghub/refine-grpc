@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\crypto\test\gtest_main.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\cert_issuer_source_static_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\certificate_policies_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\certificate_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\crl_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\encode_values_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\extended_key_usage_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\general_names_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\input_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\ip_util_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\mock_signature_verify_cache.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\name_constraints_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\nist_pkits_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\ocsp_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\parse_certificate_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\parse_name_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\parse_values_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\parsed_certificate_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\parser_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\path_builder_pkits_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\path_builder_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\path_builder_verify_certificate_chain_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\pem_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\signature_algorithm_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\simple_path_builder_delegate_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\string_util_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\test_helpers.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\trust_store_collection_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\trust_store_in_memory_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\verify_certificate_chain_pkits_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\verify_certificate_chain_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\verify_name_match_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\verify_signed_data_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\pki\verify_unittest.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9366BEED-99F5-348F-8A31-2ADB864D0648}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

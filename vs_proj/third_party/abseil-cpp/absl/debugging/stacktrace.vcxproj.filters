@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\stacktrace.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\stacktrace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_aarch64-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_arm-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_emscripten-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_generic-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_powerpc-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_riscv-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_unimplemented-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_win32-inl.inc" />
+    <None Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\debugging\internal\stacktrace_x86-inl.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{418A1CEF-E843-35E9-B0F0-8A0B94DF500E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9366BEED-99F5-348F-8A31-2ADB864D0648}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

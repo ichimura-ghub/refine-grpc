@@ -185,3 +185,14 @@ fuzz-*.log
 # bazel module files
 third_party/**/MODULE.bazel
 MODULE.bazel.lock
+
+
+
+
+vs_proj/.vs/
+vs_proj/*.vcxproj.user
+vs_proj/CMakeFiles/
+vs_proj/Debug/
+vs_proj/*.dir/
+vs_proj/**/CMakeFiles/
+vs_proj/**/Debug/

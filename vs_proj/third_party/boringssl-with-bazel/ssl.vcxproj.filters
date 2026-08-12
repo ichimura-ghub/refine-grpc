@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\bio_ssl.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\d1_both.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\d1_lib.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\d1_pkt.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\d1_srtp.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\dtls_method.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\dtls_record.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\encrypted_client_hello.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\extensions.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\handoff.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\handshake.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\handshake_client.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\handshake_server.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\s3_both.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\s3_lib.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\s3_pkt.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_aead_ctx.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_asn1.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_buffer.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_cert.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_cipher.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_credential.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_file.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_key_share.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_lib.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_privkey.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_session.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_stat.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_transcript.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_versions.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\ssl_x509.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\t1_enc.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\tls13_both.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\tls13_client.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\tls13_enc.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\tls13_server.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\tls_method.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\ssl\tls_record.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9366BEED-99F5-348F-8A31-2ADB864D0648}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

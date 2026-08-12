@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1\reflection.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1\reflection.grpc.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1alpha\reflection.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1alpha\reflection.grpc.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\src\cpp\ext\proto_server_reflection.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\src\cpp\ext\proto_server_reflection_plugin.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1\reflection.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1\reflection.grpc.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1alpha\reflection.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\gens\src\proto\grpc\reflection\v1alpha\reflection.grpc.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\CMakeFiles\bf9e1894afac580618cb20cf95813749\reflection.grpc.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\CMakeFiles\f17b36d0ac23436309ec7034bdc09921\reflection.grpc.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{55920614-C6D6-3D14-AE1E-D3CFA77D827C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{418A1CEF-E843-35E9-B0F0-8A0B94DF500E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9366BEED-99F5-348F-8A31-2ADB864D0648}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
