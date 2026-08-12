@@ -8,6 +8,10 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="NN_Debug|x64">
+      <Configuration>NN_Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
@@ -31,6 +35,11 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -60,11 +69,17 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">protoc.dir\Debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">protoc.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">protoc</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">protoc</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">protoc.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">protoc</TargetName>
@@ -95,12 +110,66 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Debug\libprotocd.lib;Debug\libprotobufd.lib;..\abseil-cpp\absl\base\Debug\absl_base.lib;..\abseil-cpp\absl\strings\Debug\absl_cord.lib;..\abseil-cpp\absl\log\Debug\absl_die_if_null.lib;..\abseil-cpp\absl\hash\Debug\absl_hash.lib;..\abseil-cpp\absl\log\Debug\absl_log_initialize.lib;..\abseil-cpp\absl\log\Debug\absl_log_globals.lib;..\abseil-cpp\absl\base\Debug\absl_log_severity.lib;..\abseil-cpp\absl\random\Debug\absl_random_distributions.lib;..\abseil-cpp\absl\status\Debug\absl_status.lib;..\abseil-cpp\absl\status\Debug\absl_statusor.lib;..\abseil-cpp\absl\strings\Debug\absl_strings.lib;..\abseil-cpp\absl\synchronization\Debug\absl_synchronization.lib;..\abseil-cpp\absl\time\Debug\absl_time.lib;third_party\utf8_range\Debug\libutf8_validity.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_check_op.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_conditions.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_message.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_nullguard.lib;..\abseil-cpp\absl\debugging\Debug\absl_examine_stack.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_format.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_structured_proto.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_proto.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_log_sink_set.lib;..\abseil-cpp\absl\log\Debug\absl_log_sink.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_internal.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_marshalling.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_reflection.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_config.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_program_name.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_private_handle_accessor.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_commandlineflag.lib;..\abseil-cpp\absl\flags\Debug\absl_flags_commandlineflag_internal.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_globals.lib;..\abseil-cpp\absl\log\Debug\absl_log_globals.lib;..\abseil-cpp\absl\log\Debug\absl_vlog_config_internal.lib;..\abseil-cpp\absl\log\Debug\absl_log_internal_fnmatch.lib;..\abseil-cpp\absl\container\Debug\absl_raw_hash_set.lib;..\abseil-cpp\absl\hash\Debug\absl_hash.lib;..\abseil-cpp\absl\hash\Debug\absl_city.lib;..\abseil-cpp\absl\hash\Debug\absl_low_level_hash.lib;..\abseil-cpp\absl\container\Debug\absl_hashtablez_sampler.lib;..\abseil-cpp\absl\random\Debug\absl_random_distributions.lib;..\abseil-cpp\absl\random\Debug\absl_random_seed_sequences.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_entropy_pool.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_randen.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_randen_hwaes.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_randen_hwaes_impl.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_randen_slow.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_platform.lib;..\abseil-cpp\absl\random\Debug\absl_random_internal_seed_material.lib;..\abseil-cpp\absl\random\Debug\absl_random_seed_gen_exception.lib;..\abseil-cpp\absl\status\Debug\absl_status.lib;..\abseil-cpp\absl\strings\Debug\absl_cord.lib;..\abseil-cpp\absl\strings\Debug\absl_cordz_info.lib;..\abseil-cpp\absl\strings\Debug\absl_cord_internal.lib;..\abseil-cpp\absl\strings\Debug\absl_cordz_functions.lib;..\abseil-cpp\absl\profiling\Debug\absl_exponential_biased.lib;..\abseil-cpp\absl\strings\Debug\absl_cordz_handle.lib;..\abseil-cpp\absl\crc\Debug\absl_crc_cord_state.lib;..\abseil-cpp\absl\crc\Debug\absl_crc32c.lib;..\abseil-cpp\absl\crc\Debug\absl_crc_internal.lib;..\abseil-cpp\absl\crc\Debug\absl_crc_cpu_detect.lib;..\abseil-cpp\absl\debugging\Debug\absl_leak_check.lib;..\abseil-cpp\absl\base\Debug\absl_strerror.lib;..\abseil-cpp\absl\strings\Debug\absl_str_format_internal.lib;..\abseil-cpp\absl\synchronization\Debug\absl_synchronization.lib;..\abseil-cpp\absl\debugging\Debug\absl_stacktrace.lib;..\abseil-cpp\absl\debugging\Debug\absl_symbolize.lib;..\abseil-cpp\absl\debugging\Debug\absl_debugging_internal.lib;..\abseil-cpp\absl\debugging\Debug\absl_demangle_internal.lib;..\abseil-cpp\absl\debugging\Debug\absl_demangle_rust.lib;..\abseil-cpp\absl\debugging\Debug\absl_decode_rust_punycode.lib;..\abseil-cpp\absl\debugging\Debug\absl_utf8_for_code_point.lib;..\abseil-cpp\absl\synchronization\Debug\absl_graphcycles_internal.lib;..\abseil-cpp\absl\synchronization\Debug\absl_kernel_timeout_internal.lib;..\abseil-cpp\absl\base\Debug\absl_malloc_internal.lib;..\abseil-cpp\absl\base\Debug\absl_tracing_internal.lib;..\abseil-cpp\absl\time\Debug\absl_time.lib;..\abseil-cpp\absl\strings\Debug\absl_strings.lib;..\abseil-cpp\absl\strings\Debug\absl_strings_internal.lib;..\abseil-cpp\absl\strings\Debug\absl_string_view.lib;..\abseil-cpp\absl\base\Debug\absl_throw_delegate.lib;..\abseil-cpp\absl\numeric\Debug\absl_int128.lib;..\abseil-cpp\absl\base\Debug\absl_base.lib;..\abseil-cpp\absl\base\Debug\absl_raw_logging_internal.lib;..\abseil-cpp\absl\base\Debug\absl_log_severity.lib;..\abseil-cpp\absl\base\Debug\absl_spinlock_wait.lib;..\abseil-cpp\absl\time\Debug\absl_civil_time.lib;..\abseil-cpp\absl\time\Debug\absl_time_zone.lib;-ignore:4221;Debug\libupbd.lib;third_party\utf8_range\Debug\libutf8_range.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /opt:ref /opt:icf /pdbcompress</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/Debug/protoc.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/Debug/protoc.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\upb\reflection\cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
@@ -144,12 +213,14 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
@@ -195,12 +266,14 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
@@ -247,12 +320,14 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
@@ -290,6 +365,7 @@
     <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
@@ -299,9 +375,21 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
