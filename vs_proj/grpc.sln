@@ -734,11 +734,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filtered_re2_test", "third_
 		{B15A9BC6-CDE8-369B-A090-B96DE411A9A1} = {B15A9BC6-CDE8-369B-A090-B96DE411A9A1}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fips_specific_tests_if_any", "third_party\boringssl-with-bazel\fips_specific_tests_if_any.vcxproj", "{6D3F8FF8-6628-3B67-A2CE-84CC0C38CD40}"
-	ProjectSection(ProjectDependencies) = postProject
-		{86FC02CE-63A4-39D1-96D6-4EDACE4252E8} = {86FC02CE-63A4-39D1-96D6-4EDACE4252E8}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fipsmodule", "third_party\boringssl-with-bazel\fipsmodule.vcxproj", "{AC97A49B-02DD-300D-A46A-EC20F11E4E76}"
 	ProjectSection(ProjectDependencies) = postProject
 		{86FC02CE-63A4-39D1-96D6-4EDACE4252E8} = {86FC02CE-63A4-39D1-96D6-4EDACE4252E8}
@@ -5276,11 +5271,6 @@ Global
 		{2D7B5FBC-DE5A-388A-88AE-B04691DC79DB}.Release|x64.Build.0 = Release|x64
 		{2D7B5FBC-DE5A-388A-88AE-B04691DC79DB}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{2D7B5FBC-DE5A-388A-88AE-B04691DC79DB}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
-		{6D3F8FF8-6628-3B67-A2CE-84CC0C38CD40}.Debug|x64.ActiveCfg = Debug|x64
-		{6D3F8FF8-6628-3B67-A2CE-84CC0C38CD40}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
-		{6D3F8FF8-6628-3B67-A2CE-84CC0C38CD40}.NN_Debug|x64.ActiveCfg = NN_Debug|x64
-		{6D3F8FF8-6628-3B67-A2CE-84CC0C38CD40}.Release|x64.ActiveCfg = Release|x64
-		{6D3F8FF8-6628-3B67-A2CE-84CC0C38CD40}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{AC97A49B-02DD-300D-A46A-EC20F11E4E76}.Debug|x64.ActiveCfg = Debug|x64
 		{AC97A49B-02DD-300D-A46A-EC20F11E4E76}.Debug|x64.Build.0 = Debug|x64
 		{AC97A49B-02DD-300D-A46A-EC20F11E4E76}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
