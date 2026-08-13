@@ -2850,11 +2850,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "grpcpp_channelz", "grpcpp_c
 		{8CA8A76D-0161-381D-9F50-5531E5E684E0} = {8CA8A76D-0161-381D-9F50-5531E5E684E0}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "handshaker", "third_party\boringssl-with-bazel\ssl\test\handshaker.vcxproj", "{43219580-D7FE-3570-993F-3E6891F4E518}"
-	ProjectSection(ProjectDependencies) = postProject
-		{86FC02CE-63A4-39D1-96D6-4EDACE4252E8} = {86FC02CE-63A4-39D1-96D6-4EDACE4252E8}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hash", "third_party\abseil-cpp\absl\hash\hash.vcxproj", "{A86BDCBC-B1DE-3AC0-9B0F-9FFA3F28F825}"
 	ProjectSection(ProjectDependencies) = postProject
 		{86FC02CE-63A4-39D1-96D6-4EDACE4252E8} = {86FC02CE-63A4-39D1-96D6-4EDACE4252E8}
@@ -5581,11 +5576,6 @@ Global
 		{E04D8811-C0DA-361C-89B5-1A4DCDB96A2F}.Release|x64.Build.0 = Release|x64
 		{E04D8811-C0DA-361C-89B5-1A4DCDB96A2F}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{E04D8811-C0DA-361C-89B5-1A4DCDB96A2F}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
-		{43219580-D7FE-3570-993F-3E6891F4E518}.Debug|x64.ActiveCfg = Debug|x64
-		{43219580-D7FE-3570-993F-3E6891F4E518}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
-		{43219580-D7FE-3570-993F-3E6891F4E518}.NN_Debug|x64.ActiveCfg = NN_Debug|x64
-		{43219580-D7FE-3570-993F-3E6891F4E518}.Release|x64.ActiveCfg = Release|x64
-		{43219580-D7FE-3570-993F-3E6891F4E518}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{A86BDCBC-B1DE-3AC0-9B0F-9FFA3F28F825}.Debug|x64.ActiveCfg = Debug|x64
 		{A86BDCBC-B1DE-3AC0-9B0F-9FFA3F28F825}.Debug|x64.Build.0 = Debug|x64
 		{A86BDCBC-B1DE-3AC0-9B0F-9FFA3F28F825}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
