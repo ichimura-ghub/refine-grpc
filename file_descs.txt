@@ -2,7 +2,8 @@
 (adig.exe)
   ..\lib\Debug\cares.lib
 
-
+(ahost.exe)
+  ..\lib\Debug\cares.lib
 
 [ライブラリ]
 address_sorting
