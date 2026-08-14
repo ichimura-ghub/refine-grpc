@@ -388,10 +388,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{5BA8E2D2-3B49-3C72-BA9C-21FBAF5510D5}</Project>
       <Name>address_sorting</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\tools\adig.vcxproj">
-      <Project>{52A83BF9-0B1D-3120-BB17-1A9FD0717330}</Project>
-      <Name>adig</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\tools\ahost.vcxproj">
       <Project>{02697CFA-8C5B-330B-93E7-A493A33B3001}</Project>
       <Name>ahost</Name>
