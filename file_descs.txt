@@ -9,5 +9,10 @@
   Debug\ssl.lib
   Debug\crypto.lib
 
+(bssl_shim.exe)
+  Debug\ssl.lib
+  Debug\crypto.lib
+
+
 [ライブラリ]
 address_sorting

@@ -396,10 +396,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{BDBC5477-4331-32E8-AE6B-0FC46189986A}</Project>
       <Name>boringssl_gtest</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\ssl\test\bssl_shim.vcxproj">
-      <Project>{74FAF19A-511F-3956-94F6-BF95581F3C27}</Project>
-      <Name>bssl_shim</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\c-ares.vcxproj">
       <Project>{AA399163-5ADE-3761-A00D-A2785F39853A}</Project>
       <Name>c-ares</Name>
