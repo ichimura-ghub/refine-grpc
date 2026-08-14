@@ -193,8 +193,10 @@ vs_proj/.vs/
 vs_proj/*.vcxproj.user
 vs_proj/CMakeFiles/
 vs_proj/Debug/
+vs_proj/NX64/
 vs_proj/*.dir/
 vs_proj/**/CMakeFiles/
 vs_proj/**/Debug/
+vs_proj/**/NX64/
 vs_proj/**/*.lib
 vs_proj/**/*.exe
