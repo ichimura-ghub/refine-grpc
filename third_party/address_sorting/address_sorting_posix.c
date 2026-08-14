@@ -89,7 +89,8 @@ static const address_sorting_source_addr_factory_vtable
 address_sorting_source_addr_factory*
 address_sorting_create_source_addr_factory_for_current_platform() {
   address_sorting_source_addr_factory* factory =
-      malloc(sizeof(address_sorting_source_addr_factory));
+      (address_sorting_source_addr_factory*)malloc(
+          sizeof(address_sorting_source_addr_factory));
   memset(factory, 0, sizeof(address_sorting_source_addr_factory));
   factory->vtable = &posix_source_addr_factory_vtable;
   return factory;
