@@ -464,10 +464,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{176F276F-3794-34E3-94D7-18479983EF9B}</Project>
       <Name>decrepit</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\decrepit_test.vcxproj">
-      <Project>{91476C9B-829E-3ECE-B3A4-E1F8FC4750F0}</Project>
-      <Name>decrepit_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\demangle_internal.vcxproj">
       <Project>{A94ED4D8-FE20-3200-9261-0D7D7CF1159D}</Project>
       <Name>demangle_internal</Name>
