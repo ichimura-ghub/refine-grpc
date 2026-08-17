@@ -480,10 +480,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{18BAF620-54D4-3E2B-BA2C-281ADD054700}</Project>
       <Name>examine_stack</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib\example.vcxproj">
-      <Project>{AAA69F84-76B2-35C9-AB19-8A536E7492BA}</Project>
-      <Name>example</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\exhaustive1_test.vcxproj">
       <Project>{B613C254-F19E-352E-A63E-E79495AB2E59}</Project>
       <Name>exhaustive1_test</Name>
