@@ -21,6 +21,11 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(crypto_test.exe)
+  Debug\test_support_lib.lib
+  Debug\boringssl_gtest.lib
+  Debug\crypto.lib
+
 
 [ライブラリ]
 address_sorting
