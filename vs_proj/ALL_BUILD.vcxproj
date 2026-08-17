@@ -400,10 +400,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{AA399163-5ADE-3761-A00D-A2785F39853A}</Project>
       <Name>c-ares</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\charclass_test.vcxproj">
-      <Project>{5985DEF9-1742-3924-A303-3AEFA92B80DE}</Project>
-      <Name>charclass_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\hash\city.vcxproj">
       <Project>{7D732A18-AFD8-33CC-AAE5-679B44B181E9}</Project>
       <Name>city</Name>

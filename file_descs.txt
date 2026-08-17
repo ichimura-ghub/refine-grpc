@@ -13,6 +13,10 @@
   Debug\ssl.lib
   Debug\crypto.lib
 
+(charclass_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
 
 [ライブラリ]
 address_sorting
