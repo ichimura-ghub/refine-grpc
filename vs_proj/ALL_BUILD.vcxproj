@@ -408,10 +408,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{08E09618-D0B2-3178-BFBC-2E56EE0919DC}</Project>
       <Name>civil_time</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\compile_test.vcxproj">
-      <Project>{00D0C3F9-BCCA-30B2-93C6-65F2131D5251}</Project>
-      <Name>compile_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\strings\cord.vcxproj">
       <Project>{3A45735C-9312-3A62-8DE5-CBBB1D5D5E73}</Project>
       <Name>cord</Name>
