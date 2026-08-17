@@ -37,6 +37,9 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(example.exe)
+  Debug\zlibd.lib
+
 
 [ライブラリ]
 address_sorting
