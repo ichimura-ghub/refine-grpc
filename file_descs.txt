@@ -26,6 +26,13 @@
   Debug\boringssl_gtest.lib
   Debug\crypto.lib
 
+(decrepit_test.exe)
+  Debug\test_support_lib.lib
+  Debug\boringssl_gtest.lib
+  Debug\decrepit.lib
+  Debug\ssl.lib
+  Debug\crypto.lib
+
 
 [ライブラリ]
 address_sorting
