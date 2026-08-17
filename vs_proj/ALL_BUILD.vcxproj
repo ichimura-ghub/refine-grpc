@@ -452,10 +452,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{1FC505B5-9AB9-38CA-8862-CC574069CFE8}</Project>
       <Name>crypto</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\crypto_test.vcxproj">
-      <Project>{977330B9-560C-3AE1-A235-043DEDBDDED4}</Project>
-      <Name>crypto_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\debugging_internal.vcxproj">
       <Project>{851ADCDC-2234-399E-8F4A-213FEFB6D287}</Project>
       <Name>debugging_internal</Name>
