@@ -17,6 +17,10 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(compile_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
 
 [ライブラリ]
 address_sorting
