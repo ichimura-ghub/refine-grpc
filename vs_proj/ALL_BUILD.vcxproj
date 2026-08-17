@@ -480,18 +480,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{18BAF620-54D4-3E2B-BA2C-281ADD054700}</Project>
       <Name>examine_stack</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\exhaustive1_test.vcxproj">
-      <Project>{B613C254-F19E-352E-A63E-E79495AB2E59}</Project>
-      <Name>exhaustive1_test</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\exhaustive2_test.vcxproj">
-      <Project>{CE7A7DA2-EDDD-320A-A5B5-4E7744AE6068}</Project>
-      <Name>exhaustive2_test</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\exhaustive3_test.vcxproj">
-      <Project>{47F81E0F-7F46-32C6-8878-A0398794DBAE}</Project>
-      <Name>exhaustive3_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\exponential_biased.vcxproj">
       <Project>{74F1A3AE-D6D6-3716-8BED-CD44B8DDBF5C}</Project>
       <Name>exponential_biased</Name>
