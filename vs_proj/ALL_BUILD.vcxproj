@@ -492,10 +492,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{47F81E0F-7F46-32C6-8878-A0398794DBAE}</Project>
       <Name>exhaustive3_test</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\exhaustive_test.vcxproj">
-      <Project>{8BAFA85D-A331-3B46-95C4-209F69450C4D}</Project>
-      <Name>exhaustive_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\exponential_biased.vcxproj">
       <Project>{74F1A3AE-D6D6-3716-8BED-CD44B8DDBF5C}</Project>
       <Name>exponential_biased</Name>
