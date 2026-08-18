@@ -1034,6 +1034,18 @@
   ..\abseil-cpp\absl\time\Debug\absl_time_zone.lib
   third_party\utf8_range\Debug\libutf8_range.lib
 
+(random_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(re2_arg_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(re2_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
 
 [ライブラリ]
 address_sorting
