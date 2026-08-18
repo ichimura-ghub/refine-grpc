@@ -676,6 +676,9 @@
   third_party\protobuf\Debug\libupbd.lib
   third_party\protobuf\third_party\utf8_range\Debug\libutf8_range.lib
 
+(mimics_pcre_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
 
 
 [ライブラリ]

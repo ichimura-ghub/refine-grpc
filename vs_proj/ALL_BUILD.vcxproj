@@ -690,10 +690,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{36356D5F-798B-385B-BDCE-549132D983D6}</Project>
       <Name>malloc_internal</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\mimics_pcre_test.vcxproj">
-      <Project>{D5E18455-1785-3ACD-8918-584515BE6EB2}</Project>
-      <Name>mimics_pcre_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib\minigzip.vcxproj">
       <Project>{385E7D63-1E5B-3ED7-8E60-FFA25569304B}</Project>
       <Name>minigzip</Name>
