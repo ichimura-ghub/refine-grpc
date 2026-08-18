@@ -1046,6 +1046,32 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(regexp_benchmark.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(regexp_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(required_prefix_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(search_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(set_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(simplify_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+
+
 
 [ライブラリ]
 address_sorting
