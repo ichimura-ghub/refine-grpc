@@ -746,10 +746,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{AC4B159E-2BDE-387F-B470-8B888AD5EB56}</Project>
       <Name>random_seed_sequences</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\random_test.vcxproj">
-      <Project>{5DBE4178-A77D-3F57-89B0-4E6743E49096}</Project>
-      <Name>random_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\container\raw_hash_set.vcxproj">
       <Project>{EEF46D1A-4A91-37AF-A39C-F18A32C7BBD8}</Project>
       <Name>raw_hash_set</Name>
@@ -761,14 +757,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\re2.vcxproj">
       <Project>{DE8CEF92-CDEE-3B08-B3DB-201DA5F68C71}</Project>
       <Name>re2</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\re2_arg_test.vcxproj">
-      <Project>{9B66D70B-3C97-3571-974D-5E03381D971B}</Project>
-      <Name>re2_arg_test</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\re2_test.vcxproj">
-      <Project>{41638AA9-BFA6-3E8C-AAEF-423B6B1DF314}</Project>
-      <Name>re2_test</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\regexp_benchmark.vcxproj">
       <Project>{05C76966-9F4E-3565-A474-ACB160AFBD5D}</Project>
