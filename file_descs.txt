@@ -680,6 +680,14 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(minigzip.exe)
+  Debug\zlibd.lib
+
+(parse_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+ 
 
 [ライブラリ]
 address_sorting
