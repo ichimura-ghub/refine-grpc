@@ -56,6 +56,9 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(filtered_re2_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
 
 [ライブラリ]
 address_sorting
