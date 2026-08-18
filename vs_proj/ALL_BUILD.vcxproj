@@ -488,10 +488,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{E8E4CE6E-C893-3D62-B1BE-E1D4EC4D2AF6}</Project>
       <Name>failure_signal_handler</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\filtered_re2_test.vcxproj">
-      <Project>{2D7B5FBC-DE5A-388A-88AE-B04691DC79DB}</Project>
-      <Name>filtered_re2_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.vcxproj">
       <Project>{AC97A49B-02DD-300D-A46A-EC20F11E4E76}</Project>
       <Name>fipsmodule</Name>
