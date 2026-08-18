@@ -687,7 +687,16 @@
   Debug\testing.lib
   Debug\re2.lib
 
- 
+(pki_test.exe)
+  Debug\test_support_lib.lib
+  Debug\boringssl_gtest.lib
+  Debug\pki.lib
+  Debug\crypto.lib
+
+(possible_match_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
 
 [ライブラリ]
 address_sorting
