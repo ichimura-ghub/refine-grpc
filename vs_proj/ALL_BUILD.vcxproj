@@ -690,14 +690,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{36356D5F-798B-385B-BDCE-549132D983D6}</Project>
       <Name>malloc_internal</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib\minigzip.vcxproj">
-      <Project>{385E7D63-1E5B-3ED7-8E60-FFA25569304B}</Project>
-      <Name>minigzip</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\parse_test.vcxproj">
-      <Project>{43B2E0BC-4F67-387E-9B50-AE7C9111C160}</Project>
-      <Name>parse_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\periodic_sampler.vcxproj">
       <Project>{D037AF92-A2E4-3344-B740-D8B55392214A}</Project>
       <Name>periodic_sampler</Name>
