@@ -698,17 +698,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{52806D1E-FDC1-373D-8DB7-A64D25063CC8}</Project>
       <Name>pki</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\pki_test.vcxproj">
-      <Project>{4B1E2229-858F-3581-90F0-592501BBAEA9}</Project>
-      <Name>pki_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\poison.vcxproj">
       <Project>{7B7215A1-23C0-3ED6-A0E7-85D275577486}</Project>
       <Name>poison</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\possible_match_test.vcxproj">
-      <Project>{1BC85A3D-DB3E-38F1-8BBF-366D07EC638E}</Project>
-      <Name>possible_match_test</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\protoc.vcxproj">
       <Project>{4273FC8A-308A-37FE-A8EF-550C36F7A75B}</Project>
