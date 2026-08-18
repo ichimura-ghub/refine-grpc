@@ -758,33 +758,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{DE8CEF92-CDEE-3B08-B3DB-201DA5F68C71}</Project>
       <Name>re2</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\regexp_benchmark.vcxproj">
-      <Project>{05C76966-9F4E-3565-A474-ACB160AFBD5D}</Project>
-      <Name>regexp_benchmark</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\regexp_test.vcxproj">
-      <Project>{F31B2352-7A92-37B3-8E6B-9E615772837F}</Project>
-      <Name>regexp_test</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\required_prefix_test.vcxproj">
-      <Project>{EC6777C3-CBBB-3A7F-85A7-CACC4E9783A9}</Project>
-      <Name>required_prefix_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\scoped_set_env.vcxproj">
       <Project>{D29F0269-7903-346B-813A-508B06C1446C}</Project>
       <Name>scoped_set_env</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\search_test.vcxproj">
-      <Project>{10D5ECF3-CA53-3B8F-BCC9-A62F82EBB05F}</Project>
-      <Name>search_test</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\set_test.vcxproj">
-      <Project>{9AAB7C6D-788B-3734-B2BF-B9A566C7FDFD}</Project>
-      <Name>set_test</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\simplify_test.vcxproj">
-      <Project>{C0B974B2-475D-3545-8E17-6072F63B902B}</Project>
-      <Name>simplify_test</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\spinlock_wait.vcxproj">
       <Project>{106913B2-CB32-3F2C-96AA-22CB8A8620DD}</Project>
