@@ -1493,10 +1493,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{36356D5F-798B-385B-BDCE-549132D983D6}</Project>
       <Name>malloc_internal</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\protoc.vcxproj">
-      <Project>{4273FC8A-308A-37FE-A8EF-550C36F7A75B}</Project>
-      <Name>protoc</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\random\random_distributions.vcxproj">
       <Project>{8D5B5F9C-BFEE-318F-8603-9D28298178FD}</Project>
       <Name>random_distributions</Name>

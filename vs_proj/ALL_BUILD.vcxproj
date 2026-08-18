@@ -702,22 +702,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{7B7215A1-23C0-3ED6-A0E7-85D275577486}</Project>
       <Name>poison</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\protoc.vcxproj">
-      <Project>{4273FC8A-308A-37FE-A8EF-550C36F7A75B}</Project>
-      <Name>protoc</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\protoc-gen-upb.vcxproj">
-      <Project>{E02BDA0F-6957-3E98-855F-327D137FE4E6}</Project>
-      <Name>protoc-gen-upb</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\protoc-gen-upb_minitable.vcxproj">
-      <Project>{DFEE18FB-88BE-32C9-AA62-88245CD0FF68}</Project>
-      <Name>protoc-gen-upb_minitable</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\protoc-gen-upbdefs.vcxproj">
-      <Project>{270644BF-7C44-379E-9537-610A6D4A0617}</Project>
-      <Name>protoc-gen-upbdefs</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\random\random_distributions.vcxproj">
       <Project>{8D5B5F9C-BFEE-318F-8603-9D28298178FD}</Project>
       <Name>random_distributions</Name>
