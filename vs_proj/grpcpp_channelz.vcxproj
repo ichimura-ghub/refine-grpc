@@ -1405,10 +1405,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{BE5424E8-1FCF-3AD1-BD24-03A726FA32A0}</Project>
       <Name>grpc++</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_cpp_plugin.vcxproj">
-      <Project>{F74EA763-F148-387A-8C8E-66220EA87C01}</Project>
-      <Name>grpc_cpp_plugin</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\hash\hash.vcxproj">
       <Project>{A86BDCBC-B1DE-3AC0-9B0F-9FFA3F28F825}</Project>
       <Name>hash</Name>

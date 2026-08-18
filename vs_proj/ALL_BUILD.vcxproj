@@ -574,37 +574,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{1DEBF02A-5632-312D-8DEC-648125CBCD07}</Project>
       <Name>grpc_authorization_provider</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_cpp_plugin.vcxproj">
-      <Project>{F74EA763-F148-387A-8C8E-66220EA87C01}</Project>
-      <Name>grpc_cpp_plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_csharp_plugin.vcxproj">
-      <Project>{FBD0D38F-C32E-35EC-BAB3-0AB0DB96164A}</Project>
-      <Name>grpc_csharp_plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_node_plugin.vcxproj">
-      <Project>{B4360875-E4B5-3BB9-A44C-7BE517CE6DE0}</Project>
-      <Name>grpc_node_plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_objective_c_plugin.vcxproj">
-      <Project>{10ADBBF0-1B1B-3FAF-A321-64EA4956CB46}</Project>
-      <Name>grpc_objective_c_plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_php_plugin.vcxproj">
-      <Project>{EB7F3F9F-5078-3BD6-B5F2-EB446DD0F9FF}</Project>
-      <Name>grpc_php_plugin</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_plugin_support.vcxproj">
       <Project>{71F36BF3-BFC5-3FF9-A695-8FE5849B23EC}</Project>
       <Name>grpc_plugin_support</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_python_plugin.vcxproj">
-      <Project>{305A6AED-773E-3154-ABEF-0166482483A2}</Project>
-      <Name>grpc_python_plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_ruby_plugin.vcxproj">
-      <Project>{D55E72A2-2BF0-3982-A980-B87BEAED6993}</Project>
-      <Name>grpc_ruby_plugin</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\grpc_unsecure.vcxproj">
       <Project>{BF7E6C76-A5E0-3294-A3A1-75E6BC0E6375}</Project>
