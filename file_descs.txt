@@ -1090,4 +1090,8 @@
 
 
 [ライブラリ]
-address_sorting
+*address_sorting
+
+grpc++
+* zlibstatic
+  utf8_range_lib
