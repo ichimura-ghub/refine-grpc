@@ -1070,7 +1070,23 @@
   Debug\testing.lib
   Debug\re2.lib
 
+(ssl_test.exe)
+  Debug\test_support_lib.lib
+  Debug\boringssl_gtest.lib
+  Debug\ssl.lib
+  Debug\crypto.lib
 
+(string_generator_test.exe)
+  Debug\testing.lib
+  Debug\re2.lib
+
+(test_fips.exe)
+  ..\..\Debug\crypto.lib
+
+(urandom_test.exe)
+  Debug\test_support_lib.lib
+  Debug\boringssl_gtest.lib
+  Debug\crypto.lib
 
 
 [ライブラリ]

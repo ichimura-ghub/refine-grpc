@@ -770,10 +770,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{29FACB8B-5B74-35DE-9A91-7B629DD8B7DC}</Project>
       <Name>ssl</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\ssl_test.vcxproj">
-      <Project>{3CD0917F-457D-3A03-BCA2-02651D338D74}</Project>
-      <Name>ssl_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\stacktrace.vcxproj">
       <Project>{476B399A-CDE6-34E5-9F2A-EB57EF6CA648}</Project>
       <Name>stacktrace</Name>
@@ -794,10 +790,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{EEE858FF-DAE3-3F34-9D70-1025FF463DDE}</Project>
       <Name>strerror</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\string_generator_test.vcxproj">
-      <Project>{5DB8553E-0A8C-36BD-BBB7-2651F3368EBB}</Project>
-      <Name>string_generator_test</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\strings\string_view.vcxproj">
       <Project>{B35F0459-41BD-3BF1-85AA-628030D437F2}</Project>
       <Name>string_view</Name>
@@ -817,10 +809,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\synchronization\synchronization.vcxproj">
       <Project>{CBF60B39-9394-302C-B613-B226CCA55A0F}</Project>
       <Name>synchronization</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\util\fipstools\test_fips.vcxproj">
-      <Project>{63A3A2D5-67EF-3C81-87A7-98109CCC730D}</Project>
-      <Name>test_fips</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\test_support_lib.vcxproj">
       <Project>{594FC645-FEDD-3C17-BFE9-A7FF53D97845}</Project>
@@ -893,10 +881,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\upb_wire_lib.vcxproj">
       <Project>{A6E5E194-F22B-350F-9610-46B13A60DE59}</Project>
       <Name>upb_wire_lib</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\urandom_test.vcxproj">
-      <Project>{806185CA-072D-368F-907A-83715A85F6B8}</Project>
-      <Name>urandom_test</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\utf8_for_code_point.vcxproj">
       <Project>{575E2F3E-FD14-3000-8A26-78976BA4CFCB}</Project>
