@@ -1094,4 +1094,5 @@
 
 grpc++
 * zlibstatic
-  utf8_range_lib
+* utf8_range_lib
+  strerror
