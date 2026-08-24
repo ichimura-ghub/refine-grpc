@@ -20,10 +20,10 @@
 #define GETHOSTNAME_TYPE_ARG2 int
 
 /* Define to the type qualifier of arg 1 for getnameinfo. */
-#define GETNAMEINFO_QUAL_ARG1 
+#define GETNAMEINFO_QUAL_ARG1
 
 /* Define to the type of arg 1 for getnameinfo. */
-#define GETNAMEINFO_TYPE_ARG1 struct sockaddr *
+#define GETNAMEINFO_TYPE_ARG1 struct sockaddr*
 
 /* Define to the type of arg 2 for getnameinfo. */
 #define GETNAMEINFO_TYPE_ARG2 socklen_t
@@ -35,16 +35,19 @@
 #define GETNAMEINFO_TYPE_ARG7 int
 
 /* Specifies the number of arguments to getservbyport_r */
-#define GETSERVBYPORT_R_ARGS 
+#define GETSERVBYPORT_R_ARGS
 
 /* Specifies the number of arguments to getservbyname_r */
-#define GETSERVBYNAME_R_ARGS 
+#define GETSERVBYNAME_R_ARGS
 
 /* Define to 1 if you have AF_INET6. */
 #define HAVE_AF_INET6 1
 
 /* Define to 1 if you have the <arpa/inet.h> header file. */
 /* #undef HAVE_ARPA_INET_H */
+#ifdef NN_NINTENDO_SDK
+#define HAVE_ARPA_INET_H 1
+#endif
 
 /* Define to 1 if you have the <arpa/nameser_compat.h> header file. */
 /* #undef HAVE_ARPA_NAMESER_COMPAT_H */
@@ -101,7 +104,9 @@
 /* #undef HAVE_EPOLL */
 
 /* Define to 1 if you have the fcntl function. */
-/* #undef HAVE_FCNTL */
+#ifdef NN_NINTENDO_SDK
+#define HAVE_FCNTL 1
+#endif
 
 /* Define to 1 if you have the <fcntl.h> header file. */
 #define HAVE_FCNTL_H 1
@@ -122,7 +127,11 @@
 #define HAVE_GETENV 1
 
 /* Define to 1 if you have the gethostname function. */
+#ifdef NN_NINTENDO_SDK
+/* #undef HAVE_GETHOSTNAME */
+#else
 #define HAVE_GETHOSTNAME 1
+#endif
 
 /* Define to 1 if you have the getnameinfo function. */
 #define HAVE_GETNAMEINFO 1
@@ -138,12 +147,19 @@
 
 /* Define to 1 if you have the `gettimeofday' function. */
 /* #undef HAVE_GETTIMEOFDAY */
+#ifdef NN_NINTENDO_SDK
+#define HAVE_NNGETSYSTEMTICK 1
+#endif
 
 /* Define to 1 if you have the `if_indextoname' function. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_IF_INDEXTONAME 1
+#endif
 
 /* Define to 1 if you have the `if_nametoindex' function. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_IF_NAMETOINDEX 1
+#endif
 
 /* Define to 1 if you have the `GetBestRoute2' function. */
 #define HAVE_GETBESTROUTE2 1
@@ -181,12 +197,13 @@
 /* Define to 1 if you have the IoctlSocket camel case function. */
 /* #undef HAVE_IOCTLSOCKET_CAMEL */
 
-/* Define to 1 if you have a working IoctlSocket camel case FIONBIO function.
-   */
+/* Define to 1 if you have a working IoctlSocket camel case FIONBIO function. */
 /* #undef HAVE_IOCTLSOCKET_CAMEL_FIONBIO */
 
 /* Define to 1 if you have a working ioctlsocket FIONBIO function. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_IOCTLSOCKET_FIONBIO 1
+#endif
 
 /* Define to 1 if you have a working ioctl FIONBIO function. */
 /* #undef HAVE_IOCTL_FIONBIO */
@@ -222,7 +239,9 @@
 /* #undef HAVE_MSG_NOSIGNAL */
 
 /* Define to 1 if you have the <netdb.h> header file. */
-/* #undef HAVE_NETDB_H */
+#ifdef NN_NINTENDO_SDK
+#define HAVE_NETDB_H 1
+#endif
 
 /* Define to 1 if you have the <netinet/in.h> header file. */
 /* #undef HAVE_NETINET_IN_H */
@@ -282,10 +301,14 @@
 #define HAVE_STDLIB_H 1
 
 /* Define to 1 if you have the strcasecmp function. */
-/* #undef HAVE_STRCASECMP */
+#ifdef NN_NINTENDO_SDK
+#define HAVE_STRCASECMP 1
+#endif
 
 /* Define to 1 if you have the strcmpi function. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_STRCMPI 1
+#endif
 
 /* Define to 1 if you have the strdup function. */
 #define HAVE_STRDUP 1
@@ -300,13 +323,17 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the strncasecmp function. */
-/* #undef HAVE_STRNCASECMP */
+#ifdef NN_NINTENDO_SDK
+#define HAVE_STRNCASECMP 1
+#endif
 
 /* Define to 1 if you have the strncmpi function. */
 /* #undef HAVE_STRNCMPI */
 
 /* Define to 1 if you have the strnicmp function. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_STRNICMP 1
+#endif
 
 /* Define to 1 if you have the <stropts.h> header file. */
 /* #undef HAVE_STROPTS_H */
@@ -369,19 +396,29 @@
 /* #undef HAVE_UNISTD_H */
 
 /* Define to 1 if you have the windows.h header file. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_WINDOWS_H 1
+#endif
 
 /* Define to 1 if you have the winsock2.h header file. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_WINSOCK2_H 1
+#endif
 
 /* Define to 1 if you have the winsock.h header file. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_WINSOCK_H 1
+#endif
 
 /* Define to 1 if you have the mswsock.h header file. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_MSWSOCK_H 1
+#endif
 
 /* Define to 1 if you have the winternl.h header file. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_WINTERNL_H 1
+#endif
 
 /* Define to 1 if you have the ntstatus.h header file. */
 /* #undef HAVE_NTSTATUS_H */
@@ -393,7 +430,9 @@
 /* #undef HAVE_WRITEV */
 
 /* Define to 1 if you have the ws2tcpip.h header file. */
+#ifndef NN_NINTENDO_SDK
 #define HAVE_WS2TCPIP_H 1
+#endif
 
 /* Define to 1 if you have the __system_property_get function */
 /* #undef HAVE___SYSTEM_PROPERTY_GET */
@@ -411,13 +450,13 @@
 #define CARES_RANDOM_FILE "/dev/urandom"
 
 /* Define to the type qualifier pointed by arg 5 for recvfrom. */
-#define RECVFROM_QUAL_ARG5 
+#define RECVFROM_QUAL_ARG5
 
 /* Define to the type of arg 1 for recvfrom. */
 #define RECVFROM_TYPE_ARG1 SOCKET
 
 /* Define to the type pointed by arg 2 for recvfrom. */
-#define RECVFROM_TYPE_ARG2 char *
+#define RECVFROM_TYPE_ARG2 char*
 
 /* Define to 1 if the type pointed by arg 2 for recvfrom is void. */
 #define RECVFROM_TYPE_ARG2_IS_VOID 0
@@ -429,13 +468,13 @@
 #define RECVFROM_TYPE_ARG4 int
 
 /* Define to the type pointed by arg 5 for recvfrom. */
-#define RECVFROM_TYPE_ARG5 struct sockaddr *
+#define RECVFROM_TYPE_ARG5 struct sockaddr*
 
 /* Define to 1 if the type pointed by arg 5 for recvfrom is void. */
 #define RECVFROM_TYPE_ARG5_IS_VOID 0
 
 /* Define to the type pointed by arg 6 for recvfrom. */
-#define RECVFROM_TYPE_ARG6 socklen_t *
+#define RECVFROM_TYPE_ARG6 socklen_t*
 
 /* Define to 1 if the type pointed by arg 6 for recvfrom is void. */
 #define RECVFROM_TYPE_ARG6_IS_VOID 0
@@ -447,7 +486,7 @@
 #define RECV_TYPE_ARG1 SOCKET
 
 /* Define to the type of arg 2 for recv. */
-#define RECV_TYPE_ARG2 char *
+#define RECV_TYPE_ARG2 char*
 
 /* Define to the type of arg 3 for recv. */
 #define RECV_TYPE_ARG3 int
@@ -462,7 +501,7 @@
 #define SEND_TYPE_ARG1 SOCKET
 
 /* Define to the type of arg 2 for send. */
-#define SEND_TYPE_ARG2 const void *
+#define SEND_TYPE_ARG2 const void*
 
 /* Define to the type of arg 3 for send. */
 #define SEND_TYPE_ARG3 int
@@ -490,4 +529,3 @@
 
 /* Define to 1 if pthread_init() exists */
 /* #undef HAVE_PTHREAD_INIT */
-

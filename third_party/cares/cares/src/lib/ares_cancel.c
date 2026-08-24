@@ -64,7 +64,7 @@ void ares_cancel(ares_channel_t *channel)
       /* Cache next since this node is being deleted */
       next = ares_llist_node_next(node);
 
-      query                   = ares_llist_node_claim(node);
+      query                   = (ares_query_t *)ares_llist_node_claim(node);
       query->node_all_queries = NULL;
 
       /* NOTE: its possible this may enqueue new queries */

@@ -44,7 +44,7 @@ struct ares_dns_multistring {
 
 static void ares_dns_multistring_free_cb(void *arg)
 {
-  multistring_data_t *data = arg;
+  multistring_data_t *data = (multistring_data_t *)arg;
   if (data == NULL) {
     return;
   }
@@ -53,7 +53,8 @@ static void ares_dns_multistring_free_cb(void *arg)
 
 ares_dns_multistring_t *ares_dns_multistring_create(void)
 {
-  ares_dns_multistring_t *strs = ares_malloc_zero(sizeof(*strs));
+  ares_dns_multistring_t *strs =
+    (ares_dns_multistring_t *)ares_malloc_zero(sizeof(*strs));
   if (strs == NULL) {
     return NULL;
   }
@@ -102,7 +103,7 @@ ares_status_t ares_dns_multistring_swap_own(ares_dns_multistring_t *strs,
 
   strs->cache_invalidated = ARES_TRUE;
 
-  data = ares_array_at(strs->strs, idx);
+  data = (multistring_data_t *)ares_array_at(strs->strs, idx);
   if (data == NULL) {
     return ARES_EFORMERR;
   }
@@ -151,7 +152,7 @@ ares_status_t ares_dns_multistring_add_own(ares_dns_multistring_t *strs,
    * are going to allocate a 1-byte buffer to use as a placeholder in this
    * case */
   if (str == NULL) {
-    str = ares_malloc_zero(1);
+    str = (unsigned char *)ares_malloc_zero(1);
     if (str == NULL) {
       ares_array_remove_last(strs->strs);
       return ARES_ENOMEM;
@@ -182,7 +183,7 @@ const unsigned char *
     return NULL;
   }
 
-  data = ares_array_at_const(strs->strs, idx);
+  data = (const multistring_data_t *)ares_array_at_const(strs->strs, idx);
   if (data == NULL) {
     return NULL;
   }
@@ -217,7 +218,8 @@ const unsigned char *ares_dns_multistring_combined(ares_dns_multistring_t *strs,
   buf = ares_buf_create();
 
   for (i = 0; i < ares_array_len(strs->strs); i++) {
-    const multistring_data_t *data = ares_array_at_const(strs->strs, i);
+    const multistring_data_t *data =
+      (const multistring_data_t *)ares_array_at_const(strs->strs, i);
     if (data == NULL ||
         ares_buf_append(buf, data->data, data->len) != ARES_SUCCESS) {
       ares_buf_destroy(buf);
@@ -295,7 +297,6 @@ ares_status_t ares_dns_multistring_parse_buf(ares_buf_t *buf,
         break;
       }
     }
-
   }
 
   if (status != ARES_SUCCESS && strs != NULL) {

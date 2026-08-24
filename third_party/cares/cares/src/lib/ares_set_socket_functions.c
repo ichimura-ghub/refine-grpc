@@ -180,7 +180,20 @@ static int setsocknonblock(ares_socket_t sockfd, /* operate on this */
   return setsockopt(sockfd, SOL_SOCKET, SO_NONBLOCK, &b, sizeof(b));
 
 #else
-#  error "no non-blocking method was found/used/set"
+#  ifdef NN_NINTENDO_SDK
+  int flags = fcntl(sockfd, F_GETFL, 0);
+  if (flags == -1) {
+    return -1;
+  }
+  if (nonblock) {
+    flags |= O_NONBLOCK;
+  } else {
+    flags &= ~O_NONBLOCK;
+  }
+  return fcntl(sockfd, F_SETFL, flags);
+#  else
+#    error "no non-blocking method was found/used/set"
+#  endif
 #endif
 }
 

@@ -71,7 +71,7 @@ int ares_parse_a_reply(const unsigned char *abuf, int alen,
     goto fail;
   }
 
-  status = ares_parse_into_addrinfo(dnsrec, 0, 0, &ai);
+  status = ares_parse_into_addrinfo(dnsrec, (ares_bool_t)0, 0, &ai);
   if (status != ARES_SUCCESS && status != ARES_ENODATA) {
     goto fail;
   }

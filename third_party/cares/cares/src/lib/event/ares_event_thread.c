@@ -29,7 +29,7 @@
 #ifdef CARES_THREADS
 static void ares_event_destroy_cb(void *arg)
 {
-  ares_event_t *event = arg;
+  ares_event_t *event = (ares_event_t *)arg;
   if (event == NULL) {
     return; /* LCOV_EXCL_LINE: DefensiveCoding */
   }
@@ -82,7 +82,7 @@ static ares_event_t *ares_event_update_find(ares_event_thread_t *e,
 
   for (node = ares_llist_node_first(e->ev_updates); node != NULL;
        node = ares_llist_node_next(node)) {
-    ares_event_t *ev = ares_llist_node_val(node);
+    ares_event_t *ev = (ares_event_t *)ares_llist_node_val(node);
 
     if (fd != ARES_SOCKET_BAD && fd == ev->fd && ev->flags != 0) {
       return ev;
@@ -141,7 +141,7 @@ ares_status_t ares_event_update(ares_event_t **event, ares_event_thread_t *e,
   ev = ares_event_update_find(e, fd, data);
   if (ev == NULL) {
     /* Allocate a new one */
-    ev = ares_malloc_zero(sizeof(*ev));
+    ev = (ares_event_t *)ares_malloc_zero(sizeof(*ev));
     if (ev == NULL) {
       status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
       goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -207,15 +207,15 @@ static void ares_event_thread_process_fd(ares_event_thread_t *e,
 static void ares_event_thread_sockstate_cb(void *data, ares_socket_t socket_fd,
                                            int readable, int writable)
 {
-  ares_event_thread_t *e     = data;
+  ares_event_thread_t *e     = (ares_event_thread_t *)data;
   ares_event_flags_t   flags = ARES_EVENT_FLAG_NONE;
 
   if (readable) {
-    flags |= ARES_EVENT_FLAG_READ;
+    flags = (ares_event_flags_t)(flags | ARES_EVENT_FLAG_READ);
   }
 
   if (writable) {
-    flags |= ARES_EVENT_FLAG_WRITE;
+    flags = (ares_event_flags_t)(flags | ARES_EVENT_FLAG_WRITE);
   }
 
   /* Update channel fd.  This function will lock e->mutex and also wake the
@@ -226,7 +226,7 @@ static void ares_event_thread_sockstate_cb(void *data, ares_socket_t socket_fd,
 
 static void notifywrite_cb(void *data)
 {
-  ares_event_thread_t *e = data;
+  ares_event_thread_t *e = (ares_event_thread_t *)data;
 
   ares_thread_mutex_lock(e->mutex);
   e->process_pending_write = ARES_TRUE;
@@ -242,13 +242,15 @@ static void ares_event_process_updates(ares_event_thread_t *e)
   /* Iterate across all updates and apply to internal list, removing from update
    * list */
   while ((node = ares_llist_node_first(e->ev_updates)) != NULL) {
-    ares_event_t *newev = ares_llist_node_claim(node);
+    ares_event_t *newev = (ares_event_t *)ares_llist_node_claim(node);
     ares_event_t *oldev;
 
     if (newev->fd == ARES_SOCKET_BAD) {
-      oldev = ares_htable_vpvp_get_direct(e->ev_cust_handles, newev->data);
+      oldev = (ares_event_t *)ares_htable_vpvp_get_direct(e->ev_cust_handles,
+                                                          newev->data);
     } else {
-      oldev = ares_htable_asvp_get_direct(e->ev_sock_handles, newev->fd);
+      oldev = (ares_event_t *)ares_htable_asvp_get_direct(e->ev_sock_handles,
+                                                          newev->fd);
     }
 
     /* Adding new */
@@ -322,7 +324,7 @@ static void ares_event_thread_cleanup(ares_event_thread_t *e)
 
 static void *ares_event_thread(void *arg)
 {
-  ares_event_thread_t *e = arg;
+  ares_event_thread_t *e = (ares_event_thread_t *)arg;
   ares_thread_mutex_lock(e->mutex);
 
   while (e->isup) {
@@ -404,7 +406,7 @@ static void ares_event_thread_destroy_int(ares_event_thread_t *e)
 
 void ares_event_thread_destroy(ares_channel_t *channel)
 {
-  ares_event_thread_t *e = channel->sock_state_cb_data;
+  ares_event_thread_t *e = (ares_event_thread_t *)(channel->sock_state_cb_data);
 
   if (e == NULL) {
     return; /* LCOV_EXCL_LINE: DefensiveCoding */
@@ -421,39 +423,39 @@ static const ares_event_sys_t *ares_event_fetch_sys(ares_evsys_t evsys)
 {
   switch (evsys) {
     case ARES_EVSYS_WIN32:
-#if defined(USE_WINSOCK)
+#  if defined(USE_WINSOCK)
       return &ares_evsys_win32;
-#else
+#  else
       return NULL;
-#endif
+#  endif
 
     case ARES_EVSYS_EPOLL:
-#if defined(HAVE_EPOLL)
+#  if defined(HAVE_EPOLL)
       return &ares_evsys_epoll;
-#else
+#  else
       return NULL;
-#endif
+#  endif
 
     case ARES_EVSYS_KQUEUE:
-#if defined(HAVE_KQUEUE)
+#  if defined(HAVE_KQUEUE)
       return &ares_evsys_kqueue;
-#else
+#  else
       return NULL;
-#endif
+#  endif
 
     case ARES_EVSYS_POLL:
-#if defined(HAVE_POLL)
+#  if defined(HAVE_POLL)
       return &ares_evsys_poll;
-#else
+#  else
       return NULL;
-#endif
+#  endif
 
     case ARES_EVSYS_SELECT:
-#if defined(HAVE_PIPE)
+#  if defined(HAVE_PIPE)
       return &ares_evsys_select;
-#else
+#  else
       return NULL;
-#endif
+#  endif
 
     /* case ARES_EVSYS_DEFAULT: */
     default:
@@ -461,26 +463,26 @@ static const ares_event_sys_t *ares_event_fetch_sys(ares_evsys_t evsys)
   }
 
     /* default */
-#if defined(USE_WINSOCK)
+#  if defined(USE_WINSOCK)
   return &ares_evsys_win32;
-#elif defined(HAVE_KQUEUE)
+#  elif defined(HAVE_KQUEUE)
   return &ares_evsys_kqueue;
-#elif defined(HAVE_EPOLL)
+#  elif defined(HAVE_EPOLL)
   return &ares_evsys_epoll;
-#elif defined(HAVE_POLL)
+#  elif defined(HAVE_POLL)
   return &ares_evsys_poll;
-#elif defined(HAVE_PIPE)
+#  elif defined(HAVE_PIPE)
   return &ares_evsys_select;
-#else
+#  else
   return NULL;
-#endif
+#  endif
 }
 
 ares_status_t ares_event_thread_init(ares_channel_t *channel)
 {
   ares_event_thread_t *e;
 
-  e = ares_malloc_zero(sizeof(*e));
+  e = (ares_event_thread_t *)ares_malloc_zero(sizeof(*e));
   if (e == NULL) {
     return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
   }

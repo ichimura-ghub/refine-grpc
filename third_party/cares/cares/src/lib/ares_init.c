@@ -71,8 +71,8 @@ int ares_init(ares_channel_t **channelptr)
 
 static int ares_query_timeout_cmp_cb(const void *arg1, const void *arg2)
 {
-  const ares_query_t *q1 = arg1;
-  const ares_query_t *q2 = arg2;
+  const ares_query_t *q1 = (const ares_query_t *)arg1;
+  const ares_query_t *q2 = (const ares_query_t *)arg2;
 
   if (q1->timeout.sec > q2->timeout.sec) {
     return 1;
@@ -93,8 +93,8 @@ static int ares_query_timeout_cmp_cb(const void *arg1, const void *arg2)
 
 static int server_sort_cb(const void *data1, const void *data2)
 {
-  const ares_server_t *s1 = data1;
-  const ares_server_t *s2 = data2;
+  const ares_server_t *s1 = (const ares_server_t *)data1;
+  const ares_server_t *s2 = (const ares_server_t *)data2;
 
   if (s1->consec_failures < s2->consec_failures) {
     return -1;
@@ -116,7 +116,7 @@ static void server_destroy_cb(void *data)
   if (data == NULL) {
     return; /* LCOV_EXCL_LINE: DefensiveCoding */
   }
-  ares_destroy_server(data);
+  ares_destroy_server((ares_server_t *)data);
 }
 
 static ares_status_t init_by_defaults(ares_channel_t *channel)
@@ -245,7 +245,7 @@ int ares_init_options(ares_channel_t           **channelptr,
     return ARES_ENOTINITIALIZED; /* LCOV_EXCL_LINE: n/a on non-WinSock */
   }
 
-  channel = ares_malloc_zero(sizeof(*channel));
+  channel = (ares_channel_t *)ares_malloc_zero(sizeof(*channel));
   if (!channel) {
     *channelptr = NULL;
     return ARES_ENOMEM;
@@ -359,7 +359,7 @@ int ares_init_options(ares_channel_t           **channelptr,
 
     /* Initialize monitor for configuration changes.  In some rare cases,
      * ARES_ENOTIMP may occur (OpenWatcom), ignore this. */
-    e      = channel->sock_state_cb_data;
+    e      = (ares_event_thread_t *)(channel->sock_state_cb_data);
     status = ares_event_configchg_init(&e->configchg, e);
     if (status != ARES_SUCCESS && status != ARES_ENOTIMP) {
       goto done; /* LCOV_EXCL_LINE: UntestablePath */
@@ -379,7 +379,7 @@ done:
 
 static void *ares_reinit_thread(void *arg)
 {
-  ares_channel_t *channel = arg;
+  ares_channel_t *channel = (ares_channel_t *)arg;
   ares_status_t   status;
 
   /* ares_init_by_sysconfig() will lock when applying the config, but not
@@ -484,10 +484,10 @@ int ares_dup(ares_channel_t **dest, const ares_channel_t *src)
   ares_channel_lock(src);
   /* Now clone the options that ares_save_options() doesn't support, but are
    * user-provided */
-  (*dest)->sock_create_cb            = src->sock_create_cb;
-  (*dest)->sock_create_cb_data       = src->sock_create_cb_data;
-  (*dest)->sock_config_cb            = src->sock_config_cb;
-  (*dest)->sock_config_cb_data       = src->sock_config_cb_data;
+  (*dest)->sock_create_cb      = src->sock_create_cb;
+  (*dest)->sock_create_cb_data = src->sock_create_cb_data;
+  (*dest)->sock_config_cb      = src->sock_config_cb;
+  (*dest)->sock_config_cb_data = src->sock_config_cb_data;
   memcpy(&(*dest)->sock_funcs, &(src->sock_funcs), sizeof((*dest)->sock_funcs));
   (*dest)->sock_func_cb_data         = src->sock_func_cb_data;
   (*dest)->legacy_sock_funcs         = src->legacy_sock_funcs;

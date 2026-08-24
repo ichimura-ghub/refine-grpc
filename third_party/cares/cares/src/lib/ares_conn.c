@@ -25,6 +25,9 @@
  * SPDX-License-Identifier: MIT
  */
 #include "ares_private.h"
+#ifdef HAVE_ARPA_INET_H
+#  include <arpa/inet.h>
+#endif
 
 void ares_conn_sock_state_cb_update(ares_conn_t            *conn,
                                     ares_conn_state_flags_t flags)
@@ -38,8 +41,10 @@ void ares_conn_sock_state_cb_update(ares_conn_t            *conn,
                            flags & ARES_CONN_STATE_WRITE ? 1 : 0);
   }
 
-  conn->state_flags &= ~((unsigned int)ARES_CONN_STATE_CBFLAGS);
-  conn->state_flags |= flags;
+  conn->state_flags =
+    (ares_conn_state_flags_t)(conn->state_flags &
+                              ~((unsigned int)ARES_CONN_STATE_CBFLAGS));
+  conn->state_flags = (ares_conn_state_flags_t)(conn->state_flags | flags);
 }
 
 ares_conn_err_t ares_conn_read(ares_conn_t *conn, void *data, size_t len,
@@ -71,7 +76,8 @@ ares_conn_err_t ares_conn_read(ares_conn_t *conn, void *data, size_t len,
 
   /* Toggle connected state if needed */
   if (err == ARES_CONN_ERR_SUCCESS) {
-    conn->state_flags |= ARES_CONN_STATE_CONNECTED;
+    conn->state_flags =
+      (ares_conn_state_flags_t)(conn->state_flags | ARES_CONN_STATE_CONNECTED);
   }
 
   return err;
@@ -193,8 +199,11 @@ ares_conn_err_t ares_conn_write(ares_conn_t *conn, const void *data, size_t len,
     salen = sizeof(sa_storage);
     sa    = (struct sockaddr *)&sa_storage;
 
-    conn->flags &= ~((unsigned int)ARES_CONN_FLAG_TFO_INITIAL);
-    is_tfo       = ARES_TRUE;
+    conn->flags =
+      (ares_conn_flags_t)(conn->flags &
+                          ~((unsigned int)ARES_CONN_FLAG_TFO_INITIAL));
+
+    is_tfo = ARES_TRUE;
 
     if (ares_conn_set_sockaddr(conn, sa, &salen) != ARES_SUCCESS) {
       return ARES_CONN_ERR_FAILURE;
@@ -220,12 +229,14 @@ done:
      * using TFO, in which case we'll need a write event to know when
      * we're connected. */
     ares_conn_sock_state_cb_update(
-      conn, ARES_CONN_STATE_READ |
-              (is_tfo ? ARES_CONN_STATE_WRITE : ARES_CONN_STATE_NONE));
+      conn, (ares_conn_state_flags_t)(ARES_CONN_STATE_READ |
+                                      (is_tfo ? ARES_CONN_STATE_WRITE
+                                              : ARES_CONN_STATE_NONE)));
   } else if (err == ARES_CONN_ERR_WOULDBLOCK) {
     /* Need to wait on more buffer space to write */
-    ares_conn_sock_state_cb_update(conn, ARES_CONN_STATE_READ |
-                                           ARES_CONN_STATE_WRITE);
+    ares_conn_sock_state_cb_update(
+      conn,
+      (ares_conn_state_flags_t)(ARES_CONN_STATE_READ | ARES_CONN_STATE_WRITE));
   }
 
   return err;
@@ -306,13 +317,13 @@ done:
     /* When using TFO, the we need to enabling waiting on a write event to
      * be notified of when a connection is actually established */
     if (tfo) {
-      flags |= ARES_CONN_STATE_WRITE;
+      flags = (ares_conn_state_flags_t)(flags | ARES_CONN_STATE_WRITE);
     }
 
     /* If using TCP and not all data was written (partial write), that means
      * we need to also wait on a write event */
     if (conn->flags & ARES_CONN_FLAG_TCP && ares_buf_len(conn->out_buf)) {
-      flags |= ARES_CONN_STATE_WRITE;
+      flags = (ares_conn_state_flags_t)(flags | ARES_CONN_STATE_WRITE);
     }
 
     ares_conn_sock_state_cb_update(conn, flags);
@@ -352,7 +363,7 @@ ares_status_t ares_open_connection(ares_conn_t   **conn_out,
 
   *conn_out = NULL;
 
-  conn = ares_malloc(sizeof(*conn));
+  conn = (ares_conn_t *)ares_malloc(sizeof(*conn));
   if (conn == NULL) {
     return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -376,7 +387,7 @@ ares_status_t ares_open_connection(ares_conn_t   **conn_out,
   /* Try to enable TFO always if using TCP. it will fail later on if its
    * really not supported when we try to enable it on the socket. */
   if (conn->flags & ARES_CONN_FLAG_TCP) {
-    conn->flags |= ARES_CONN_FLAG_TFO;
+    conn->flags = (ares_conn_flags_t)(conn->flags | ARES_CONN_FLAG_TFO);
   }
 
   /* Convert into the struct sockaddr structure needed by the OS */
@@ -403,7 +414,8 @@ ares_status_t ares_open_connection(ares_conn_t   **conn_out,
   /* Enable TFO if possible */
   if (conn->flags & ARES_CONN_FLAG_TFO &&
       ares_socket_enable_tfo(channel, conn->fd) != ARES_CONN_ERR_SUCCESS) {
-    conn->flags &= ~((unsigned int)ARES_CONN_FLAG_TFO);
+    conn->flags =
+      (ares_conn_flags_t)(conn->flags & ~((unsigned int)ARES_CONN_FLAG_TFO));
   }
 
   if (channel->sock_config_cb) {
@@ -432,7 +444,7 @@ ares_status_t ares_open_connection(ares_conn_t   **conn_out,
 
   /* Let the connection know we haven't written our first packet yet for TFO */
   if (conn->flags & ARES_CONN_FLAG_TFO) {
-    conn->flags |= ARES_CONN_FLAG_TFO_INITIAL;
+    conn->flags = (ares_conn_flags_t)(conn->flags | ARES_CONN_FLAG_TFO_INITIAL);
   }
 
   /* Need to store our own ip for DNS cookie support */
@@ -469,7 +481,8 @@ ares_status_t ares_open_connection(ares_conn_t   **conn_out,
 
   /* Get notified on connect if using TCP */
   if (conn->flags & ARES_CONN_FLAG_TCP) {
-    state_flags |= ARES_CONN_STATE_WRITE;
+    state_flags =
+      (ares_conn_state_flags_t)(state_flags | ARES_CONN_STATE_WRITE);
   }
 
   /* Dot no attempt to update sock state callbacks on TFO until *after* the
@@ -502,10 +515,11 @@ ares_conn_t *ares_conn_from_fd(const ares_channel_t *channel, ares_socket_t fd)
 {
   ares_llist_node_t *node;
 
-  node = ares_htable_asvp_get_direct(channel->connnode_by_socket, fd);
+  node = (ares_llist_node_t *)ares_htable_asvp_get_direct(
+    channel->connnode_by_socket, fd);
   if (node == NULL) {
     return NULL;
   }
 
-  return ares_llist_node_val(node);
+  return (ares_conn_t *)ares_llist_node_val(node);
 }

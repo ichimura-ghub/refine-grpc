@@ -33,7 +33,7 @@ typedef struct {
 
 static void ares_nameoffset_free(void *arg)
 {
-  ares_nameoffset_t *off = arg;
+  ares_nameoffset_t *off = (ares_nameoffset_t *)arg;
   if (off == NULL) {
     return; /* LCOV_EXCL_LINE: DefensiveCoding */
   }
@@ -60,7 +60,7 @@ static ares_status_t ares_nameoffset_create(ares_llist_t **list,
     goto fail;            /* LCOV_EXCL_LINE: OutOfMemory */
   }
 
-  off = ares_malloc_zero(sizeof(*off));
+  off = (ares_nameoffset_t *)ares_malloc_zero(sizeof(*off));
   if (off == NULL) {
     return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -96,8 +96,9 @@ static const ares_nameoffset_t *ares_nameoffset_find(ares_llist_t *list,
 
   for (node = ares_llist_node_first(list); node != NULL;
        node = ares_llist_node_next(node)) {
-    const ares_nameoffset_t *val = ares_llist_node_val(node);
-    size_t                   prefix_len;
+    const ares_nameoffset_t *val =
+      (const ares_nameoffset_t *)ares_llist_node_val(node);
+    size_t prefix_len;
 
     /* Can't be a match if the stored name is longer */
     if (val->name_len > name_len) {
@@ -133,7 +134,7 @@ static const ares_nameoffset_t *ares_nameoffset_find(ares_llist_t *list,
 
 static void ares_dns_labels_free_cb(void *arg)
 {
-  ares_buf_t **buf = arg;
+  ares_buf_t **buf = (ares_buf_t **)arg;
   if (buf == NULL) {
     return;
   }
@@ -164,7 +165,7 @@ static ares_buf_t *ares_dns_labels_add(ares_array_t *labels)
 
 static ares_buf_t *ares_dns_labels_get_last(ares_array_t *labels)
 {
-  ares_buf_t **buf = ares_array_last(labels);
+  ares_buf_t **buf = (ares_buf_t **)ares_array_last(labels);
 
   if (buf == NULL) {
     return NULL;
@@ -175,7 +176,7 @@ static ares_buf_t *ares_dns_labels_get_last(ares_array_t *labels)
 
 static ares_buf_t *ares_dns_labels_get_at(ares_array_t *labels, size_t idx)
 {
-  ares_buf_t **buf = ares_array_at(labels, idx);
+  ares_buf_t **buf = (ares_buf_t **)ares_array_at(labels, idx);
 
   if (buf == NULL) {
     return NULL;

@@ -422,9 +422,9 @@ int ares_inet_net_pton(int af, const char *src, void *dst, size_t size)
 {
   switch (af) {
     case AF_INET:
-      return ares_inet_net_pton_ipv4(src, dst, size);
+      return ares_inet_net_pton_ipv4(src, (unsigned char *)dst, size);
     case AF_INET6:
-      return ares_inet_net_pton_ipv6(src, dst, size);
+      return ares_inet_net_pton_ipv6(src, (unsigned char *)dst, size);
     default:
       return -1;
   }

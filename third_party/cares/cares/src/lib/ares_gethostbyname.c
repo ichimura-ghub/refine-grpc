@@ -64,7 +64,7 @@ static void ares_gethostbyname_callback(void *arg, int status, int timeouts,
                                         struct ares_addrinfo *result)
 {
   struct hostent    *hostent  = NULL;
-  struct host_query *ghbn_arg = arg;
+  struct host_query *ghbn_arg = (struct host_query *)arg;
 
   if (status == ARES_SUCCESS) {
     status = (int)ares_addrinfo2hostent(result, AF_UNSPEC, &hostent);
@@ -110,7 +110,7 @@ void ares_gethostbyname(ares_channel_t *channel, const char *name, int family,
   hints.ai_flags  = ARES_AI_CANONNAME;
   hints.ai_family = family;
 
-  ghbn_arg = ares_malloc(sizeof(*ghbn_arg));
+  ghbn_arg = (struct host_query *)ares_malloc(sizeof(*ghbn_arg));
   if (!ghbn_arg) {
     callback(arg, ARES_ENOMEM, 0, NULL);
     return;
@@ -247,7 +247,7 @@ static ares_status_t ares_hostent_localhost(const char *name, int family,
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = family;
 
-  ai = ares_malloc_zero(sizeof(*ai));
+  ai = (struct ares_addrinfo *)ares_malloc_zero(sizeof(*ai));
   if (ai == NULL) {
     status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -287,7 +287,7 @@ static ares_status_t ares_gethostbyname_file_int(ares_channel_t *channel,
     return ARES_ENOTFOUND;
   }
 
-  *host  = NULL;
+  *host = NULL;
 
   /* Per RFC 7686, reject queries for ".onion" domain names with NXDOMAIN. */
   if (ares_is_onion_domain(name)) {

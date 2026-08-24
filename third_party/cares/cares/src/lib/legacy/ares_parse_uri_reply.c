@@ -72,7 +72,8 @@ int ares_parse_uri_reply(const unsigned char *abuf, int alen_int,
     }
 
     /* Allocate storage for this URI answer appending it to the list */
-    uri_curr = ares_malloc_data(ARES_DATATYPE_URI_REPLY);
+    uri_curr =
+      (struct ares_uri_reply *)ares_malloc_data(ARES_DATATYPE_URI_REPLY);
     if (uri_curr == NULL) {
       status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
       goto done;            /* LCOV_EXCL_LINE: OutOfMemory */

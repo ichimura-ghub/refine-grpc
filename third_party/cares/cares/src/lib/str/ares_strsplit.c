@@ -39,7 +39,7 @@ char **ares_strsplit_duplicate(char **elms, size_t num_elm)
     return NULL; /* LCOV_EXCL_LINE: DefensiveCoding */
   }
 
-  out = ares_malloc_zero(sizeof(*elms) * num_elm);
+  out = (char **)ares_malloc_zero(sizeof(*elms) * num_elm);
   if (out == NULL) {
     return NULL; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -72,10 +72,11 @@ char **ares_strsplit(const char *in, const char *delms, size_t *num_elm)
     return NULL;
   }
 
-  status = ares_buf_split_str(
-    buf, (const unsigned char *)delms, ares_strlen(delms),
-    ARES_BUF_SPLIT_NO_DUPLICATES | ARES_BUF_SPLIT_CASE_INSENSITIVE, 0, &out,
-    num_elm);
+  status =
+    ares_buf_split_str(buf, (const unsigned char *)delms, ares_strlen(delms),
+                       (ares_buf_split_t)(ARES_BUF_SPLIT_NO_DUPLICATES |
+                                          ARES_BUF_SPLIT_CASE_INSENSITIVE),
+                       0, &out, num_elm);
   if (status != ARES_SUCCESS) {
     goto done;
   }

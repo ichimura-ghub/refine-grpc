@@ -851,7 +851,7 @@ static ares_status_t ares_dns_parse_header(ares_buf_t *buf, unsigned int flags,
   }
 
   /* OPCODE */
-  opcode = (u16 >> 11) & 0xf;
+  opcode = (ares_dns_opcode_t)((u16 >> 11) & 0xf);
 
   /* AA */
   if (u16 & 0x400) {
@@ -1042,14 +1042,14 @@ static ares_status_t ares_dns_parse_qd(ares_buf_t        *buf,
   if (status != ARES_SUCCESS) {
     goto done;
   }
-  type = u16;
+  type = (ares_dns_rec_type_t)u16;
 
   /* Class */
   status = ares_buf_fetch_be16(buf, &u16);
   if (status != ARES_SUCCESS) {
     goto done;
   }
-  qclass = u16;
+  qclass = (ares_dns_class_t)u16;
 
   /* Add question */
   status = ares_dns_record_query_add(dnsrec, name, type, qclass);
@@ -1113,7 +1113,7 @@ static ares_status_t ares_dns_parse_rr(ares_buf_t *buf, unsigned int flags,
   if (status != ARES_SUCCESS) {
     goto done;
   }
-  type     = u16;
+  type     = (ares_dns_rec_type_t)u16;
   raw_type = u16; /* Only used for raw rr data */
 
   /* Class */
@@ -1121,7 +1121,7 @@ static ares_status_t ares_dns_parse_rr(ares_buf_t *buf, unsigned int flags,
   if (status != ARES_SUCCESS) {
     goto done;
   }
-  qclass = u16;
+  qclass = (ares_dns_class_t)u16;
 
   /* TTL */
   status = ares_buf_fetch_be32(buf, &ttl);
@@ -1293,7 +1293,7 @@ static ares_status_t ares_dns_parse_buf(ares_buf_t *buf, unsigned int flags,
   }
 
   /* Finalize rcode now that if we have OPT it is processed */
-  if (!ares_dns_rcode_isvalid((*dnsrec)->raw_rcode)) {
+  if (!ares_dns_rcode_isvalid((ares_dns_rcode_t)(*dnsrec)->raw_rcode)) {
     (*dnsrec)->rcode = ARES_RCODE_SERVFAIL;
   } else {
     (*dnsrec)->rcode = (ares_dns_rcode_t)(*dnsrec)->raw_rcode;

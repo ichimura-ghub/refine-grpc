@@ -77,7 +77,7 @@ struct ares_iface_ips {
 
 static void ares_iface_ip_free_cb(void *arg)
 {
-  ares_iface_ip_t *ip = arg;
+  ares_iface_ip_t *ip = (ares_iface_ip_t *)arg;
   if (ip == NULL) {
     return;
   }
@@ -86,7 +86,7 @@ static void ares_iface_ip_free_cb(void *arg)
 
 static ares_iface_ips_t *ares_iface_ips_alloc(ares_iface_ip_flags_t flags)
 {
-  ares_iface_ips_t *ips = ares_malloc_zero(sizeof(*ips));
+  ares_iface_ips_t *ips = (ares_iface_ips_t *)ares_malloc_zero(sizeof(*ips));
   if (ips == NULL) {
     return NULL; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -162,7 +162,7 @@ static ares_status_t
 
   /* Check for link-local */
   if (ares_addr_is_linklocal(addr)) {
-    flags |= ARES_IFACE_IP_LINKLOCAL;
+    flags = (ares_iface_ip_flags_t)(flags | ARES_IFACE_IP_LINKLOCAL);
   }
   if (flags & ARES_IFACE_IP_LINKLOCAL &&
       !(ips->enum_flags & ARES_IFACE_IP_LINKLOCAL)) {
@@ -171,11 +171,11 @@ static ares_status_t
 
   /* Set address flag based on address provided */
   if (addr->family == AF_INET) {
-    flags |= ARES_IFACE_IP_V4;
+    flags = (ares_iface_ip_flags_t)(flags | ARES_IFACE_IP_V4);
   }
 
   if (addr->family == AF_INET6) {
-    flags |= ARES_IFACE_IP_V6;
+    flags = (ares_iface_ip_flags_t)(flags | ARES_IFACE_IP_V6);
   }
 
   /* If they specified either v4 or v6 validate flags otherwise assume they
@@ -225,7 +225,7 @@ const char *ares_iface_ips_get_name(const ares_iface_ips_t *ips, size_t idx)
     return NULL;
   }
 
-  ip = ares_array_at_const(ips->ips, idx);
+  ip = (const ares_iface_ip_t *)ares_array_at_const(ips->ips, idx);
   if (ip == NULL) {
     return NULL;
   }
@@ -242,7 +242,7 @@ const struct ares_addr *ares_iface_ips_get_addr(const ares_iface_ips_t *ips,
     return NULL;
   }
 
-  ip = ares_array_at_const(ips->ips, idx);
+  ip = (const ares_iface_ip_t *)ares_array_at_const(ips->ips, idx);
   if (ip == NULL) {
     return NULL;
   }
@@ -256,12 +256,12 @@ ares_iface_ip_flags_t ares_iface_ips_get_flags(const ares_iface_ips_t *ips,
   const ares_iface_ip_t *ip;
 
   if (ips == NULL) {
-    return 0;
+    return (ares_iface_ip_flags_t)0;
   }
 
-  ip = ares_array_at_const(ips->ips, idx);
+  ip = (const ares_iface_ip_t *)ares_array_at_const(ips->ips, idx);
   if (ip == NULL) {
-    return 0;
+    return (ares_iface_ip_flags_t)0;
   }
 
   return ip->flags;
@@ -276,7 +276,7 @@ unsigned char ares_iface_ips_get_netmask(const ares_iface_ips_t *ips,
     return 0;
   }
 
-  ip = ares_array_at_const(ips->ips, idx);
+  ip = (const ares_iface_ip_t *)ares_array_at_const(ips->ips, idx);
   if (ip == NULL) {
     return 0;
   }
@@ -293,7 +293,7 @@ unsigned int ares_iface_ips_get_ll_scope(const ares_iface_ips_t *ips,
     return 0;
   }
 
-  ip = ares_array_at_const(ips->ips, idx);
+  ip = (const ares_iface_ip_t *)ares_array_at_const(ips->ips, idx);
   if (ip == NULL) {
     return 0;
   }
@@ -431,14 +431,16 @@ static ares_status_t ares_iface_ips_enumerate(ares_iface_ips_t *ips,
       }
 
       status = ares_iface_ips_add(ips, addrflag, ifname, &addr,
-#if _WIN32_WINNT >= 0x0600
+#  if _WIN32_WINNT >= 0x0600
                                   ipaddr->OnLinkPrefixLength /* netmask */,
-#else
-                                  ipaddr->Address.lpSockaddr->sa_family
-                                    == AF_INET?32:128,
-#endif
+#  else
+                                  ipaddr->Address.lpSockaddr->sa_family ==
+                                      AF_INET
+                                    ? 32
+                                    : 128,
+#  endif
                                   address->Ipv6IfIndex /* ll_scope */
-                                  );
+      );
 
       if (status != ARES_SUCCESS) {
         goto done;
@@ -566,8 +568,9 @@ unsigned int ares_os_if_nametoindex(const char *name)
     return 0;
   }
 
-  status =
-    ares_iface_ips(&ips, ARES_IFACE_IP_V6 | ARES_IFACE_IP_LINKLOCAL, name);
+  status = ares_iface_ips(
+    &ips, (ares_iface_ip_flags_t)(ARES_IFACE_IP_V6 | ARES_IFACE_IP_LINKLOCAL),
+    name);
   if (status != ARES_SUCCESS) {
     goto done;
   }
@@ -585,7 +588,8 @@ done:
 #endif
 }
 
-const char *ares_os_if_indextoname(unsigned int index, char *name, size_t name_len)
+const char *ares_os_if_indextoname(unsigned int index, char *name,
+                                   size_t name_len)
 {
 #ifdef HAVE_IF_INDEXTONAME
   if (name_len < IF_NAMESIZE) {
@@ -606,8 +610,9 @@ const char *ares_os_if_indextoname(unsigned int index, char *name, size_t name_l
     goto done;
   }
 
-  status =
-    ares_iface_ips(&ips, ARES_IFACE_IP_V6 | ARES_IFACE_IP_LINKLOCAL, NULL);
+  status = ares_iface_ips(
+    &ips, (ares_iface_ip_flags_t)(ARES_IFACE_IP_V6 | ARES_IFACE_IP_LINKLOCAL),
+    NULL);
   if (status != ARES_SUCCESS) {
     goto done;
   }

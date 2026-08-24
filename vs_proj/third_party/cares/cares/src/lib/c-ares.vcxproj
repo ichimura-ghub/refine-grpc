@@ -75,10 +75,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
-    <NintendoSdkRoot />
-    <NintendoSdkSpec>Generic</NintendoSdkSpec>
-    <NintendoSdkBuildType>Develop</NintendoSdkBuildType>
+    <EnableASAN>false</EnableASAN>
+    <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)</NintendoSdkRoot>
+    <NintendoSdkSpec>NX</NintendoSdkSpec>
+    <NintendoSdkBuildType>Debug</NintendoSdkBuildType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -132,7 +132,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cares</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">cares</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">cares</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">cares</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">cares_d_nx</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
@@ -155,6 +155,9 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">cares</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
+    <CppLanguageStandard>Gnu++17</CppLanguageStandard>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -284,8 +287,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /utf-8 /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\include;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\cares\cares\src\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -finput-charset=utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -303,10 +306,11 @@
       <TreatSpecificWarningsAsErrors>4789;4289;4013</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ProgramDataBaseFileName>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Debug\cares.pdb</ProgramDataBaseFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>

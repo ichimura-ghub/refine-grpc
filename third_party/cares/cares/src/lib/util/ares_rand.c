@@ -237,7 +237,7 @@ ares_rand_state *ares_init_rand_state(void)
 {
   ares_rand_state *state = NULL;
 
-  state = ares_malloc_zero(sizeof(*state));
+  state = (ares_rand_state *)ares_malloc_zero(sizeof(*state));
   if (!state) {
     return NULL;
   }

@@ -80,7 +80,8 @@ int ares_parse_caa_reply(const unsigned char *abuf, int alen_int,
     }
 
     /* Allocate storage for this CAA answer appending it to the list */
-    caa_curr = ares_malloc_data(ARES_DATATYPE_CAA_REPLY);
+    caa_curr =
+      (struct ares_caa_reply *)ares_malloc_data(ARES_DATATYPE_CAA_REPLY);
     if (caa_curr == NULL) {
       status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
       goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -112,7 +113,7 @@ int ares_parse_caa_reply(const unsigned char *abuf, int alen_int,
     }
 
     /* Wants NULL termination for some reason */
-    caa_curr->value = ares_malloc(ptr_len + 1);
+    caa_curr->value = (unsigned char *)ares_malloc(ptr_len + 1);
     if (caa_curr->value == NULL) {
       status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
       goto done;            /* LCOV_EXCL_LINE: OutOfMemory */

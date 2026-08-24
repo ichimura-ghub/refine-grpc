@@ -26,6 +26,12 @@
 #include "ares_private.h"
 
 #ifdef CARES_THREADS
+
+#  if defined(HAVE_NNGETSYSTEMTICK)
+#    include <nn/os.h>
+#  endif
+
+
 #  ifdef _WIN32
 
 struct ares_thread_mutex {
@@ -218,7 +224,8 @@ struct ares_thread_mutex {
 ares_thread_mutex_t *ares_thread_mutex_create(void)
 {
   pthread_mutexattr_t  attr;
-  ares_thread_mutex_t *mut = ares_malloc_zero(sizeof(*mut));
+  ares_thread_mutex_t *mut =
+    (ares_thread_mutex_t *)ares_malloc_zero(sizeof(*mut));
   if (mut == NULL) {
     return NULL;
   }
@@ -278,7 +285,8 @@ struct ares_thread_cond {
 
 ares_thread_cond_t *ares_thread_cond_create(void)
 {
-  ares_thread_cond_t *cond = ares_malloc_zero(sizeof(*cond));
+  ares_thread_cond_t *cond =
+    (ares_thread_cond_t *)ares_malloc_zero(sizeof(*cond));
   if (cond == NULL) {
     return NULL;
   }
@@ -331,6 +339,12 @@ static void ares_timespec_timeout(struct timespec *ts, unsigned long add_ms)
   gettimeofday(&tv, NULL);
   ts->tv_sec  = tv.tv_sec;
   ts->tv_nsec = tv.tv_usec * 1000;
+#    elif defined(HAVE_NNGETSYSTEMTICK)
+  nn::os::Tick tick      = nn::os::GetSystemTick();
+  nn::TimeSpan timeSpan  = nn::os::ConvertToTimeSpan(tick);
+  ts->tv_sec             = (ares_int64_t)timeSpan.GetSeconds();
+  ts->tv_nsec            = (unsigned int)(timeSpan.GetMicroSeconds() % 1000000);
+  ts->tv_nsec           *= 1000;
 #    else
 #      error cannot determine current system time
 #    endif
@@ -377,7 +391,7 @@ ares_status_t ares_thread_create(ares_thread_t    **thread,
     return ARES_EFORMERR;
   }
 
-  thr = ares_malloc_zero(sizeof(*thr));
+  thr = (ares_thread_t *)ares_malloc_zero(sizeof(*thr));
   if (thr == NULL) {
     return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
   }

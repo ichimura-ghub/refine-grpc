@@ -66,9 +66,9 @@ const char        *ares_inet_ntop(int af, const void *src, char *dst,
 {
   switch (af) {
     case AF_INET:
-      return inet_ntop4(src, dst, (size_t)size);
+      return inet_ntop4((const unsigned char *)src, dst, (size_t)size);
     case AF_INET6:
-      return inet_ntop6(src, dst, (size_t)size);
+      return inet_ntop6((const unsigned char *)src, dst, (size_t)size);
     default:
       break;
   }

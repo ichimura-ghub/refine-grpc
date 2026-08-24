@@ -6,42 +6,53 @@
  */
 
 #define CARES_TYPEOF_ARES_SOCKLEN_T socklen_t
+#ifdef NN_NINTENDO_SDK
+#define CARES_TYPEOF_ARES_SSIZE_T int64_t
+#else
 #define CARES_TYPEOF_ARES_SSIZE_T __int64
+#endif
 
 /* Prefix names with CARES_ to make sure they don't conflict with other config.h
  * files.  We need to include some dependent headers that may be system specific
  * for C-Ares */
 #define CARES_HAVE_SYS_TYPES_H
+#ifdef NN_NINTENDO_SDK
+#include <nn/socket.h>
+#define CARES_HAVE_SYS_SOCKET_H
+#define CARES_HAVE_SYS_SELECT_H
+#else
 /* #undef CARES_HAVE_SYS_SOCKET_H */
 /* #undef CARES_HAVE_SYS_SELECT_H */
 #define CARES_HAVE_WINDOWS_H
 #define CARES_HAVE_WS2TCPIP_H
 #define CARES_HAVE_WINSOCK2_H
+#endif
+
 /* #undef CARES_HAVE_ARPA_NAMESER_H */
 /* #undef CARES_HAVE_ARPA_NAMESER_COMPAT_H */
 
 #ifdef CARES_HAVE_SYS_TYPES_H
-#  include <sys/types.h>
+#include <sys/types.h>
 #endif
 
 #ifdef CARES_HAVE_SYS_SOCKET_H
-#  include <sys/socket.h>
+#include <sys/socket.h>
 #endif
 
 #ifdef CARES_HAVE_SYS_SELECT_H
-#  include <sys/select.h>
+#include <sys/select.h>
 #endif
 
 #ifdef CARES_HAVE_WINSOCK2_H
-#  include <winsock2.h>
+#include <winsock2.h>
 #endif
 
 #ifdef CARES_HAVE_WS2TCPIP_H
-#  include <ws2tcpip.h>
+#include <ws2tcpip.h>
 #endif
 
 #ifdef CARES_HAVE_WINDOWS_H
-#  include <windows.h>
+#include <windows.h>
 #endif
 
 #endif /* __CARES_BUILD_H */

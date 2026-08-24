@@ -45,7 +45,7 @@ struct ares_buf {
 
 ares_buf_t *ares_buf_create(void)
 {
-  ares_buf_t *buf = ares_malloc_zero(sizeof(*buf));
+  ares_buf_t *buf = (ares_buf_t *)ares_malloc_zero(sizeof(*buf));
   if (buf == NULL) {
     return NULL;
   }
@@ -181,7 +181,7 @@ static ares_status_t ares_buf_ensure_space(ares_buf_t *buf, size_t needed_size)
     remaining_size   = alloc_size - buf->data_len;
   } while (remaining_size < needed_size);
 
-  ptr = ares_realloc(buf->alloc_buf, alloc_size);
+  ptr = (unsigned char *)ares_realloc(buf->alloc_buf, alloc_size);
   if (ptr == NULL) {
     return ARES_ENOMEM;
   }
@@ -478,7 +478,7 @@ ares_status_t ares_buf_tag_fetch_strdup(const ares_buf_t *buf, char **str)
     return ARES_EBADSTR;
   }
 
-  *str = ares_malloc(ptr_len + 1);
+  *str = (char *)ares_malloc(ptr_len + 1);
   if (*str == NULL) {
     return ARES_ENOMEM;
   }
@@ -578,7 +578,7 @@ ares_status_t ares_buf_fetch_bytes_dup(ares_buf_t *buf, size_t len,
     return ARES_EBADRESP;
   }
 
-  *bytes = ares_malloc(null_term ? len + 1 : len);
+  *bytes = (unsigned char *)ares_malloc(null_term ? len + 1 : len);
   if (*bytes == NULL) {
     return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -607,7 +607,7 @@ ares_status_t ares_buf_fetch_str_dup(ares_buf_t *buf, size_t len, char **str)
     }
   }
 
-  *str = ares_malloc(len + 1);
+  *str = (char *)ares_malloc(len + 1);
   if (*str == NULL) {
     return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -742,7 +742,8 @@ size_t ares_buf_consume_until_charset(ares_buf_t          *buf,
 
   /* Optimize for single character searches */
   if (len == 1) {
-    const unsigned char *p = memchr(ptr, charset[0], remaining_len);
+    const unsigned char *p =
+      (const unsigned char *)memchr(ptr, charset[0], remaining_len);
     if (p != NULL) {
       found = ARES_TRUE;
       pos   = (size_t)(p - ptr);
@@ -835,7 +836,7 @@ size_t ares_buf_consume_charset(ares_buf_t *buf, const unsigned char *charset,
 
 static void ares_buf_destroy_cb(void *arg)
 {
-  ares_buf_t **buf = arg;
+  ares_buf_t **buf = (ares_buf_t **)arg;
   ares_buf_destroy(*buf);
 }
 
@@ -848,7 +849,7 @@ static ares_bool_t ares_buf_split_isduplicate(ares_array_t        *arr,
   size_t num = ares_array_len(arr);
 
   for (i = 0; i < num; i++) {
-    ares_buf_t         **bufptr = ares_array_at(arr, i);
+    ares_buf_t         **bufptr = (ares_buf_t **)ares_array_at(arr, i);
     const ares_buf_t    *buf    = *bufptr;
     size_t               plen   = 0;
     const unsigned char *ptr    = ares_buf_peek(buf, &plen);
@@ -979,7 +980,7 @@ done:
 
 static void ares_free_split_array(void *arg)
 {
-  void **ptr = arg;
+  void **ptr = (void **)arg;
   ares_free(*ptr);
 }
 
@@ -1013,7 +1014,7 @@ ares_status_t ares_buf_split_str_array(ares_buf_t          *buf,
 
   len = ares_array_len(split);
   for (i = 0; i < len; i++) {
-    ares_buf_t **bufptr = ares_array_at(split, i);
+    ares_buf_t **bufptr = (ares_buf_t **)ares_array_at(split, i);
     ares_buf_t  *lbuf   = *bufptr;
     char        *str    = NULL;
 
@@ -1062,7 +1063,7 @@ ares_status_t ares_buf_split_str(ares_buf_t *buf, const unsigned char *delims,
 
 done:
   if (status == ARES_SUCCESS) {
-    *strs = ares_array_finish(arr, nstrs);
+    *strs = (char **)ares_array_finish(arr, nstrs);
   } else {
     ares_array_destroy(arr);
   }
@@ -1131,7 +1132,7 @@ ares_status_t ares_buf_replace(ares_buf_t *buf, const unsigned char *srch,
     /* Store the offset this was found because our actual pointer might be
      * switched out from under us by the call to ensure_space() if the
      * replacement pattern is larger than the search pattern */
-    found_offset   = (size_t)(ptr - (size_t)(buf->alloc_buf + buf->offset));
+    found_offset = (size_t)(ptr - (size_t)(buf->alloc_buf + buf->offset));
     if (rplc_size > srch_size) {
       status = ares_buf_ensure_space(buf, rplc_size - srch_size);
       if (status != ARES_SUCCESS) {
@@ -1149,9 +1150,7 @@ ares_status_t ares_buf_replace(ares_buf_t *buf, const unsigned char *srch,
 
     /* Move the data */
     move_data_len = buf->data_len - buf->offset - found_offset - srch_size;
-    memmove(ptr + rplc_size,
-            ptr + srch_size,
-            move_data_len);
+    memmove(ptr + rplc_size, ptr + srch_size, move_data_len);
 
     /* Copy in the replacement data */
     if (rplc != NULL && rplc_size > 0) {
