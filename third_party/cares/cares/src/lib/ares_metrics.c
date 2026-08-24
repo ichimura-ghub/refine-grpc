@@ -176,7 +176,8 @@ void ares_metrics_record(const ares_query_t *query, ares_server_t *server,
   }
 
   /* Place in each bucket */
-  for (i = 0; i < ARES_METRIC_COUNT; i++) {
+  for (i = (ares_server_bucket_t)0; i < ARES_METRIC_COUNT;
+       i = (ares_server_bucket_t)(i + 1)) {
     time_t ts = ares_metric_timestamp(i, &now, ARES_FALSE);
 
     /* Copy metrics to prev and clear */
@@ -213,7 +214,8 @@ size_t ares_metrics_server_timeout(const ares_server_t  *server,
   size_t                timeout_ms = 0;
   size_t                max_timeout_ms;
 
-  for (i = 0; i < ARES_METRIC_COUNT; i++) {
+  for (i = (ares_server_bucket_t)0; i < ARES_METRIC_COUNT;
+       i = (ares_server_bucket_t)(i + 1)) {
     time_t ts = ares_metric_timestamp(i, now, ARES_FALSE);
 
     /* This ts has been invalidated, see if we should use the previous

@@ -142,7 +142,7 @@ static ares_bool_t ares_uri_chis_unreserved(char x)
     default:
       break;
   }
-  return ares_isalpha(x) || ares_isdigit(x);
+  return (ares_bool_t)(ares_isalpha(x) || ares_isdigit(x));
 }
 
 static ares_bool_t ares_uri_chis_scheme(char x)
@@ -157,22 +157,24 @@ static ares_bool_t ares_uri_chis_scheme(char x)
     default:
       break;
   }
-  return ares_isalpha(x) || ares_isdigit(x);
+  return (ares_bool_t)(ares_isalpha(x) || ares_isdigit(x));
 }
 
 static ares_bool_t ares_uri_chis_authority(char x)
 {
   /* This one here isn't well defined.  We are going to include the valid
    * characters of the subfields plus known delimiters */
-  return ares_uri_chis_unreserved(x) || ares_uri_chis_subdelim(x) || x == '%' ||
-         x == '[' || x == ']' || x == '@' || x == ':';
+  return (ares_bool_t)(ares_uri_chis_unreserved(x) ||
+                       ares_uri_chis_subdelim(x) || x == '%' || x == '[' ||
+                       x == ']' || x == '@' || x == ':');
 }
 
 static ares_bool_t ares_uri_chis_userinfo(char x)
 {
   /* NOTE: we don't include ':' here since we are using that as our
    *       username/password delimiter */
-  return ares_uri_chis_unreserved(x) || ares_uri_chis_subdelim(x);
+  return (ares_bool_t)(ares_uri_chis_unreserved(x) ||
+                       ares_uri_chis_subdelim(x));
 }
 
 static ares_bool_t ares_uri_chis_path(char x)
@@ -189,12 +191,13 @@ static ares_bool_t ares_uri_chis_path(char x)
     default:
       break;
   }
-  return ares_uri_chis_unreserved(x) || ares_uri_chis_subdelim(x);
+  return (ares_bool_t)(ares_uri_chis_unreserved(x) ||
+                       ares_uri_chis_subdelim(x));
 }
 
 static ares_bool_t ares_uri_chis_path_enc(char x)
 {
-  return ares_uri_chis_path(x) || x == '%';
+  return (ares_bool_t)(ares_uri_chis_path(x) || x == '%');
 }
 
 static ares_bool_t ares_uri_chis_query(char x)
@@ -210,12 +213,12 @@ static ares_bool_t ares_uri_chis_query(char x)
 
   /* Exclude & and = used as delimiters, they're valid characters in the
    * set, just not for the individual pieces */
-  return ares_uri_chis_path(x) && x != '&' && x != '=';
+  return (ares_bool_t)(ares_uri_chis_path(x) && x != '&' && x != '=');
 }
 
 static ares_bool_t ares_uri_chis_query_enc(char x)
 {
-  return ares_uri_chis_query(x) || x == '%';
+  return (ares_bool_t)(ares_uri_chis_query(x) || x == '%');
 }
 
 static ares_bool_t ares_uri_chis_fragment(char x)
@@ -233,12 +236,12 @@ static ares_bool_t ares_uri_chis_fragment(char x)
 
 static ares_bool_t ares_uri_chis_fragment_enc(char x)
 {
-  return ares_uri_chis_fragment(x) || x == '%';
+  return (ares_bool_t)(ares_uri_chis_fragment(x) || x == '%');
 }
 
 ares_uri_t *ares_uri_create(void)
 {
-  ares_uri_t *uri = ares_malloc_zero(sizeof(*uri));
+  ares_uri_t *uri = (ares_uri_t *)ares_malloc_zero(sizeof(*uri));
 
   if (uri == NULL) {
     return NULL;
@@ -537,7 +540,7 @@ static char *ares_uri_path_normalize(const char *path)
   }
 
   for (i = 0; i < (ares_ssize_t)ares_array_len(arr); i++) {
-    const char **strptr = ares_array_at(arr, (size_t)i);
+    const char **strptr = (const char **)ares_array_at(arr, (size_t)i);
     const char  *str    = *strptr;
 
     if (ares_streq(str, ".")) {
@@ -560,7 +563,7 @@ static char *ares_uri_path_normalize(const char *path)
 
   len = ares_array_len(arr);
   for (j = 0; j < len; j++) {
-    const char **strptr = ares_array_at(arr, j);
+    const char **strptr = (const char **)ares_array_at(arr, j);
     const char  *str    = *strptr;
     status              = ares_buf_append_str(outpath, str);
     if (status != ARES_SUCCESS) {

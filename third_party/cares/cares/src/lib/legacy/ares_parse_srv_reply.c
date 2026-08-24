@@ -72,7 +72,8 @@ int ares_parse_srv_reply(const unsigned char *abuf, int alen_int,
     }
 
     /* Allocate storage for this SRV answer appending it to the list */
-    srv_curr = ares_malloc_data(ARES_DATATYPE_SRV_REPLY);
+    srv_curr =
+      (struct ares_srv_reply *)ares_malloc_data(ARES_DATATYPE_SRV_REPLY);
     if (srv_curr == NULL) {
       status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
       goto done;            /* LCOV_EXCL_LINE: OutOfMemory */

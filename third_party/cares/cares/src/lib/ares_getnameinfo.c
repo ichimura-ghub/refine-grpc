@@ -159,7 +159,8 @@ static void  ares_getnameinfo_int(ares_channel_t        *channel,
       return;
     } else {
       /* This is where a DNS lookup becomes necessary */
-      niquery = ares_malloc(sizeof(struct nameinfo_query));
+      niquery =
+        (struct nameinfo_query *)ares_malloc(sizeof(struct nameinfo_query));
       if (!niquery) {
         callback(arg, ARES_ENOMEM, 0, NULL, NULL);
         return;
@@ -273,11 +274,16 @@ static void nameinfo_callback(void *arg, int status, int timeouts,
 static char *lookup_service(unsigned short port, unsigned int flags, char *buf,
                             size_t buflen)
 {
+#ifdef NN_NINTENDO_SDK
+  // NINTENDOSDKには
+  // サービスからポートに変換する関数(getservbyport)は用意されていない。
+#else
+
   const char     *proto;
   struct servent *sep;
-#ifdef HAVE_GETSERVBYPORT_R
+#  ifdef HAVE_GETSERVBYPORT_R
   struct servent se;
-#endif
+#  endif
   char        tmpbuf[4096];
   const char *name;
   size_t      name_len;
@@ -295,33 +301,33 @@ static char *lookup_service(unsigned short port, unsigned int flags, char *buf,
       } else {
         proto = "tcp";
       }
-#ifdef HAVE_GETSERVBYPORT_R
+#  ifdef HAVE_GETSERVBYPORT_R
       memset(&se, 0, sizeof(se));
       sep = &se;
       memset(tmpbuf, 0, sizeof(tmpbuf));
-#  if GETSERVBYPORT_R_ARGS == 6
+#    if GETSERVBYPORT_R_ARGS == 6
       if (getservbyport_r(port, proto, &se, (void *)tmpbuf, sizeof(tmpbuf),
                           &sep) != 0) {
         sep = NULL; /* LCOV_EXCL_LINE: buffer large so this never fails */
       }
-#  elif GETSERVBYPORT_R_ARGS == 5
+#    elif GETSERVBYPORT_R_ARGS == 5
       sep = getservbyport_r(port, proto, &se, (void *)tmpbuf, sizeof(tmpbuf));
-#  elif GETSERVBYPORT_R_ARGS == 4
+#    elif GETSERVBYPORT_R_ARGS == 4
       if (getservbyport_r(port, proto, &se, (void *)tmpbuf) != 0) {
         sep = NULL;
       }
-#  else
+#    else
       /* Lets just hope the OS uses TLS! */
       sep = getservbyport(port, proto);
-#  endif
-#else
+#    endif
+#  else
       /* Lets just hope the OS uses TLS! */
-#  if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
+#    if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
       sep = getservbyport(port, (char *)proto);
-#  else
+#    else
       sep = getservbyport(port, proto);
+#    endif
 #  endif
-#endif
     }
     if (sep && sep->s_name) {
       /* get service name */
@@ -342,6 +348,7 @@ static char *lookup_service(unsigned short port, unsigned int flags, char *buf,
     return buf;
   }
   buf[0] = '\0';
+#endif
   return NULL;
 }
 

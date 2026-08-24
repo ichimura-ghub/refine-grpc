@@ -88,6 +88,21 @@ void ares_tvnow(ares_timeval_t *now)
   now->usec = (unsigned int)tv.tv_usec;
 }
 
+#elif defined(HAVE_NNGETSYSTEMTICK)
+
+#  include <nn/os.h>
+
+void ares_tvnow(ares_timeval_t *now)
+{
+  // システムTickを取得し、TimeSpan（時間幅）に変換.
+  nn::os::Tick tick     = nn::os::GetSystemTick();
+  nn::TimeSpan timeSpan = nn::os::ConvertToTimeSpan(tick);
+
+  // 秒とマイクロ秒に分解して設定.
+  now->sec  = (ares_int64_t)timeSpan.GetSeconds();
+  now->usec = (unsigned int)(timeSpan.GetMicroSeconds() % 1000000);
+}
+
 #else
 
 #  error missing sub-second time retrieval function

@@ -77,7 +77,7 @@ void ares_gethostbyaddr_nolock(ares_channel_t *channel, const void *addr,
     return;
   }
 
-  aquery = ares_malloc(sizeof(struct addr_query));
+  aquery = (struct addr_query *)ares_malloc(sizeof(struct addr_query));
   if (!aquery) {
     callback(arg, ARES_ENOMEM, 0, NULL);
     return;

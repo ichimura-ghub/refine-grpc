@@ -34,7 +34,7 @@ static int ares_create_query_int(const char *name, int dnsclass, int type,
   ares_status_t      status;
   ares_dns_record_t *dnsrec = NULL;
   size_t             len;
-  ares_dns_flags_t   rd_flag = rd ? ARES_FLAG_RD : 0;
+  ares_dns_flags_t   rd_flag = rd ? ARES_FLAG_RD : (ares_dns_flags_t)0;
 
   if (name == NULL || bufp == NULL || buflenp == NULL) {
     status = ARES_EFORMERR;

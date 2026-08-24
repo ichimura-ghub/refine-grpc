@@ -47,12 +47,12 @@ int ares_getsock(const ares_channel_t *channel, ares_socket_t *socks,
 
   for (snode = ares_slist_node_first(channel->servers); snode != NULL;
        snode = ares_slist_node_next(snode)) {
-    ares_server_t     *server = ares_slist_node_val(snode);
+    ares_server_t     *server = (ares_server_t *)ares_slist_node_val(snode);
     ares_llist_node_t *node;
 
     for (node = ares_llist_node_first(server->connections); node != NULL;
          node = ares_llist_node_next(node)) {
-      const ares_conn_t *conn = ares_llist_node_val(node);
+      const ares_conn_t *conn = (const ares_conn_t *)ares_llist_node_val(node);
 
       if (sockindex >= (size_t)numsocks || sockindex >= ARES_GETSOCK_MAXNUM) {
         break;

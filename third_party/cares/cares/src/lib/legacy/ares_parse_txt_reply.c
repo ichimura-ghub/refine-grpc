@@ -76,8 +76,8 @@ static int ares_parse_txt_reply_int(const unsigned char *abuf, size_t alen,
       size_t               ptr_len;
 
       /* Allocate storage for this TXT answer appending it to the list */
-      txt_curr =
-        ares_malloc_data(ex ? ARES_DATATYPE_TXT_EXT : ARES_DATATYPE_TXT_REPLY);
+      txt_curr = (struct ares_txt_ext *)ares_malloc_data(
+        ex ? ARES_DATATYPE_TXT_EXT : ARES_DATATYPE_TXT_REPLY);
       if (txt_curr == NULL) {
         status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
         goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -98,7 +98,7 @@ static int ares_parse_txt_reply_int(const unsigned char *abuf, size_t alen,
 
       ptr = ares_dns_rr_get_abin(rr, ARES_RR_TXT_DATA, j, &ptr_len);
 
-      txt_curr->txt = ares_malloc(ptr_len + 1);
+      txt_curr->txt = (unsigned char *)ares_malloc(ptr_len + 1);
       if (txt_curr->txt == NULL) {
         status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
         goto done;            /* LCOV_EXCL_LINE: OutOfMemory */

@@ -1097,7 +1097,29 @@ grpc++
 * utf8_range_lib
 * strerror(absl_strerror)
 * flags_commandlineflag_internal(absl_flags_commandlineflag_internal)
-  c-ares
+  c-ares      ---> （シー・アレス）DNS名前解決を行うためのC言語ライブラリ
 
   
   
+
+
+
+
+
+
+[tips]
+gRPCをNintendoSDK向けにビルドする場合、名前解決に c-ares を使用せず、システム標準（または非使用）の設定へ切り替えるのが一般的です。CMake等のビルドオプションで -DgRPC_CARES_PROVIDER=none または -gRPC_CARES_PROVIDER=package を指定するか、ares を使わないソケットリゾルバモジュールを選択します。
+
+DNS（ドメイン→IP）ではなく「サービス名（http, https等）からポート番号（80, 443等）を検索するAPI（getservbyname）」がNintendoSDKに存在しないためです。
+パターンA: ポート番号を数値で直接指定して接続する場合（推奨）
+通信先を example.com:50051 や 192.168.1.10:50051 のように最初からポート番号まで数値で指定するのであれば、getservbyname（名前によるポート検索）は一切不要です。
+前述の通り lookup_service を atoi(service) 等で数値を直接返すように修正（またはダミー化）すれば、ドメイン名での接続は問題なく機能します。
+
+
+
+#if defined(NN_BUILD_TARGET_PLATFORM_NX)
+inline int gethostname(char *name, size_t len) {
+    strncpy(name, "NintendoSwitch", len);
+    return 0;
+}
+#endif

@@ -62,7 +62,7 @@ static char *ares_qcache_calc_key(const ares_dns_record_t *dnsrec)
     goto fail; /* LCOV_EXCL_LINE: OutOfMemory */
   }
 
-  flags = ares_dns_record_get_flags(dnsrec);
+  flags = (ares_dns_flags_t)ares_dns_record_get_flags(dnsrec);
   /* Only care about RD and CD */
   if (flags & ARES_FLAG_RD) {
     status = ares_buf_append_str(buf, "rd");
@@ -147,7 +147,8 @@ static void ares_qcache_expire(ares_qcache_t *cache, const ares_timeval_t *now)
   }
 
   while ((node = ares_slist_node_first(cache->expire)) != NULL) {
-    const ares_qcache_entry_t *entry = ares_slist_node_val(node);
+    const ares_qcache_entry_t *entry =
+      (const ares_qcache_entry_t *)ares_slist_node_val(node);
 
     /* If now is NULL, we're flushing everything, so don't break */
     if (now != NULL && entry->expire_ts > now->sec) {
@@ -177,8 +178,8 @@ void ares_qcache_destroy(ares_qcache_t *cache)
 
 static int ares_qcache_entry_sort_cb(const void *arg1, const void *arg2)
 {
-  const ares_qcache_entry_t *entry1 = arg1;
-  const ares_qcache_entry_t *entry2 = arg2;
+  const ares_qcache_entry_t *entry1 = (const ares_qcache_entry_t *)arg1;
+  const ares_qcache_entry_t *entry2 = (const ares_qcache_entry_t *)arg2;
 
   if (entry1->expire_ts > entry2->expire_ts) {
     return 1;
@@ -193,7 +194,7 @@ static int ares_qcache_entry_sort_cb(const void *arg1, const void *arg2)
 
 static void ares_qcache_entry_destroy_cb(void *arg)
 {
-  ares_qcache_entry_t *entry = arg;
+  ares_qcache_entry_t *entry = (ares_qcache_entry_t *)arg;
   if (entry == NULL) {
     return; /* LCOV_EXCL_LINE: DefensiveCoding */
   }
@@ -210,7 +211,7 @@ ares_status_t ares_qcache_create(ares_rand_state *rand_state,
   ares_status_t  status = ARES_SUCCESS;
   ares_qcache_t *cache;
 
-  cache = ares_malloc_zero(sizeof(*cache));
+  cache = (ares_qcache_t *)ares_malloc_zero(sizeof(*cache));
   if (cache == NULL) {
     status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -309,7 +310,7 @@ static ares_status_t ares_qcache_insert_int(ares_qcache_t           *qcache,
   ares_qcache_entry_t *entry;
   unsigned int         ttl;
   ares_dns_rcode_t     rcode = ares_dns_record_get_rcode(qresp);
-  ares_dns_flags_t     flags = ares_dns_record_get_flags(qresp);
+  ares_dns_flags_t flags = (ares_dns_flags_t)ares_dns_record_get_flags(qresp);
 
   if (qcache == NULL || qresp == NULL) {
     return ARES_EFORMERR;
@@ -341,7 +342,7 @@ static ares_status_t ares_qcache_insert_int(ares_qcache_t           *qcache,
     return ARES_EREFUSED;
   }
 
-  entry = ares_malloc_zero(sizeof(*entry));
+  entry = (ares_qcache_entry_t *)ares_malloc_zero(sizeof(*entry));
   if (entry == NULL) {
     goto fail; /* LCOV_EXCL_LINE: OutOfMemory */
   }
@@ -405,7 +406,8 @@ ares_status_t ares_qcache_fetch(ares_channel_t           *channel,
     goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
   }
 
-  entry = ares_htable_strvp_get_direct(channel->qcache->cache, key);
+  entry = (ares_qcache_entry_t *)ares_htable_strvp_get_direct(
+    channel->qcache->cache, key);
   if (entry == NULL) {
     status = ARES_ENOTFOUND;
     goto done;

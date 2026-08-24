@@ -32,7 +32,8 @@
 #  include <stdint.h>
 #endif
 
-size_t ares_strnlen(const char *str, size_t maxlen) {
+size_t ares_strnlen(const char *str, size_t maxlen)
+{
   const char *p = NULL;
   if (str == NULL) {
     return 0;
@@ -74,7 +75,7 @@ char *ares_strdup(const char *s1)
     return NULL; /* LCOV_EXCL_LINE: DefensiveCoding */
   }
 
-  out = ares_malloc(len + 1);
+  out = (char *)ares_malloc(len + 1);
   if (out == NULL) {
     return NULL;
   }
@@ -246,7 +247,7 @@ unsigned char *ares_memmem(const unsigned char *big, size_t big_len,
   return ptr;
 #else
   while (1) {
-    ptr = memchr(big, little[0], big_len);
+    ptr = (unsigned char *)memchr(big, little[0], big_len);
     if (ptr == NULL) {
       break;
     }
@@ -486,7 +487,7 @@ ares_bool_t ares_streq_max(const char *a, const char *b, size_t n)
 void ares_free_array(void *arrp, size_t nmembers, void (*freefunc)(void *))
 {
   size_t i;
-  void **arr = arrp;
+  void **arr = (void **)arrp;
 
   if (arr == NULL) {
     return;

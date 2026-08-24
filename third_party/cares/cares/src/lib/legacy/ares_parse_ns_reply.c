@@ -68,7 +68,7 @@ int ares_parse_ns_reply(const unsigned char *abuf, int alen_int,
   }
 
   /* Response structure */
-  hostent = ares_malloc(sizeof(*hostent));
+  hostent = (struct hostent *)ares_malloc(sizeof(*hostent));
   if (hostent == NULL) {
     status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -76,7 +76,7 @@ int ares_parse_ns_reply(const unsigned char *abuf, int alen_int,
 
   memset(hostent, 0, sizeof(*hostent));
 
-  hostent->h_addr_list = ares_malloc(sizeof(*hostent->h_addr_list));
+  hostent->h_addr_list = (char **)ares_malloc(sizeof(*hostent->h_addr_list));
   if (hostent->h_addr_list == NULL) {
     status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
@@ -97,7 +97,8 @@ int ares_parse_ns_reply(const unsigned char *abuf, int alen_int,
   }
 
   /* Preallocate the maximum number + 1 */
-  hostent->h_aliases = ares_malloc((ancount + 1) * sizeof(*hostent->h_aliases));
+  hostent->h_aliases =
+    (char **)ares_malloc((ancount + 1) * sizeof(*hostent->h_aliases));
   if (hostent->h_aliases == NULL) {
     status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     goto done;            /* LCOV_EXCL_LINE: OutOfMemory */

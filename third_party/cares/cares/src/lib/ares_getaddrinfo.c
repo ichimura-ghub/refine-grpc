@@ -99,7 +99,8 @@ static ares_bool_t next_dns_lookup(struct host_query *hquery);
 struct ares_addrinfo_cname *
   ares_append_addrinfo_cname(struct ares_addrinfo_cname **head)
 {
-  struct ares_addrinfo_cname *tail = ares_malloc_zero(sizeof(*tail));
+  struct ares_addrinfo_cname *tail =
+    (struct ares_addrinfo_cname *)ares_malloc_zero(sizeof(*tail));
   struct ares_addrinfo_cname *last = *head;
 
   if (tail == NULL) {
@@ -139,7 +140,8 @@ void ares_addrinfo_cat_cnames(struct ares_addrinfo_cname **head,
 struct ares_addrinfo_node *
   ares_append_addrinfo_node(struct ares_addrinfo_node **head)
 {
-  struct ares_addrinfo_node *tail = ares_malloc_zero(sizeof(*tail));
+  struct ares_addrinfo_node *tail =
+    (struct ares_addrinfo_node *)ares_malloc_zero(sizeof(*tail));
   struct ares_addrinfo_node *last = *head;
 
   if (tail == NULL) {
@@ -180,12 +182,21 @@ void ares_addrinfo_cat_nodes(struct ares_addrinfo_node **head,
  */
 static unsigned short lookup_service(const char *service, int flags)
 {
+#ifdef NN_NINTENDO_SDK
+  // NINTENDO SDKにはサービスから名前を変換する関数は用意されていない。
+
+  if (!service) {
+    return 0;
+  }
+  return (unsigned short)htons((unsigned short)atoi(service));
+#else
+
   const char     *proto;
   struct servent *sep;
-#ifdef HAVE_GETSERVBYNAME_R
+#  ifdef HAVE_GETSERVBYNAME_R
   struct servent se;
   char           tmpbuf[4096];
-#endif
+#  endif
 
   if (service) {
     if (flags & ARES_NI_UDP) {
@@ -197,36 +208,37 @@ static unsigned short lookup_service(const char *service, int flags)
     } else {
       proto = "tcp";
     }
-#ifdef HAVE_GETSERVBYNAME_R
+#  ifdef HAVE_GETSERVBYNAME_R
     memset(&se, 0, sizeof(se));
     sep = &se;
     memset(tmpbuf, 0, sizeof(tmpbuf));
-#  if GETSERVBYNAME_R_ARGS == 6
+#    if GETSERVBYNAME_R_ARGS == 6
     if (getservbyname_r(service, proto, &se, (void *)tmpbuf, sizeof(tmpbuf),
                         &sep) != 0) {
       sep = NULL; /* LCOV_EXCL_LINE: buffer large so this never fails */
     }
-#  elif GETSERVBYNAME_R_ARGS == 5
+#    elif GETSERVBYNAME_R_ARGS == 5
     sep = getservbyname_r(service, proto, &se, (void *)tmpbuf, sizeof(tmpbuf));
-#  elif GETSERVBYNAME_R_ARGS == 4
+#    elif GETSERVBYNAME_R_ARGS == 4
     if (getservbyname_r(service, proto, &se, (void *)tmpbuf) != 0) {
       sep = NULL;
     }
-#  else
+#    else
     /* Lets just hope the OS uses TLS! */
     sep = getservbyname(service, proto);
-#  endif
-#else
+#    endif
+#  else
     /* Lets just hope the OS uses TLS! */
-#  if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
+#    if (defined(NETWARE) && !defined(__NOVELL_LIBC__))
     sep = getservbyname(service, (char *)proto);
-#  else
-    sep = getservbyname(service, proto);
+#    else
+    sep = (struct servent *)getservbyname(service, proto);
+#    endif
 #  endif
-#endif
     return (sep ? ntohs((unsigned short)sep->s_port) : 0);
   }
   return 0;
+#endif
 }
 
 /* If the name looks like an IP address or an error occurred,
@@ -477,7 +489,8 @@ static void terminate_retries(const struct host_query *hquery,
     return;
   }
 
-  query = ares_htable_szvp_get_direct(channel->queries_by_qid, term_qid);
+  query = (ares_query_t *)ares_htable_szvp_get_direct(channel->queries_by_qid,
+                                                      term_qid);
   if (query == NULL) {
     return;
   }
@@ -629,7 +642,7 @@ static void ares_getaddrinfo_int(ares_channel_t *channel, const char *name,
     }
   }
 
-  ai = ares_malloc_zero(sizeof(*ai));
+  ai = (struct ares_addrinfo *)ares_malloc_zero(sizeof(*ai));
   if (!ai) {
     callback(arg, ARES_ENOMEM, 0, NULL);
     return;
@@ -640,7 +653,7 @@ static void ares_getaddrinfo_int(ares_channel_t *channel, const char *name,
   }
 
   /* Allocate and fill in the host query structure. */
-  hquery = ares_malloc_zero(sizeof(*hquery));
+  hquery = (struct host_query *)ares_malloc_zero(sizeof(*hquery));
   if (!hquery) {
     ares_freeaddrinfo(ai);
     callback(arg, ARES_ENOMEM, 0, NULL);

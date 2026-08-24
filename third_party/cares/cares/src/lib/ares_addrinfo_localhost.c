@@ -49,14 +49,15 @@
 #  endif
 #endif
 
-static ares_bool_t ares_ai_has_family(int aftype,
+static ares_bool_t ares_ai_has_family(int                              aftype,
                                       const struct ares_addrinfo_node *nodes)
 {
   const struct ares_addrinfo_node *node;
 
   for (node = nodes; node != NULL; node = node->ai_next) {
-    if (node->ai_family == aftype)
+    if (node->ai_family == aftype) {
       return ARES_TRUE;
+    }
   }
 
   return ARES_FALSE;
@@ -76,7 +77,7 @@ ares_status_t ares_append_ai_node(int aftype, unsigned short port,
   memset(node, 0, sizeof(*node));
 
   if (aftype == AF_INET) {
-    struct sockaddr_in *sin = ares_malloc(sizeof(*sin));
+    struct sockaddr_in *sin = (struct sockaddr_in *)ares_malloc(sizeof(*sin));
     if (!sin) {
       return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     }
@@ -94,7 +95,8 @@ ares_status_t ares_append_ai_node(int aftype, unsigned short port,
   }
 
   if (aftype == AF_INET6) {
-    struct sockaddr_in6 *sin6 = ares_malloc(sizeof(*sin6));
+    struct sockaddr_in6 *sin6 =
+      (struct sockaddr_in6 *)ares_malloc(sizeof(*sin6));
     if (!sin6) {
       return ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
     }

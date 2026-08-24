@@ -50,7 +50,8 @@ void ares_destroy(ares_channel_t *channel)
    * waits for that event to complete before it continues so we get a channel
    * lock deadlock at shutdown if we hold a lock during this process. */
   if (channel->optmask & ARES_OPT_EVENT_THREAD) {
-    ares_event_thread_t *e = channel->sock_state_cb_data;
+    ares_event_thread_t *e =
+      (ares_event_thread_t *)(channel->sock_state_cb_data);
     if (e && e->configchg) {
       ares_event_configchg_destroy(e->configchg);
       e->configchg = NULL;
@@ -73,7 +74,7 @@ void ares_destroy(ares_channel_t *channel)
   node = ares_llist_node_first(channel->all_queries);
   while (node != NULL) {
     ares_llist_node_t *next  = ares_llist_node_next(node);
-    ares_query_t      *query = ares_llist_node_claim(node);
+    ares_query_t      *query = (ares_query_t *)ares_llist_node_claim(node);
 
     query->node_all_queries = NULL;
     query->callback(query->arg, ARES_EDESTRUCTION, 0, NULL);
@@ -150,7 +151,7 @@ void ares_destroy_servers_state(ares_channel_t *channel)
   ares_slist_node_t *node;
 
   while ((node = ares_slist_node_first(channel->servers)) != NULL) {
-    ares_server_t *server = ares_slist_node_claim(node);
+    ares_server_t *server = (ares_server_t *)ares_slist_node_claim(node);
     ares_destroy_server(server);
   }
 

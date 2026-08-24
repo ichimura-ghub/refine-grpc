@@ -70,7 +70,7 @@ int ares_parse_soa_reply(const unsigned char *abuf, int alen_int,
     }
 
     /* allocate result struct */
-    soa = ares_malloc_data(ARES_DATATYPE_SOA_REPLY);
+    soa = (struct ares_soa_reply *)ares_malloc_data(ARES_DATATYPE_SOA_REPLY);
     if (soa == NULL) {
       status = ARES_ENOMEM; /* LCOV_EXCL_LINE: OutOfMemory */
       goto done;            /* LCOV_EXCL_LINE: OutOfMemory */
