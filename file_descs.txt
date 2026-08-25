@@ -1093,6 +1093,7 @@
 *address_sorting
 
 grpc++
+* boringssl_prefix_symbols   --->utilityなのでいらないかも
 * zlibstatic
 * utf8_range_lib
   c-ares      ---> （シー・アレス）DNS名前解決を行うためのC言語ライブラリ-->現状使用しないように設定
@@ -1110,8 +1111,9 @@ grpc++
 * random_internal_platform(absl_random_internal_platform)
 * civil_time(absl_civil_time)
 * exponential_biased(absl_exponential_biased)
-* boringssl_prefix_symbols   --->utilityなのでいらないかも
+* log_internal_nullguard(absl_log_internal_nullguard)
 
+ 
 [tips]
 gRPCをNintendoSDK向けにビルドする場合、名前解決に c-ares を使用せず、システム標準（または非使用）の設定へ切り替えるのが一般的です。CMake等のビルドオプションで -DgRPC_CARES_PROVIDER=none または -gRPC_CARES_PROVIDER=package を指定するか、ares を使わないソケットリゾルバモジュールを選択します。
 
