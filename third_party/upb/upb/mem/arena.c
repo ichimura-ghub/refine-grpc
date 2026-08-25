@@ -373,7 +373,7 @@ static upb_MemBlock* _upb_Arena_AllocBlockInternal(upb_alloc* alloc,
   UPB_ASSERT(size >= kUpb_MemblockReserve);
   upb_SizedPtr alloc_result = upb_SizeReturningMalloc(alloc, size);
   if (!alloc_result.p) return NULL;
-  upb_MemBlock* block = alloc_result.p;
+  upb_MemBlock* block = (upb_MemBlock*)(alloc_result.p);
   block->size = alloc_result.n;
   return block;
 }
@@ -547,7 +547,7 @@ upb_Arena* upb_Arena_Init(void* mem, size_t n, upb_alloc* alloc) {
     return ret;
   }
 
-  a = mem;
+  a = (upb_ArenaState*)mem;
 
   upb_Atomic_Init(&a->body.parent_or_count, _upb_Arena_TaggedFromRefcount(1));
   upb_Atomic_Init(&a->body.next, NULL);
@@ -562,7 +562,7 @@ upb_Arena* upb_Arena_Init(void* mem, size_t n, upb_alloc* alloc) {
   a->body.last_block_size = 128;
   a->body.upb_alloc_cleanup = NULL;
   a->body.block_alloc = _upb_Arena_MakeBlockAlloc(alloc, 1);
-  a->head.UPB_PRIVATE(ptr) = (void*)UPB_ALIGN_MALLOC((uintptr_t)(a + 1));
+  a->head.UPB_PRIVATE(ptr) = (char*)UPB_ALIGN_MALLOC((uintptr_t)(a + 1));
   a->head.UPB_PRIVATE(end) = UPB_PTR_AT(mem, n, char);
   UPB_PRIVATE(upb_Xsan_Init)(UPB_XSAN(&a->body));
 #ifdef UPB_TRACING_ENABLED
@@ -933,7 +933,8 @@ bool upb_Arena_RefArena(upb_Arena* from, const upb_Arena* to) {
   }
 
   upb_ArenaInternal* ai = upb_Arena_Internal(from);
-  upb_ArenaRef* ref = upb_Arena_Malloc(from, kUpb_ArenaRefReserve);
+  upb_ArenaRef* ref =
+      (upb_ArenaRef*)upb_Arena_Malloc(from, kUpb_ArenaRefReserve);
 
   if (!ref) {
     return false;
