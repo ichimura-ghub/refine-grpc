@@ -76,9 +76,10 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
-    <NintendoSdkRoot />
-    <NintendoSdkSpec>Generic</NintendoSdkSpec>
-    <NintendoSdkBuildType>Develop</NintendoSdkBuildType>
+    <EnableASAN>false</EnableASAN>
+    <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)</NintendoSdkRoot>
+    <NintendoSdkSpec>NX</NintendoSdkSpec>
+    <NintendoSdkBuildType>Debug</NintendoSdkBuildType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -126,13 +127,14 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\Debug\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\NN_Debug\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\NN_Debug\NX64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">crypto.dir\Debug\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">crypto.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">crypto</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">crypto</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">crypto</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">crypto</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">crypto_d_nx</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
@@ -155,6 +157,9 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">crypto</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
+    <CppLanguageStandard>Gnu++17</CppLanguageStandard>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -329,8 +334,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) -utf-8 -Zc:__cplusplus</AdditionalOptions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\include;$(NintendoSdkIncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -finput-charset=utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -349,7 +354,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;BORINGSSL_DISPATCH_TEST;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;BORINGSSL_IMPLEMENTATION;OPENSSL_NO_ASM;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;BORINGSSL_DISPATCH_TEST;_HAS_EXCEPTIONS=0;NOMINMAX;BORINGSSL_IMPLEMENTATION;OPENSSL_NO_ASM;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -1108,9 +1113,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\crypto\x509\x_x509.cc" />
     <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\crypto\x509\x_x509a.cc" />
     <ClCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\boringssl-with-bazel\gen\crypto\err_data.cc" />
-    <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\bcm.obj" />
+    <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\bcm.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\NX64\bcm.o">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">false</ExcludedFromBuild>
+    </Object>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\ZERO_CHECK.vcxproj">
       <Project>{86FC02CE-63A4-39D1-96D6-4EDACE4252E8}</Project>

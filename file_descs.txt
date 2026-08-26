@@ -1099,6 +1099,7 @@ grpc++
   c-ares      ---> （シー・アレス）DNS名前解決を行うためのC言語ライブラリ-->現状使用しないように設定
 * re2         ---> Googleが開発した高速かつ安全性を最重視した正規表現（Regular Expression）ライブラリです。
 * fipsmodule
+* crypto
 * upb_base_lib
 * upb_mem_lib
 * upb_lex_lib
