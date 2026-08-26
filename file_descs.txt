@@ -1098,6 +1098,7 @@ grpc++
 * utf8_range_lib
   c-ares      ---> （シー・アレス）DNS名前解決を行うためのC言語ライブラリ-->現状使用しないように設定
 * re2         ---> Googleが開発した高速かつ安全性を最重視した正規表現（Regular Expression）ライブラリです。
+* fipsmodule
 * upb_base_lib
 * upb_mem_lib
 * upb_lex_lib
@@ -1112,8 +1113,9 @@ grpc++
 * civil_time(absl_civil_time)
 * exponential_biased(absl_exponential_biased)
 * log_internal_nullguard(absl_log_internal_nullguard)
-  fipsmodule
- 
+* log_severity(absl_log_severity)  
+
+
 [tips]
 gRPCをNintendoSDK向けにビルドする場合、名前解決に c-ares を使用せず、システム標準（または非使用）の設定へ切り替えるのが一般的です。CMake等のビルドオプションで -DgRPC_CARES_PROVIDER=none または -gRPC_CARES_PROVIDER=package を指定するか、ares を使わないソケットリゾルバモジュールを選択します。
 
