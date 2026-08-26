@@ -76,9 +76,10 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
-    <NintendoSdkRoot />
-    <NintendoSdkSpec>Generic</NintendoSdkSpec>
-    <NintendoSdkBuildType>Develop</NintendoSdkBuildType>
+    <EnableASAN>false</EnableASAN>
+    <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)</NintendoSdkRoot>
+    <NintendoSdkSpec>NX</NintendoSdkSpec>
+    <NintendoSdkBuildType>Debug</NintendoSdkBuildType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -132,7 +133,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">absl_random_internal_randen_slow</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">absl_random_internal_randen_slow</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">absl_random_internal_randen_slow</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">absl_random_internal_randen_slow</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">absl_random_internal_randen_slow_d_nx</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
@@ -155,6 +156,9 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">absl_random_internal_randen_slow</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
+    <CppLanguageStandard>Gnu++17</CppLanguageStandard>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -284,8 +288,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /utf-8 /bigobj</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -finput-charset=utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -304,7 +308,7 @@
       <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WIN32_WINNT=0x600;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NOMINMAX;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
