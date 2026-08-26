@@ -744,4 +744,9 @@
       <UniqueIdentifier>{9366BEED-99F5-348F-8A31-2ADB864D0648}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="fipsmodule.dir\NN_Debug\NX64\bcm.o">
+      <Filter>Object Libraries</Filter>
+    </None>
+  </ItemGroup>
 </Project>

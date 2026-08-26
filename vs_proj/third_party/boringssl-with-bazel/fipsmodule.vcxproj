@@ -128,8 +128,10 @@
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fipsmodule.dir\Debug\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">fipsmodule.dir\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">fipsmodule.dir\NN_Debug\NX64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fipsmodule.dir\Debug\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">fipsmodule.dir\Debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">fipsmodule.dir\NN_Debug\NX64\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fipsmodule</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">fipsmodule</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">fipsmodule</TargetName>
