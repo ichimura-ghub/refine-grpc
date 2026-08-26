@@ -1118,7 +1118,9 @@ grpc++
 * random_internal_randen_hwaes_impl(absl_random_internal_randen_hwaes_impl)
 * random_internal_randen_slow(absl_random_internal_randen_slow)
 * throw_delegate(absl_throw_delegate)
-* random_seed_gen_exception
+* random_seed_gen_exception(absl_random_seed_gen_exception)
+* debugging_internal(absl_debugging_internal)
+
 
 
 
@@ -1139,3 +1141,14 @@ inline int gethostname(char *name, size_t len) {
     return 0;
 }
 #endif
+
+
+
+
+libopenssl.lib
+libopenssl_libcrypto.lib
+libopenssl_libssl.lib
+libz.lib
+
+libcurl.lib
+libnn_websocket.lib
