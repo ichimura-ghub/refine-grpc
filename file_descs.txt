@@ -1105,6 +1105,7 @@ grpc++
 * upb_lex_lib
 * upb_descriptor_lib
 * upb_hash_lib
+* upb_mini_table_lib
 * strerror(absl_strerror)
 * flags_commandlineflag_internal(absl_flags_commandlineflag_internal)
 * time_zone(absl_time_zone)  
