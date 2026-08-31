@@ -1147,6 +1147,7 @@ grpc++
 * graphcycles_internal(absl_graphcycles_internal)
 * strings(absl_strings)
 * str_format_internal(absl_str_format_internal)
+* time(absl_time)
 
 
 [tips]
