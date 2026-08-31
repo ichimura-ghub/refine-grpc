@@ -1111,6 +1111,7 @@ grpc++
 * upb_message_lib
 * upb_wire_lib
 * upb_mini_descriptor_lib
+* upb_reflection_lib
 * strerror(absl_strerror)
 * flags_commandlineflag_internal(absl_flags_commandlineflag_internal)
 * time_zone(absl_time_zone)  
