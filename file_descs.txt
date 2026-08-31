@@ -1096,6 +1096,7 @@ grpc++
 * boringssl_prefix_symbols   --->utilityなのでいらないかも
 * zlibstatic
 * utf8_range_lib
+* utf8_validity(libutf8_validity)
   c-ares      ---> （シー・アレス）DNS名前解決を行うためのC言語ライブラリ-->現状使用しないように設定
 * re2         ---> Googleが開発した高速かつ安全性を最重視した正規表現（Regular Expression）ライブラリです。
 * fipsmodule
@@ -1148,6 +1149,10 @@ grpc++
 * strings(absl_strings)
 * str_format_internal(absl_str_format_internal)
 * time(absl_time)
+
+
+
+
 
 
 [tips]
