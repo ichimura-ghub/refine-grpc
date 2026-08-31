@@ -1151,7 +1151,7 @@ grpc++
 * time(absl_time)
 * flags_commandlineflag(absl_flags_commandlineflag)
 * random_distributions(absl_random_distributions)
-
+* log_internal_proto(absl_log_internal_proto)
 
 
 
