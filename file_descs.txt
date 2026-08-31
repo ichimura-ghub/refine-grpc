@@ -1160,6 +1160,8 @@ grpc++
 * log_internal_fnmatch(absl_log_internal_fnmatch)
 * log_sink(absl_log_sink)
 * kernel_timeout_internal(absl_kernel_timeout_internal)
+* log_internal_globals(absl_log_internal_globals)
+
 
 
 
