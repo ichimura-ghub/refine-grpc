@@ -133,7 +133,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">absl_strings</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">absl_strings</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">absl_strings</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">absl_strings_d_nx</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">absl_strings_nx_d</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
