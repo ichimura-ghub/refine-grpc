@@ -1185,7 +1185,7 @@ grpc++
 * log_internal_log_sink_set(absl_log_internal_log_sink_set)
 * log_internal_message(absl_log_internal_message)
 * log_internal_check_op(absl_log_internal_check_op)
-
+* die_if_null(absl_die_if_null)
 
 
 
