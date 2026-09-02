@@ -1103,6 +1103,7 @@ grpc++
 * crypto
 * ssl
 * gpr
+* grpc
 * libprotobuf
 * upb_base_lib
 * upb_mem_lib
@@ -1232,3 +1233,5 @@ libnn_websocket.lib
 
 TRACKER : error TRK0005: 検索できませんでした: "rc.exe"。指定されたファイルが見つかりません。
 rcファイルがあると、リソースコンパイラを走らせようとするため。
+
+Nintendo Switch等のNintendo SDKは内部的にPOSIX互換層（pthreadやBSD socket互換API）を持っているため、POSIXベースの設定を基本として構築します。

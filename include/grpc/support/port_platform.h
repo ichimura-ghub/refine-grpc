@@ -159,6 +159,7 @@
 // 5. ソケットとイベントエンジン（重要）.
 #define GRPC_POSIX_SOCKET 1
 #define GRPC_POSIX_SOCKETADDR 1
+#define GRPC_POSIX_SOCKETUTILS 1
 #define GRPC_TIMER_USE_GENERIC 1  // 専用タイマーではなく汎用タイマーを使用.
 #define GRPC_ARES 0  // c-ares（DNS非同期解決）は無効化（SDKの標準DNS解決へ）.
 #endif
@@ -652,7 +653,11 @@ typedef unsigned __int64 uint64_t;
 #endif
 
 #ifndef GRPC_IF_NAMETOINDEX
+#ifdef NN_NINTENDO_SDK
+#define GRPC_IF_NAMETOINDEX 0
+#else
 #define GRPC_IF_NAMETOINDEX 1
+#endif
 #endif
 
 #ifndef GRPC_UNUSED
