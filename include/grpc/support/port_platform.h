@@ -135,6 +135,34 @@
 /* Override this file with one for your platform if you need to redefine
    things.  */
 
+#ifdef NN_NINTENDO_SDK
+// 1. 自動検出を無効化する.
+#define GPR_NO_AUTODETECT_PLATFORM 1
+
+// 2. プラットフォーム情報の設定.
+#define GPR_PLATFORM_STRING "nintendo_sdk"
+#define GPR_ARCH_64 1  // NX target (64-bit ARM) の場合.
+
+// 3. OS / CPU 関連.
+#define GPR_CPU_POSIX 1  // POSIX系CPU実装を利用.
+#define GPR_POSIX_ENV 1
+#define GPR_POSIX_STAT 1
+#define GPR_POSIX_STRING 1
+#define GPR_POSIX_SYNC 1
+#define GPR_POSIX_TIME 1
+#define GPR_POSIX_LOG 1
+#define GPR_HAS_PTHREAD_H 1  // SDKのpthreadヘッダーを利用.
+
+// 4. アトミックと同期.
+#define GPR_GCC_ATOMIC 1  // Clang/GCCコンパイラを利用するため.
+
+// 5. ソケットとイベントエンジン（重要）.
+#define GRPC_POSIX_SOCKET 1
+#define GRPC_POSIX_SOCKETADDR 1
+#define GRPC_TIMER_USE_GENERIC 1  // 専用タイマーではなく汎用タイマーを使用.
+#define GRPC_ARES 0  // c-ares（DNS非同期解決）は無効化（SDKの標準DNS解決へ）.
+#endif
+
 #if !defined(GPR_NO_AUTODETECT_PLATFORM)
 #if defined(_WIN64) || defined(WIN64) || defined(_WIN32) || defined(WIN32)
 #if defined(_WIN64) || defined(WIN64)
