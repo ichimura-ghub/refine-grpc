@@ -1118,6 +1118,7 @@ grpc++
 * upb_textformat_lib
 * upb_json_lib
 * strerror(absl_strerror)
+      ZERO_CHECK
 * flags_commandlineflag_internal(absl_flags_commandlineflag_internal)
 * time_zone(absl_time_zone)  
 * leak_check(absl_leak_check)
