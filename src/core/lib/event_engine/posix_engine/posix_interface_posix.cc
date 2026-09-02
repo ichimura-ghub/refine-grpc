@@ -46,6 +46,16 @@
 
 #ifdef GRPC_POSIX_SOCKET_UTILS_COMMON
 #include <arpa/inet.h>  // IWYU pragma: keep
+
+#ifdef NN_NINTENDO_SDK
+#include <fcntl.h>
+#include <netinet/in.h>  // IWYU pragma: keep
+#include <netinet/tcp.h>
+#include <nn/socket.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+
+#else
 #ifdef GRPC_LINUX_TCP_H
 #include <linux/tcp.h>
 #else
@@ -55,6 +65,7 @@
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#endif  // NN_NINTENDO_SDK
 #endif  //  GRPC_POSIX_SOCKET_UTILS_COMMON
 
 #ifdef GRPC_LINUX_EVENTFD
