@@ -76,9 +76,10 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
-    <NintendoSdkRoot />
-    <NintendoSdkSpec>Generic</NintendoSdkSpec>
-    <NintendoSdkBuildType>Develop</NintendoSdkBuildType>
+    <EnableASAN>false</EnableASAN>
+    <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)</NintendoSdkRoot>
+    <NintendoSdkSpec>NX</NintendoSdkSpec>
+    <NintendoSdkBuildType>Debug</NintendoSdkBuildType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -132,11 +133,11 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libprotobufd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">libprotobufd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">libprotobufd</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">libprotobufd</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">libprotobuf_nx_d</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">.a</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libprotobuf.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libprotobuf</TargetName>
@@ -155,6 +156,9 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">libprotobuf</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
+    <CppLanguageStandard>Gnu++17</CppLanguageStandard>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -287,12 +291,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -finput-charset=utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -307,7 +312,7 @@
       </SupportJustMyCode>
       <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
       <UseFullPaths>false</UseFullPaths>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);GOOGLE_PROTOBUF_CMAKE_BUILD;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -936,7 +941,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\google\protobuf\varint_shuffle.h" />
     <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\google\protobuf\wire_format.h" />
     <ClInclude Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\google\protobuf\wire_format_lite.h" />
-    <ResourceCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\version.rc" />
+    <ResourceCompile Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\version.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">true</ExcludedFromBuild>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

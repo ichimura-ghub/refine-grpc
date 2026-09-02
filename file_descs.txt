@@ -1103,6 +1103,7 @@ grpc++
 * crypto
 * ssl
 * gpr
+* libprotobuf
 * upb_base_lib
 * upb_mem_lib
 * upb_lex_lib
@@ -1225,3 +1226,9 @@ libz.lib
 
 libcurl.lib
 libnn_websocket.lib
+
+
+
+
+TRACKER : error TRK0005: 検索できませんでした: "rc.exe"。指定されたファイルが見つかりません。
+rcファイルがあると、リソースコンパイラを走らせようとするため。
