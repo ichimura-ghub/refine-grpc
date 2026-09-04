@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|NX64">
       <Configuration>Debug</Configuration>
       <Platform>NX64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -16,9 +20,17 @@
       <Configuration>MinSizeRel</Configuration>
       <Platform>NX64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="NN_Debug|NX64">
       <Configuration>NN_Debug</Configuration>
       <Platform>NX64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="NN_Debug|Win32">
+      <Configuration>NN_Debug</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="NN_Debug|x64">
       <Configuration>NN_Debug</Configuration>
@@ -27,6 +39,10 @@
     <ProjectConfiguration Include="Release|NX64">
       <Configuration>Release</Configuration>
       <Platform>NX64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -39,6 +55,10 @@
     <ProjectConfiguration Include="RelWithDebInfo|NX64">
       <Configuration>RelWithDebInfo</Configuration>
       <Platform>NX64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="RelWithDebInfo|x64">
       <Configuration>RelWithDebInfo</Configuration>
@@ -59,12 +79,25 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <NintendoSdkRoot />
+    <NintendoSdkSpec>Generic</NintendoSdkSpec>
+    <NintendoSdkBuildType>Develop</NintendoSdkBuildType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -86,6 +119,11 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|NX64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
@@ -96,12 +134,22 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -120,6 +168,9 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">
     <Import Project="ImportNintendoSdk.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'" Label="PropertySheets">
+    <Import Project="ImportNintendoSdk.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'" Label="PropertySheets">
     <Import Project="ImportNintendoSdk.props" />
   </ImportGroup>
@@ -131,36 +182,89 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libprotobuf.dir\Debug\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">libprotobuf.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libprotobufd</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">libprotobufd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">libprotobufd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">libprotobufd</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">libprotobufd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">libprotobuf_nx_d</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">.a</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libprotobuf.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libprotobuf</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">libprotobuf</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|NX64'">libprotobuf</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|NX64'">.lib</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">libprotobuf.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">libprotobuf</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">libprotobuf</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">libprotobuf</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">.lib</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">libprotobuf.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">libprotobuf</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">libprotobuf</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">libprotobuf</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <CppLanguageStandard>Gnu++17</CppLanguageStandard>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
@@ -289,6 +393,49 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -334,6 +481,50 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
@@ -465,6 +656,50 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -510,6 +745,49 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4065;4506;4200;4291;4244;4267;4987;4774;4819;4996;4619;4503;4065;4146;4244;4251;4267;4305;4307;4309;4334;4355;4506;4800;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4789</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GOOGLE_PROTOBUF_CMAKE_BUILD;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /ignore:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /utf-8 /utf-8 /bigobj</AdditionalOptions>
@@ -599,10 +877,21 @@
     <CustomBuild Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -629,6 +918,15 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
@@ -639,20 +937,36 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|NX64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -671,14 +985,27 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|NX64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|NX64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -697,14 +1024,27 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|NX64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Refine/Comm/Grpc/refine-grpc -BD:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj --check-stamp-file D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/protobuf/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -723,10 +1063,13 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CMakeDependentOption.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckCSourceCompiles.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckIncludeFile.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLibraryExists.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\FindThreads.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\GNUInstallDirs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckLinkerFlag.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.31\Modules\Internal\CheckSourceCompiles.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\abseil-cpp.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\install.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf-lite.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotobuf.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libprotoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\libupb.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config-version.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-config.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-configure-target.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-generate.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-lite.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-module.cmake.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf-options.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protobuf.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\protoc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb.pc.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\upb_generators.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\utf8_range.cmake;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\cmake\version.rc.in;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\src\file_lists.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|NX64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
