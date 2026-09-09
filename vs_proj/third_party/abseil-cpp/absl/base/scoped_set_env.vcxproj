@@ -177,9 +177,13 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\Debug\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\Debug\Win32\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\NX64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">scoped_set_env.dir\Debug\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">scoped_set_env.dir\Debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">scoped_set_env.dir\Debug\Win32\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">scoped_set_env.dir\NN_Debug\x64\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">scoped_set_env.dir\NN_Debug\NX64\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">absl_scoped_set_env</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">absl_scoped_set_env</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">absl_scoped_set_env</TargetName>
