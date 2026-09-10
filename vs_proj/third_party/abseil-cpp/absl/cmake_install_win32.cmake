@@ -74,12 +74,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/hash/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/hash/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/log/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/log/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -94,27 +94,27 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/numeric/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/numeric/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/profiling/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/profiling/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/random/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/random/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/status/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/status/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/strings/cmake_install.cmake")
+  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/abseil-cpp/absl/strings/cmake_install_win32.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
