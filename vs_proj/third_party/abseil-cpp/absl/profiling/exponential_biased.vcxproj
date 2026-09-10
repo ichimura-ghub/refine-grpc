@@ -178,9 +178,13 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\Debug\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\Debug\Win32\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\NN_Debug\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\profiling\NN_Debug\NX64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">exponential_biased.dir\Debug\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">exponential_biased.dir\Debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">exponential_biased.dir\Debug\Win32\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">exponential_biased.dir\NN_Debug\x64\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">exponential_biased.dir\NN_Debug\NX64\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">absl_exponential_biased</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">absl_exponential_biased</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">absl_exponential_biased</TargetName>
