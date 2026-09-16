@@ -79,7 +79,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/include/cmake_install.cmake")
   include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/src/cmake_install_win32.cmake")
-  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/docs/cmake_install.cmake")
+########  include("D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/cares/cares/docs/cmake_install.cmake")
 
 endif()
 
