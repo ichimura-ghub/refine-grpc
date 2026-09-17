@@ -291,6 +291,7 @@
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ProgramDataBaseFileName>D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\cares\cares\src\lib\Debug\cares.pdb</ProgramDataBaseFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <RemoveUnreferencedCodeData>false</RemoveUnreferencedCodeData>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H=1;CARES_BUILDING_LIBRARY;CARES_STATICLIB;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_WIN32_WINNT=0x0602;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
