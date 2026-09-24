@@ -188,9 +188,9 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">absl_status</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">absl_status</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">absl_status</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">absl_status</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">absl_status_d_x64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">absl_status</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">absl_status_nx_d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">absl_status_d_nx</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
