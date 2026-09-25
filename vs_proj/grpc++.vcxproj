@@ -187,10 +187,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">grpc++.dir\NN_Debug\NX64\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">grpc++</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">grpc++</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">grpc++_nx_d</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">grpc++</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">grpc++</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">grpc++_d_x64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">grpc++</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">grpc++_nx_d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">grpc++_d_nx</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>

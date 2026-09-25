@@ -190,7 +190,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">address_sorting</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">address_sorting</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">address_sorting</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">address_sorting</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">address_sorting_d_x64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">address_sorting</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">address_sorting_d_nx</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
@@ -198,7 +198,7 @@
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">.lib</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">.lib</TargetExt>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">.lib</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">.a</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">address_sorting.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">address_sorting</TargetName>
