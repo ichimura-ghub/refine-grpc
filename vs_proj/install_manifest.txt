@@ -1190,6 +1190,7 @@ D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/include/grpc/slice.h
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/include/grpc/slice_buffer.h
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/include/grpc/status.h
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/include/grpc/support/workaround_list.h
+D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/grpc_unsecure_d_nx.a
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/upb_base_lib_d_nx.a
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/upb_descriptor_lib_d_nx.a
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/upb_hash_lib_d_nx.a
