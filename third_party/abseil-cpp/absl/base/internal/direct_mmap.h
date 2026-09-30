@@ -35,6 +35,7 @@
 
 #include <linux/unistd.h>
 #include <unistd.h>
+
 #include <cerrno>
 #include <cstdarg>
 #include <cstdint>
@@ -145,6 +146,17 @@ ABSL_NAMESPACE_END
 
 // For non-linux platforms where we have mmap, just dispatch directly to the
 // actual mmap()/munmap() methods.
+
+#ifdef NN_NINTENDO_SDK
+extern "C" {
+
+void* mmap(void* addr, size_t length, int prot, int flags, int fd,
+           off_t offset);
+int munmap(void* addr, size_t length);
+int mprotect(void* addr, size_t len, int prot);
+
+}  // extern "C"
+#endif
 
 namespace absl {
 ABSL_NAMESPACE_BEGIN

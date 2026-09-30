@@ -51,6 +51,16 @@
 #include <signal.h>
 #endif
 
+#ifdef NN_NINTENDO_SDK
+typedef void (*sighandler_t)(int);
+// signal 関数のスタブ実装.
+sighandler_t signal(int signum, sighandler_t handler) {
+  // Nintendo SDK では POSIX シグナル処理を行わないため、何もしない（SIG_ERR.
+  // または SIG_DFL を返す）.
+  return SIG_DFL;
+}
+#endif
+
 // IWYU pragma: no_include <ratio>
 
 // ## Thread Pool Fork-handling
@@ -485,7 +495,11 @@ WorkStealingThreadPool::ThreadState::ThreadState(
 void WorkStealingThreadPool::ThreadState::ThreadBody() {
   if (g_log_verbose_failures) {
 #ifdef GPR_POSIX_SYNC
+#ifdef NN_NINTENDO_SDK
+    signal(kDumpStackSignal, DumpSignalHandler);
+#else
     std::signal(kDumpStackSignal, DumpSignalHandler);
+#endif
 #elif defined(GPR_WINDOWS)
     signal(kDumpStackSignal, DumpSignalHandler);
 #endif

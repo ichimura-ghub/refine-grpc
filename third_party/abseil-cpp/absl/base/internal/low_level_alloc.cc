@@ -62,6 +62,59 @@
 #define MAP_ANONYMOUS MAP_ANON
 #endif
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/os.h>
+
+void *mmap(void *addr, size_t length, int prot, int flags, int fd,
+           off_t offset) {
+  // ファイルマッピングが必要な場合はエラー扱い
+  if (fd != -1) {
+    errno = ENOSYS;
+    return MAP_FAILED;
+  }
+
+  if (length == 0) {
+    errno = EINVAL;
+    return MAP_FAILED;
+  }
+
+  // アライメントを 4KB 境界にアラインメント調整
+  size_t aligned_size = (length + 0xFFF) & ~0xFFF;
+
+  // Nintendo SDK の仮想メモリ領域からメモリブロックを確保
+  // ※ NN SDK のバージョンやメモリ管理方針に合わせて調整してください
+  uintptr_t allocated_addr = 0;
+  nn::Result result =
+      nn::os::AllocateMemoryBlock(&allocated_addr, aligned_size);
+
+  if (result.IsFailure()) {
+    errno = ENOMEM;
+    return MAP_FAILED;
+  }
+
+  return reinterpret_cast<void *>(allocated_addr);
+}
+
+int munmap(void *addr, size_t length) {
+  if (addr == nullptr || addr == MAP_FAILED) {
+    errno = EINVAL;
+    return -1;
+  }
+
+  size_t aligned_size = (length + 0xFFF) & ~0xFFF;
+
+  // 確保したメモリブロックを解放
+  nn::os::FreeMemoryBlock(reinterpret_cast<uintptr_t>(addr), aligned_size);
+  return 0;
+}
+
+int mprotect(void *addr, size_t len, int prot) {
+  // パーミッション変更が必要な場合は nn::os::SetMemoryPermission を使用
+  // 不要な場合は単純に 0 (成功) を返すスタブにする
+  return 0;
+}
+#endif
+
 namespace absl {
 ABSL_NAMESPACE_BEGIN
 namespace base_internal {
@@ -556,8 +609,9 @@ static void *DoAllocWithArena(size_t request, LowLevelAlloc::Arena *arena) {
 #else
 #ifndef ABSL_LOW_LEVEL_ALLOC_ASYNC_SIGNAL_SAFE_MISSING
       if ((arena->flags & LowLevelAlloc::kAsyncSignalSafe) != 0) {
-        new_pages = base_internal::DirectMmap(nullptr, new_pages_size,
-            PROT_WRITE|PROT_READ, MAP_ANONYMOUS|MAP_PRIVATE, -1, 0);
+        new_pages = base_internal::DirectMmap(
+            nullptr, new_pages_size, PROT_WRITE | PROT_READ,
+            MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
       } else {
         new_pages = mmap(nullptr, new_pages_size, PROT_WRITE | PROT_READ,
                          MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);

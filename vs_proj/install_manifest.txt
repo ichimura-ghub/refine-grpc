@@ -219,6 +219,8 @@ D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/absl_strings_inter
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/pkgconfig/absl_str_format.pc
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/pkgconfig/absl_str_format_internal.pc
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/absl_str_format_internal_d_nx.a
+D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/pkgconfig/absl_cord_internal.pc
+D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/absl_cord_internal_d_nx.a
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/pkgconfig/absl_cordz_update_tracker.pc
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/pkgconfig/absl_cordz_functions.pc
 D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/lib_NX64/lib/absl_cordz_functions_d_nx.a

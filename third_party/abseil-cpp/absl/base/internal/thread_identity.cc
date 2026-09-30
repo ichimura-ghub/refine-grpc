@@ -85,7 +85,7 @@ void SetCurrentThreadIdentity(ThreadIdentity* identity,
                   reclaimer);
 
 #if defined(__wasi__) || defined(__EMSCRIPTEN__) || defined(__MINGW32__) || \
-    defined(__hexagon__)
+    defined(__hexagon__) || defined(NN_NINTENDO_SDK)
   // Emscripten, WASI and MinGW pthread implementations does not support
   // signals. See
   // https://kripken.github.io/emscripten-site/docs/porting/pthreads.html for

@@ -61,6 +61,18 @@
 #include "absl/time/time.h"
 #include "absl/types/span.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/os.h>
+
+void _exit(int status) {
+  // Nintendo SDK ÇÃã≠êßèIóπ API
+  //    nn::os::Abort("Called _exit()");
+  // Ç‹ÇΩÇÕïWèÄÇÃ exit / abort
+  exit(status);
+}
+
+#endif
+
 extern "C" ABSL_ATTRIBUTE_WEAK void ABSL_INTERNAL_C_SYMBOL(
     AbslInternalOnFatalLogMessage)(const absl::LogEntry&) {
   // Default - Do nothing

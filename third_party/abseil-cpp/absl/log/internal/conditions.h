@@ -37,6 +37,13 @@
 #include "absl/base/config.h"
 #include "absl/log/internal/voidify.h"
 
+#ifdef NN_NINTENDO_SDK
+extern "C" {
+// _exit ‚ÌƒXƒ^ƒuŽÀ‘•
+void _exit(int status);
+}  // extern "C"
+#endif
+
 // `ABSL_LOG_INTERNAL_CONDITION` prefixes another macro that expands to a
 // temporary `LogMessage` instantiation followed by zero or more streamed
 // expressions.  This definition is tricky to read correctly.  It evaluates to
@@ -65,7 +72,7 @@
   switch (0)                                             \
   case 0:                                                \
   default:                                               \
-    !(condition) ? (void)0 : ::absl::log_internal::Voidify() &&
+    !(condition) ? (void)0 : ::absl::log_internal::Voidify()&&
 
 // `ABSL_LOG_INTERNAL_STATEFUL_CONDITION` applies a condition like
 // `ABSL_LOG_INTERNAL_STATELESS_CONDITION` but adds to that a series of variable
@@ -97,7 +104,7 @@
              absl_log_internal_stateful_condition_state.counter();        \
          absl_log_internal_stateful_condition_do_log;                     \
          absl_log_internal_stateful_condition_do_log = false)             \
-  ::absl::log_internal::Voidify() &&
+  ::absl::log_internal::Voidify()&&
 
 // `ABSL_LOG_INTERNAL_CONDITION_*` serve to combine any conditions from the
 // macro (e.g. `LOG_IF` or `VLOG`) with inherent conditions (e.g.
@@ -157,13 +164,13 @@
              ::absl::NormalizeLogSeverity(severity);                           \
          absl_log_internal_severity_loop; absl_log_internal_severity_loop = 0) \
   ABSL_LOG_INTERNAL_CONDITION_LEVEL_IMPL
-#define ABSL_LOG_INTERNAL_CONDITION_LEVEL_IMPL(type, condition)          \
-  ABSL_LOG_INTERNAL_##type##_CONDITION((                                  \
-      (condition) &&                                                     \
-          (absl_log_internal_severity >=                                 \
-               static_cast<::absl::LogSeverity>(ABSL_MIN_LOG_LEVEL) ||   \
-           (absl_log_internal_severity == ::absl::LogSeverity::kFatal && \
-            (::absl::log_internal::AbortQuietly(), false)))))
+#define ABSL_LOG_INTERNAL_CONDITION_LEVEL_IMPL(type, condition)       \
+  ABSL_LOG_INTERNAL_##type##_CONDITION(                               \
+      ((condition) &&                                                 \
+       (absl_log_internal_severity >=                                 \
+            static_cast<::absl::LogSeverity>(ABSL_MIN_LOG_LEVEL) ||   \
+        (absl_log_internal_severity == ::absl::LogSeverity::kFatal && \
+         (::absl::log_internal::AbortQuietly(), false)))))
 #else  // ndef ABSL_MIN_LOG_LEVEL
 #define ABSL_LOG_INTERNAL_CONDITION_INFO(type, condition) \
   ABSL_LOG_INTERNAL_##type##_CONDITION(condition)
