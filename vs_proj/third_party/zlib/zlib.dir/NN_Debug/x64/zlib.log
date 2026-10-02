@@ -1,1 +1,21 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  gzclose.c
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib\gzguts.h(45,10): error C1083: include ファイルを開けません。'unistd.h':No such file or directory
+  (ソース ファイル '../../../third_party/zlib/gzclose.c' をコンパイルしています)
+  
+  gzlib.c
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib\gzguts.h(45,10): error C1083: include ファイルを開けません。'unistd.h':No such file or directory
+  (ソース ファイル '../../../third_party/zlib/gzlib.c' をコンパイルしています)
+  
+  gzread.c
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib\gzguts.h(45,10): error C1083: include ファイルを開けません。'unistd.h':No such file or directory
+  (ソース ファイル '../../../third_party/zlib/gzread.c' をコンパイルしています)
+  
+  gzwrite.c
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib\gzguts.h(45,10): error C1083: include ファイルを開けません。'unistd.h':No such file or directory
+  (ソース ファイル '../../../third_party/zlib/gzwrite.c' をコンパイルしています)
+  
+  zutil.c
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib\gzguts.h(45,10): error C1083: include ファイルを開けません。'unistd.h':No such file or directory
+  (ソース ファイル '../../../third_party/zlib/zutil.c' をコンパイルしています)
+  
+  コードを生成中...

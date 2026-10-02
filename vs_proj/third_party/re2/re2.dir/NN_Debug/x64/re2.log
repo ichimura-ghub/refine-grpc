@@ -1,1 +1,35 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/re2/CMakeLists.txt
+  bitstate.cc
+  compile.cc
+  dfa.cc
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2\re2\dfa.cc(1370,26): warning C4127: 条件式が定数です。
+      D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2\re2\dfa.cc(1370,26):
+      代わりに 'if constexpr' ステートメントの使用を検討してください
+      D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2\re2\dfa.cc(1370,26):
+      テンプレートインスタンス化コンテキスト (最初に最も古いもの) は
+          D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2\re2\dfa.cc(1552,10):
+          コンパイル対象の関数 テンプレート インスタンス化 'bool re2::DFA::InlinedSearchLoop<false,false,false>(re2::DFA::SearchParams *)' のリファレンスを確認してください
+  
+  filtered_re2.cc
+  mimics_pcre.cc
+  nfa.cc
+  onepass.cc
+  parse.cc
+  perl_groups.cc
+  prefilter.cc
+  prefilter_tree.cc
+  prog.cc
+  re2.cc
+  regexp.cc
+  set.cc
+  simplify.cc
+  stringpiece.cc
+  tostring.cc
+  unicode_casefold.cc
+  unicode_groups.cc
+  コードを生成中...
+  コンパイル中...
+  rune.cc
+  strutil.cc
+  コードを生成中...
+  re2.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\re2\NN_Debug\x64\re2_d_nx.lib
