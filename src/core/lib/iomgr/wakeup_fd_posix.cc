@@ -70,4 +70,24 @@ void grpc_wakeup_fd_destroy(grpc_wakeup_fd* fd_info) {
   wakeup_fd_vtable->destroy(fd_info);
 }
 
-#endif  // GRPC_POSIX_WAKEUP_FD
+#else
+#include "src/core/lib/iomgr/wakeup_fd_posix.h"
+
+void grpc_wakeup_fd_global_init(void) {}
+void grpc_wakeup_fd_global_destroy(void) {}
+int grpc_has_wakeup_fd(void) { return 0; }
+grpc_error_handle grpc_wakeup_fd_init(grpc_wakeup_fd* fd_info) {
+  return absl::OkStatus();
+}
+grpc_error_handle grpc_wakeup_fd_consume_wakeup(grpc_wakeup_fd* fd_info) {
+  return absl::OkStatus();
+}
+
+grpc_error_handle grpc_wakeup_fd_wakeup(grpc_wakeup_fd* fd_info) {
+  return absl::OkStatus();
+}
+
+void grpc_wakeup_fd_destroy(grpc_wakeup_fd* fd_info) {}
+
+#endif
+// GRPC_POSIX_WAKEUP_FD

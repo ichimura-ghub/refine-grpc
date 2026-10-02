@@ -36,6 +36,10 @@
 
 #include "absl/base/internal/sysinfo.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/os.h>
+#endif
+
 namespace absl {
 ABSL_NAMESPACE_BEGIN
 namespace base_internal {
@@ -106,9 +110,14 @@ double UnscaledCycleClock::Frequency() {
 #elif defined(__aarch64__)
 
 double UnscaledCycleClock::Frequency() {
+
+#ifdef NN_NINTENDO_SDK
+  return static_cast<double>(nn::os::GetSystemTickFrequency());
+#else
   uint64_t aarch64_timer_frequency;
   asm volatile("mrs %0, cntfrq_el0" : "=r"(aarch64_timer_frequency));
   return aarch64_timer_frequency;
+#endif
 }
 
 #elif defined(_M_IX86) || defined(_M_X64)

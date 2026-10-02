@@ -34,6 +34,19 @@
 #include "absl/log/log.h"
 
 static grpc_error_handle pipe_init(grpc_wakeup_fd* fd_info) {
+#ifdef NN_NINTENDO_SDK
+  // とりあえず、OKにする.
+  int pipefd[2];
+  pipefd[0] = 1;
+  pipefd[1] = 2;
+
+  fd_info->read_fd = pipefd[0];
+  fd_info->write_fd = pipefd[1];
+  return absl::OkStatus();
+
+  // とりあえず、エラーにする.
+//  return GRPC_OS_ERROR(errno, "pipe");
+#else
   int pipefd[2];
   int r = pipe(pipefd);
   if (0 != r) {
@@ -57,6 +70,7 @@ static grpc_error_handle pipe_init(grpc_wakeup_fd* fd_info) {
   fd_info->read_fd = pipefd[0];
   fd_info->write_fd = pipefd[1];
   return absl::OkStatus();
+#endif
 }
 
 static grpc_error_handle pipe_consume(grpc_wakeup_fd* fd_info) {

@@ -79,20 +79,18 @@ void *mmap(void *addr, size_t length, int prot, int flags, int fd,
   }
 
   // アライメントを 4KB 境界にアラインメント調整
-  size_t aligned_size = (length + 0xFFF) & ~0xFFF;
+  size_t aligned_size = nn::util::align_up(length, nn::os::MemoryBlockUnitSize);
 
-  // Nintendo SDK の仮想メモリ領域からメモリブロックを確保
-  // ※ NN SDK のバージョンやメモリ管理方針に合わせて調整してください
-  uintptr_t allocated_addr = 0;
-  nn::Result result =
-      nn::os::AllocateMemoryBlock(&allocated_addr, aligned_size);
+  // Nintendo SDK の仮想メモリ領域からメモリブロックを確保.
+  // ※ NN SDK のバージョンやメモリ管理方針に合わせて調整してください.
+  auto allocated_addr = std::malloc(aligned_size);
 
-  if (result.IsFailure()) {
+  if (allocated_addr == nullptr) {
     errno = ENOMEM;
     return MAP_FAILED;
   }
 
-  return reinterpret_cast<void *>(allocated_addr);
+  return allocated_addr;
 }
 
 int munmap(void *addr, size_t length) {
@@ -101,10 +99,8 @@ int munmap(void *addr, size_t length) {
     return -1;
   }
 
-  size_t aligned_size = (length + 0xFFF) & ~0xFFF;
-
-  // 確保したメモリブロックを解放
-  nn::os::FreeMemoryBlock(reinterpret_cast<uintptr_t>(addr), aligned_size);
+  // 確保したメモリブロックを解放.
+  std::free(addr);
   return 0;
 }
 

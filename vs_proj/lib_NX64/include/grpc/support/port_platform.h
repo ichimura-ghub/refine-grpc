@@ -163,6 +163,8 @@
 #define GRPC_TIMER_USE_GENERIC 1  // 専用タイマーではなく汎用タイマーを使用.
 #define GRPC_ARES 0  // c-ares（DNS非同期解決）は無効化（SDKの標準DNS解決へ）.
 
+// NontedoSdkはpipeは使用出来ないがpipeベースで動作させる
+#define GRPC_POSIX_NO_SPECIAL_WAKEUP_FD 1
 #define GRPC_POSIX_WAKEUP_FD 1
 
 #endif

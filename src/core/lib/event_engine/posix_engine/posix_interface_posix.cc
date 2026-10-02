@@ -1077,6 +1077,18 @@ bool EventEnginePosixInterface::IsCorrectGeneration(
 
 absl::StatusOr<std::pair<FileDescriptor, FileDescriptor> >
 EventEnginePosixInterface::Pipe() {
+#ifdef NN_NINTENDO_SDK
+
+  // ‚Æ‚è‚ ‚¦‚¸OK‚É‚·‚é.
+  int pipefd[2];
+  pipefd[0] = 1;
+  pipefd[1] = 2;
+
+  return std::pair(descriptors_.Add(pipefd[0]), descriptors_.Add(pipefd[1]));
+
+//  return absl::Status(absl::StatusCode::kInternal,
+//                      absl::StrCat("pipe: ", grpc_core::StrError(errno)));
+#else
   int pipefd[2];
 #if defined(GPR_ANDROID)
   int r = pipe2(pipefd, 0);
@@ -1097,6 +1109,7 @@ EventEnginePosixInterface::Pipe() {
   close(pipefd[0]);
   close(pipefd[1]);
   return status;
+#endif
 }
 
 PosixErrorOr<int64_t> EventEnginePosixInterface::Read(const FileDescriptor& fd,
@@ -1109,6 +1122,24 @@ PosixErrorOr<int64_t> EventEnginePosixInterface::Write(const FileDescriptor& fd,
                                                        absl::Span<char> buf) {
   return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), write, buf.data(),
                    buf.size());
+}
+#else
+
+void EventEnginePosixInterface::Close(const FileDescriptor& fd) {
+  if (descriptors_.Remove(fd)) {
+    close(fd.fd());
+  }
+}
+
+bool EventEnginePosixInterface::IsCorrectGeneration(
+    const FileDescriptor& fd) const {
+  (void)fd;  // Always used now
+#ifdef GRPC_ENABLE_FORK_SUPPORT
+  if (IsEventEngineForkEnabled()) {
+    return descriptors_.generation() == fd.generation();
+  }
+#endif  // GRPC_ENABLE_FORK_SUPPORT
+  return true;
 }
 
 #endif  // defined (GRPC_POSIX_WAKEUP_FD) || defined (GRPC_LINUX_EVENTFD)

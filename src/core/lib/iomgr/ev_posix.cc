@@ -86,8 +86,18 @@ static bool is(absl::string_view want, absl::string_view have) {
 
 static void try_engine(absl::string_view engine) {
   for (size_t i = 0; i < GPR_ARRAY_SIZE(g_vtables); i++) {
+    auto is_engine_name_ok = false;
+
+    if (g_vtables[i] != nullptr) {
+#ifdef NN_NINTENDO_SDK
+      is_engine_name_ok = "none" == g_vtables[i]->name;
+#else
+      is_engine_name_ok = engine == g_vtables[i]->name;
+#endif
+    }
+
     if (g_vtables[i] != nullptr && is(engine, g_vtables[i]->name) &&
-        g_vtables[i]->check_engine_available(engine == g_vtables[i]->name)) {
+        g_vtables[i]->check_engine_available(is_engine_name_ok)) {
       g_event_engine = g_vtables[i];
       GRPC_TRACE_VLOG(polling_api, 2)
           << "Using polling engine: " << g_event_engine->name;

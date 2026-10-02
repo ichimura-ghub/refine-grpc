@@ -192,20 +192,24 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
 }  // namespace
 
 void Thread::Signal(gpr_thd_id tid, int sig) {
+#ifndef NN_NINTENDO_SDK
   auto kill_err = pthread_kill((pthread_t)tid, sig);
   if (kill_err != 0) {
     LOG(ERROR) << "pthread_kill for tid " << tid
                << " failed: " << StrError(kill_err);
   }
+#endif
 }
 
 #ifndef GPR_ANDROID
 void Thread::Kill(gpr_thd_id tid) {
+#ifndef NN_NINTENDO_SDK
   auto cancel_err = pthread_cancel((pthread_t)tid);
   if (cancel_err != 0) {
     LOG(ERROR) << "pthread_cancel for tid " << tid
                << " failed: " << StrError(cancel_err);
   }
+#endif
 }
 #else  // GPR_ANDROID
 void Thread::Kill(gpr_thd_id /* tid */) {
