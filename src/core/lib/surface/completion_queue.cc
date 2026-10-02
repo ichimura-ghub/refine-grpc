@@ -597,6 +597,9 @@ grpc_completion_queue* grpc_completion_queue_create_internal(
       gpr_zalloc(sizeof(grpc_completion_queue) + vtable->data_size +
                  poller_vtable->size()));
 
+  char* vtable_ptr = reinterpret_cast<char*>((cq + 1)) + vtable->data_size;
+  memset(vtable_ptr, 1, vtable->data_size);
+
   cq->vtable = vtable;
   cq->poller_vtable = poller_vtable;
 
@@ -1318,6 +1321,10 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       break;
     }
     cq->num_polls++;
+
+    grpc_pollset* pollset = POLLSET_FROM_CQ(cq);
+    auto grpc_completion_queue_size = sizeof(grpc_completion_queue);
+
     grpc_error_handle err =
         cq->poller_vtable->work(POLLSET_FROM_CQ(cq), &worker, deadline_millis);
     if (!err.ok()) {

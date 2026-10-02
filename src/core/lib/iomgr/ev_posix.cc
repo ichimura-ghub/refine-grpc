@@ -90,7 +90,7 @@ static void try_engine(absl::string_view engine) {
 
     if (g_vtables[i] != nullptr) {
 #ifdef NN_NINTENDO_SDK
-      is_engine_name_ok = "none" == g_vtables[i]->name;
+      is_engine_name_ok = "poll" == g_vtables[i]->name;
 #else
       is_engine_name_ok = engine == g_vtables[i]->name;
 #endif
