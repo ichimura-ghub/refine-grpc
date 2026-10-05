@@ -1011,7 +1011,9 @@ absl::Status EventEnginePosixInterface::PrepareTcpClientSocket(
     }
   });
   GRPC_RETURN_IF_ERROR(SetSocketNonBlocking(fd, 1));
+#ifndef NN_NINTENDO_SDK
   GRPC_RETURN_IF_ERROR(SetSocketCloexec(fd, 1));
+#endif
   if (options.tcp_receive_buffer_size != options.kReadBufferSizeUnset) {
     GRPC_RETURN_IF_ERROR(SetSocketRcvBuf(fd, options.tcp_receive_buffer_size));
   }

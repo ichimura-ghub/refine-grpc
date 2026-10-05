@@ -1,1 +1,2 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\random\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  seed_material.cc
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\random\internal\seed_material.cc(73,10): error C1083: include ファイルを開けません。'sys/random.h':No such file or directory

@@ -1,1 +1,5 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\random\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/random/CMakeLists.txt
+  discrete_distribution.cc
+  gaussian_distribution.cc
+  コードを生成中...
+  random_distributions.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\random\NN_Debug\x64\absl_random_distributions_d_nx.lib

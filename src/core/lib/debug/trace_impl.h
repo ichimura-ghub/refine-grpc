@@ -62,7 +62,7 @@ class TraceFlag {
 #define GRPC_USE_TRACERS  // tracers on by default in OSS
 #if defined(GRPC_USE_TRACERS) || !defined(NDEBUG)
 #ifdef NN_NINTENDO_SDK
-  bool enabled() { return true; }
+  bool enabled() { return false; }
 #else
   bool enabled() { return value_.load(std::memory_order_relaxed); }
 #endif

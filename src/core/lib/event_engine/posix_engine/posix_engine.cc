@@ -68,6 +68,11 @@
 #include "src/core/lib/event_engine/posix_engine/posix_engine_listener.h"
 #endif  // GRPC_POSIX_SOCKET_TCP
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#include <nn/socket.h>
+#endif
+
 // IWYU pragma: no_include <ratio>
 
 using namespace std::chrono_literals;
@@ -717,6 +722,15 @@ EventEngine::ConnectionHandle PosixEventEngine::Connect(
     socket = absl::InternalError("Polling is not enabled");
   }
   if (!socket.ok()) {
+#ifdef NN_NINTENDO_SDK
+    auto status = socket.status();
+    std::string err_mes(status.message());
+    err_mes.append(" (errno: ");
+    err_mes.append(std::to_string((int)nn::socket::GetLastError()));
+
+    NN_LOG("NNError::(%s)", err_mes.c_str());
+#endif
+
     Run([on_connect = std::move(on_connect),
          status = socket.status()]() mutable { on_connect(status); });
     return EventEngine::ConnectionHandle::kInvalid;

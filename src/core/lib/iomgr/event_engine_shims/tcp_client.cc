@@ -31,6 +31,10 @@
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#endif
+
 namespace grpc_event_engine {
 namespace experimental {
 
@@ -58,6 +62,13 @@ int64_t event_engine_tcp_client_connect(
         if (ep.ok()) {
           *endpoint = grpc_event_engine_endpoint_create(std::move(*ep));
         } else {
+#ifdef NN_NINTENDO_SDK
+          auto status = ep.status();
+          std::string err_mes(status.message());
+
+          NN_LOG(err_mes.c_str());
+#endif
+
           *endpoint = nullptr;
         }
         GRPC_TRACE_LOG(event_engine, INFO)

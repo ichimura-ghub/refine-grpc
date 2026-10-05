@@ -82,6 +82,11 @@
 #include "src/core/util/time.h"
 #include "src/core/util/unique_type_name.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#include <nn/socket.h>
+#endif
+
 #ifdef GPR_SUPPORT_CHANNELS_FROM_FD
 
 #include <fcntl.h>
@@ -195,6 +200,15 @@ void Chttp2Connector::OnHandshakeDone(absl::StatusOr<HandshakerArgs*> result) {
           [self = RefAsSubclass<Chttp2Connector>()]() mutable {
             ExecCtx exec_ctx;
             self->OnTimeout();
+
+#ifdef NN_NINTENDO_SDK
+            std::string err_mes("Time out");
+            err_mes.append(" (errno: ");
+            err_mes.append(std::to_string((int)nn::socket::GetLastError()));
+
+            NN_LOG("NNError::(%s)\\n", err_mes.c_str());
+#endif
+
             // Ensure the Chttp2Connector is deleted under an ExecCtx.
             self.reset();
           });

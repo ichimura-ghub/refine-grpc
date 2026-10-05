@@ -598,11 +598,6 @@ void LogMessage::SendToLog() {
 
 void LogMessage::LogBacktraceIfNeeded() {
   if (!absl::log_internal::IsInitialized()) return;
-#ifdef NN_NINTENDO_SDK
-
-  NN_LOG(data_->string_buf.data());
-
-#else
   if (!absl::log_internal::ShouldLogBacktraceAt(data_->entry.source_basename(),
                                                 data_->entry.source_line()))
     return;
@@ -613,7 +608,6 @@ void LogMessage::LogBacktraceIfNeeded() {
       log_internal::ShouldSymbolizeLogStackTrace(), WriteToStream,
       &view.stream());
   view.stream() << ") ";
-#endif
 }
 
 // Encodes into `data_->encoded_remaining()` a partial `logging.proto.Event`

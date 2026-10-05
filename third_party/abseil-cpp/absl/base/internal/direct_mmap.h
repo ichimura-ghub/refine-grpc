@@ -22,8 +22,11 @@
 
 #ifdef ABSL_HAVE_MMAP
 
+#ifdef NN_x64
+#define MAP_FAILED ((void*)-1)
+#else
 #include <sys/mman.h>
-
+#endif
 #ifdef __linux__
 
 #include <sys/types.h>
