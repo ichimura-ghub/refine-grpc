@@ -349,7 +349,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);%(AdditionalIncludeDirectories);D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -430,7 +430,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);%(AdditionalIncludeDirectories);D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NintendoSdkIncludePath);%(AdditionalIncludeDirectories);D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2;D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\zlib;D:\Projects\Refine\Comm\Grpc\refine-grpc</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -finput-charset=utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

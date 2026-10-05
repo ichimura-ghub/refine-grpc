@@ -41,9 +41,7 @@
 #endif
 
 #if defined(__TURBOC__) || defined(_MSC_VER) || defined(_WIN32)
-#ifdef NN_NINTENDO_SDK
-#include <unistd.h>
-#else
+#ifndef NN_NINTENDO_SDK
 #include <io.h>
 #endif
 #endif

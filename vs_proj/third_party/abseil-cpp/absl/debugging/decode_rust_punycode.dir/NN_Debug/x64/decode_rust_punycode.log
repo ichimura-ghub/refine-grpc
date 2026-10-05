@@ -1,1 +1,2 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  decode_rust_punycode.cc
+  decode_rust_punycode.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\NN_Debug\x64\absl_decode_rust_punycode_d_nx.lib

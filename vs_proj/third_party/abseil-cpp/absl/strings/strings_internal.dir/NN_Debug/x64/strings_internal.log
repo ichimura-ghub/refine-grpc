@@ -1,1 +1,6 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\strings\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/strings/CMakeLists.txt
+  ostringstream.cc
+  utf8.cc
+  escaping.cc
+  コードを生成中...
+  strings_internal.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\strings\NN_Debug\x64\absl_strings_internal_d_nx.lib
