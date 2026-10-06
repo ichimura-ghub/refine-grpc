@@ -1,4 +1,5 @@
-﻿  low_level_alloc.cc
+﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/base/CMakeLists.txt
+  low_level_alloc.cc
 D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\base\internal\low_level_alloc.cc(1,1): warning C4828: オフセット 0x7f9 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
 D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\base\internal\low_level_alloc.cc(1,1): warning C4828: オフセット 0x7fb から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
 D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\base\internal\low_level_alloc.cc(1,1): warning C4828: オフセット 0x7fd から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。

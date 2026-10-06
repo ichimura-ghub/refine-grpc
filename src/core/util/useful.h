@@ -106,10 +106,10 @@ constexpr size_t HashPointer(T* p, size_t range) {
 template <typename T>
 inline T SaturatingAdd(T a, T b) {
   if (a > 0) {
-    if (b > std::numeric_limits<T>::max() - a) {
+    if (b > (std::numeric_limits<T>::max() - a)) {
       return std::numeric_limits<T>::max();
     }
-  } else if (b < std::numeric_limits<T>::min() - a) {
+  } else if (b < (std::numeric_limits<T>::min() - a)) {
     return std::numeric_limits<T>::min();
   }
   return a + b;

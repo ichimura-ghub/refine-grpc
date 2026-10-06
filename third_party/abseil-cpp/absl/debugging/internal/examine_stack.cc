@@ -23,7 +23,12 @@
 #include "absl/base/config.h"
 
 #ifdef ABSL_HAVE_MMAP
+#ifdef NN_x64
+#include "absl/base/internal/direct_mmap.h"
+
+#else
 #include <sys/mman.h>
+#endif
 #if defined(MAP_ANON) && !defined(MAP_ANONYMOUS)
 #define MAP_ANONYMOUS MAP_ANON
 #endif

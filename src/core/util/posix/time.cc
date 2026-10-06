@@ -24,7 +24,9 @@
 
 #include <stdlib.h>
 #include <time.h>
+#ifndef NN_x64
 #include <unistd.h>
+#endif
 #ifdef __linux__
 #include <sys/syscall.h>
 #endif
@@ -60,8 +62,10 @@ static gpr_timespec gpr_from_timespec(struct timespec ts,
 }
 
 /// maps gpr_clock_type --> clockid_t for clock_gettime
+#ifndef NN_x64
 static const clockid_t clockid_for_gpr_clock[] = {CLOCK_MONOTONIC,
                                                   CLOCK_REALTIME};
+#endif
 
 void gpr_time_init(void) { gpr_precise_clock_init(); }
 
@@ -73,6 +77,25 @@ static gpr_timespec now_impl(gpr_clock_type clock_type) {
     gpr_precise_clock_now(&ret);
     return ret;
   } else {
+#ifdef NN_x64
+    static LARGE_INTEGER freq;
+    static bool init_freq = []() {
+      QueryPerformanceFrequency(&freq);
+      return true;
+    }();
+
+    LARGE_INTEGER counter;
+    QueryPerformanceCounter(&counter);
+
+    now.tv_sec = static_cast<time_t>(counter.QuadPart / freq.QuadPart);
+    now.tv_nsec = static_cast<long>(
+        ((counter.QuadPart % freq.QuadPart) * 1000000000ULL) / freq.QuadPart);
+
+    if (clock_type == GPR_CLOCK_MONOTONIC) {
+      now.tv_sec += 5;
+    }
+    return gpr_from_timespec(now, clock_type);
+#else
     clock_gettime(clockid_for_gpr_clock[clock_type], &now);
     if (clock_type == GPR_CLOCK_MONOTONIC) {
       // Add 5 seconds arbitrarily: avoids weird conditions in
@@ -80,6 +103,7 @@ static gpr_timespec now_impl(gpr_clock_type clock_type) {
       now.tv_sec += 5;
     }
     return gpr_from_timespec(now, clock_type);
+#endif
   }
 }
 
@@ -110,12 +134,19 @@ void gpr_sleep_until(gpr_timespec until) {
       return;
     }
 
+#ifdef NN_x64
+    uint64_t ms = static_cast<uint64_t>(delta.tv_sec) * 1000 +
+                  (delta.tv_nsec + 999999) / 1000000;
+    if (ms == 0) ms = 1;  // ç≈è¨ 1ms ÉXÉäÅ[Év.
+    Sleep(static_cast<DWORD>(ms));
+#else
     delta = gpr_time_sub(until, now);
     delta_ts = timespec_from_gpr(delta);
     ns_result = nanosleep(&delta_ts, nullptr);
     if (ns_result == 0) {
       break;
     }
+#endif
   }
 }
 

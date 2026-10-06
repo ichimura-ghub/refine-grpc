@@ -96,9 +96,10 @@
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
-    <NintendoSdkRoot />
+    <EnableASAN>false</EnableASAN>
+    <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)</NintendoSdkRoot>
     <NintendoSdkSpec>Generic</NintendoSdkSpec>
-    <NintendoSdkBuildType>Develop</NintendoSdkBuildType>
+    <NintendoSdkBuildType>Debug</NintendoSdkBuildType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
@@ -235,6 +236,9 @@
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NN_Debug|Win32'">
     <Midl>

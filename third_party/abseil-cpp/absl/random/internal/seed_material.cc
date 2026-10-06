@@ -70,7 +70,10 @@
 #endif
 
 #if defined(NN_NINTENDO_SDK)
+#ifdef NN_x64
+#else
 #include <sys/random.h>
+#endif
 // Emscripten has getentropy, but it resides in a different header.
 #define ABSL_RANDOM_USE_GET_ENTROPY 1
 #endif

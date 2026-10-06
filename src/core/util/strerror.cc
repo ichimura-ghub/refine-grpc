@@ -33,7 +33,11 @@ std::string StrError(int err) {
     static std::string Run(char*, int, const char* r) { return r; }
   };
   char buf[256];
+#ifdef NN_x64
+  return Finish::Run(buf, err, strerror(err));
+#else
   return Finish::Run(buf, err, strerror_r(err, buf, sizeof(buf)));
+#endif
 }
 #endif  // !GPR_WINDOWS
 

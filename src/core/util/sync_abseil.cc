@@ -15,7 +15,6 @@
 // limitations under the License.
 //
 //
-
 #include <grpc/support/port_platform.h>
 
 #if defined(GPR_ABSEIL_SYNC) && !defined(GPR_CUSTOM_SYNC)

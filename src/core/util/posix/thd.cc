@@ -29,10 +29,15 @@
 #include <grpc/support/sync.h>
 #include <grpc/support/thd_id.h>
 #include <grpc/support/time.h>
-#include <pthread.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifndef NN_x64
+#include <pthread.h>
 #include <unistd.h>
+#else
+#include <process.h>
+#endif
 
 #include "src/core/util/crash.h"
 #include "src/core/util/fork.h"
@@ -59,14 +64,25 @@ struct thd_arg {
 size_t RoundUpToPageSize(size_t size) {
   // TODO(yunjiaw): Change this variable (page_size) to a function-level static
   // when possible
+
+#ifdef NN_x64
+  SYSTEM_INFO sysInfo;
+  GetSystemInfo(&sysInfo);
+  size_t page_size = sysInfo.dwPageSize;
+#else
   size_t page_size = static_cast<size_t>(sysconf(_SC_PAGESIZE));
+#endif
   return (size + page_size - 1) & ~(page_size - 1);
 }
 
 // Returns the minimum valid stack size that can be passed to
 // pthread_attr_setstacksize.
 size_t MinValidStackSize(size_t request_size) {
+#ifdef NN_x64
+  size_t min_stacksize = 16384;  // デフォルト値 (16KB).
+#else
   size_t min_stacksize = sysconf(_SC_THREAD_STACK_MIN);
+#endif
   if (request_size < min_stacksize) {
     request_size = min_stacksize;
   }
@@ -83,7 +99,6 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
       : started_(false) {
     gpr_mu_init(&mu_);
     gpr_cv_init(&ready_);
-    pthread_attr_t attr;
     // don't use gpr_malloc as we may cause an infinite recursion with
     // the profiling code
     thd_arg* info = static_cast<thd_arg*>(malloc(sizeof(*info)));
@@ -98,6 +113,75 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
       Fork::IncThreadCount();
     }
 
+#ifdef NN_x64
+    size_t stack_size = 0;
+    if (options.stack_size() != 0) {
+      stack_size = MinValidStackSize(options.stack_size());
+    }
+
+    uintptr_t handle = _beginthreadex(
+        nullptr, static_cast<unsigned int>(stack_size),
+        [](void* v) -> unsigned int {
+          thd_arg arg = *static_cast<thd_arg*>(v);
+          free(v);
+
+          // Windows でのスレッド名設定 (Windows 10 1607 以降 / MSVC)
+          if (arg.name != nullptr) {
+            typedef HRESULT(WINAPI * pfnSetThreadDescription)(HANDLE, PCWSTR);
+            HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
+            if (hKernel32) {
+              auto pSetThreadDescription =
+                  reinterpret_cast<pfnSetThreadDescription>(
+                      GetProcAddress(hKernel32, "SetThreadDescription"));
+              if (pSetThreadDescription) {
+                wchar_t wname[64];
+                MultiByteToWideChar(CP_UTF8, 0, arg.name, -1, wname, 64);
+                pSetThreadDescription(GetCurrentThread(), wname);
+              }
+            }
+          }
+
+          gpr_mu_lock(&arg.thread->mu_);
+          while (!arg.thread->started_) {
+            gpr_cv_wait(&arg.thread->ready_, &arg.thread->mu_,
+                        gpr_inf_future(GPR_CLOCK_MONOTONIC));
+          }
+          gpr_mu_unlock(&arg.thread->mu_);
+
+          if (!arg.joinable) {
+            delete arg.thread;
+          }
+
+          (*arg.body)(arg.arg);
+          if (arg.tracked) {
+            Fork::DecThreadCount();
+          }
+          return 0;
+        },
+        info, 0, nullptr);
+
+    *success = (handle != 0);
+
+    if (*success) {
+      // joinable でない場合はハンドルを即座に閉じる (POSIX の DETACH 相当)
+      HANDLE hThread = reinterpret_cast<HANDLE>(handle);
+      if (!options.joinable()) {
+        CloseHandle(hThread);
+      } else {
+        // joinable の場合は HANDLE を保持しておく必要があるため型変換等で格納
+        // (※ クラスメンバーの pthread_id_ の型定義を HANDLE に切り替えるか
+        // void* にキャスト)
+        pthread_id_ = hThread;
+      }
+    } else {
+      LOG(ERROR) << "thread creation failed (_beginthreadex)";
+      free(info);
+      if (options.tracked()) {
+        Fork::DecThreadCount();
+      }
+    }
+#else
+    pthread_attr_t attr;
     CHECK_EQ(pthread_attr_init(&attr), 0);
     if (options.joinable()) {
       CHECK(pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE) == 0);
@@ -161,6 +245,7 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
         Fork::DecThreadCount();
       }
     }
+#endif
   }
 
   ~ThreadInternalsPosix() override {
@@ -176,17 +261,32 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
   }
 
   void Join() override {
+#ifdef NN_x64
+    if (pthread_id_ != NULL && pthread_id_ != INVALID_HANDLE_VALUE) {
+      DWORD status = WaitForSingleObject(pthread_id_, INFINITE);
+      if (status != WAIT_OBJECT_0) {
+        Crash("WaitForSingleObject failed");
+      }
+      CloseHandle(pthread_id_);
+      pthread_id_ = NULL;
+    }
+#else
     int pthread_join_err = pthread_join(pthread_id_, nullptr);
     if (pthread_join_err != 0) {
       Crash("pthread_join failed: " + StrError(pthread_join_err));
     }
+#endif
   }
 
  private:
   gpr_mu mu_;
   gpr_cv ready_;
   bool started_;
+#ifdef NN_x64
+  HANDLE pthread_id_;
+#else
   pthread_t pthread_id_;
+#endif
 };
 
 }  // namespace
@@ -241,7 +341,11 @@ gpr_thd_id gpr_thd_currentid(void) {
   // Use C-style casting because Linux and OSX have different definitions
   // of pthread_t so that a single C++ cast doesn't handle it.
   // NOLINTNEXTLINE(google-readability-casting)
+#ifdef NN_x64
+  return static_cast<gpr_thd_id>(GetCurrentThreadId());
+#else
   return (gpr_thd_id)pthread_self();
+#endif
 }
 
 #endif  // GPR_POSIX_SYNC

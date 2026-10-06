@@ -23,6 +23,10 @@
 #include <grpc/support/port_platform.h>
 #include <grpc/support/time.h> /* for gpr_timespec */
 
+#ifdef NN_x64
+#include <grpc/support/sync_generic.h>  // IWYU pragma: export
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -46,7 +50,9 @@ extern "C" {
                                  provides no memory barriers.
  */
 
+#ifndef NN_x64
 #include <grpc/support/sync_generic.h>  // IWYU pragma: export
+#endif
 
 #if defined(GPR_CUSTOM_SYNC)
 #include <grpc/support/sync_custom.h>  // IWYU pragma: export

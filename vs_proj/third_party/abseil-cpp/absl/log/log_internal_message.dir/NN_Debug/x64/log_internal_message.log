@@ -1,1 +1,21 @@
-﻿D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\log\ImportNintendoSdk.props(18,5): error : The required property 'NintendoSdkRoot' is not set
+﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/log/CMakeLists.txt
+  log_message.cc
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x831 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x834 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x835 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x836 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x837 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x839 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x83a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x870 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x873 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x874 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x878 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x879 から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x87a から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(1,1): warning C4828: オフセット 0x87b から始まる、現在のソースの文字セット (コードページ 65001) では使用できない文字がファイルに含まれています。
+D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\abseil-cpp\absl\log\internal\log_message.cc(68,6): warning C4273: '_exit': dll リンケージが一貫していません。
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\ucrt\stdlib.h(57,48):
+      '_exit' の以前の定義を確認してください
+  
+  log_internal_message.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\log\NN_Debug\x64\absl_log_internal_message_d_nx.lib

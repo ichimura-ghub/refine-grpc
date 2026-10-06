@@ -33,12 +33,20 @@ std::optional<std::string> GetEnv(const char* name) {
 }
 
 void SetEnv(const char* name, const char* value) {
+#ifdef NN_x64
+  int res = _putenv_s(name, value);
+#else
   int res = setenv(name, value, 1);
+#endif
   if (res != 0) abort();
 }
 
 void UnsetEnv(const char* name) {
+#ifdef NN_x64
+  int res = _putenv_s(name, "");
+#else
   int res = unsetenv(name);
+#endif
   if (res != 0) abort();
 }
 
