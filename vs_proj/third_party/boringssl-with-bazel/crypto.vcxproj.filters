@@ -737,6 +737,7 @@
     </Object>
     <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\Win32\bcm.obj" />
     <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\NX64\bcm.o" />
+    <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\x64\bcm.obj" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object Libraries">

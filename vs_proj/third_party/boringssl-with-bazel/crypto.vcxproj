@@ -420,7 +420,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;BORINGSSL_DISPATCH_TEST;_HAS_EXCEPTIONS=0;NOMINMAX;BORINGSSL_IMPLEMENTATION;OPENSSL_NO_ASM;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WINCRYPT_USE_SYMBOL_PREFIX;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;BORINGSSL_DISPATCH_TEST;_HAS_EXCEPTIONS=0;NOMINMAX;BORINGSSL_IMPLEMENTATION;OPENSSL_NO_ASM;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION;NN_x64</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -440,9 +440,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Message>
       </Message>
       <Command>setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/crypto
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/crypto/x64
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/Debug/crypto.lib D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/crypto
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/NN_Debug/x64/crypto_d_nx.lib D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/crypto/x64
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -1534,14 +1534,22 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\Win32\bcm.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">true</ExcludedFromBuild>
     </Object>
     <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\bcm.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">true</ExcludedFromBuild>
     </Object>
     <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\NX64\bcm.o">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\boringssl-with-bazel\fipsmodule.dir\$(Configuration)\x64\bcm.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|NX64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='NN_Debug|x64'">false</ExcludedFromBuild>
     </Object>
   </ItemGroup>
   <ItemGroup>
