@@ -417,10 +417,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SupportJustMyCode>
       </SupportJustMyCode>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;BORINGSSL_DISPATCH_TEST;_HAS_EXCEPTIONS=0;NOMINMAX;BORINGSSL_IMPLEMENTATION;OPENSSL_NO_ASM;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32_LEAN_AND_MEAN;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;BORINGSSL_DISPATCH_TEST;_HAS_EXCEPTIONS=0;NOMINMAX;BORINGSSL_IMPLEMENTATION;OPENSSL_NO_ASM;CMAKE_INTDIR="Debug";NN_NINTENDO_SDK;NN_SDK_BUILD_DEBUG;NN_ENABLE_NODISCARD_EXT;_LIBCPP_ENABLE_NODISCARD;_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS;_LIBCPP_REMOVE_TRANSITIVE_INCLUDES;_NINTENDO_DISABLE_LWG3752_FIX;NN_ENABLE_SDK_HASHED_TRACE;NN_SDK_HASHED_TRACE_USE_CONSTANT_REVISION</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -440,9 +440,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Message>
       </Message>
       <Command>setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/ssl
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/ssl/x64
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/Debug/ssl.lib D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/ssl
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/NN_Debug/x64/ssl_d_nx.lib D:/Projects/Refine/Comm/Grpc/refine-grpc/vs_proj/third_party/boringssl-with-bazel/ssl/x64
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone

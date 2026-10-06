@@ -219,11 +219,6 @@ enum ssl_verify_result_t BORINGSSL_ENUM_INT;
 #define BORINGSSL_ENUM_INT
 #endif
 
-#ifdef NN_x64
-#ifdef X509_NAME
-#undef X509_NAME
-#endif
-#endif
 
 
 // ossl_ssize_t is a signed type which is large enough to fit the size of any
