@@ -25,7 +25,11 @@
 #endif
 
 #if defined(GRPC_POSIX_SOCKET) || defined(GRPC_CFSTREAM)
+#ifdef NN_x64
+#include <ws2tcpip.h>
+#else
 #include <sys/socket.h>
+#endif
 #endif
 
 struct grpc_resolved_address {

@@ -1,5 +1,4 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/re2/CMakeLists.txt
-  bitstate.cc
+﻿  bitstate.cc
   compile.cc
   dfa.cc
 D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\re2\re2\dfa.cc(1370,26): warning C4127: 条件式が定数です。

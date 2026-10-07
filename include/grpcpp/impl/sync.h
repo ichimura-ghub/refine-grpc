@@ -22,7 +22,9 @@
 #include <grpc/support/port_platform.h>
 
 #ifdef GPR_HAS_PTHREAD_H
+#ifndef NN_x64
 #include <pthread.h>
+#endif
 #endif
 
 #include <grpc/support/sync.h>

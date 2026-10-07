@@ -1,5 +1,4 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/base/CMakeLists.txt
-  cycleclock.cc
+﻿  cycleclock.cc
   spinlock.cc
   sysinfo.cc
   thread_identity.cc

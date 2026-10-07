@@ -597,8 +597,9 @@ grpc_completion_queue* grpc_completion_queue_create_internal(
       gpr_zalloc(sizeof(grpc_completion_queue) + vtable->data_size +
                  poller_vtable->size()));
 
-  char* vtable_ptr = reinterpret_cast<char*>((cq + 1)) + vtable->data_size;
-  memset(vtable_ptr, 1, vtable->data_size);
+  // ichi デバッグで入れたのを削除しわすれ.
+  // ichi char* vtable_ptr = reinterpret_cast<char*>((cq + 1)) +
+  // vtable->data_size; ichi memset(vtable_ptr, 1, poller_vtable->size());
 
   cq->vtable = vtable;
   cq->poller_vtable = poller_vtable;

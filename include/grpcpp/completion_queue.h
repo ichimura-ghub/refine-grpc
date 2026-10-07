@@ -47,6 +47,10 @@
 
 #include "absl/log/absl_check.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#endif
+
 struct grpc_completion_queue;
 
 namespace grpc {
@@ -319,12 +323,28 @@ class CompletionQueue : private grpc::internal::GrpcLibrary {
   /// \warning Must not be mixed with calls to \a Next.
   bool Pluck(grpc::internal::CompletionQueueTag* tag) {
     auto deadline = gpr_inf_future(GPR_CLOCK_REALTIME);
+
+#ifdef NN_NINTENDO_SDK
+    NN_LOG("Pluck_Start\n");
+#endif
+
     while (true) {
+#ifdef NN_NINTENDO_SDK
+      NN_LOG("Pluck_Loop-0\n");
+#endif
+
       auto ev = grpc_completion_queue_pluck(cq_, tag, deadline, nullptr);
+
+#ifdef NN_NINTENDO_SDK
+      NN_LOG("Pluck_Loop-1\n");
+#endif
       bool ok = ev.success != 0;
       void* ignored = tag;
       if (tag->FinalizeResult(&ignored, &ok)) {
         ABSL_CHECK(ignored == tag);
+#ifdef NN_NINTENDO_SDK
+        NN_LOG("Pluck_End\n");
+#endif
         return ok;
       }
     }

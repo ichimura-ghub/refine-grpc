@@ -24,7 +24,11 @@
 #ifdef GRPC_POSIX_SOCKET_EV
 
 #include <grpc/support/port_platform.h>
+#ifndef NN_x64
 #include <poll.h>
+#else
+typedef unsigned long nfds_t;
+#endif
 
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/iomgr/exec_ctx.h"

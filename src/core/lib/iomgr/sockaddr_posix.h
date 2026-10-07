@@ -26,12 +26,14 @@
 #include "src/core/lib/iomgr/port.h"
 
 #ifdef GRPC_POSIX_SOCKET_SOCKADDR
+#ifndef NN_x64
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
+#endif
 
 #ifdef GRPC_HAVE_VSOCK
 #include <linux/vm_sockets.h>

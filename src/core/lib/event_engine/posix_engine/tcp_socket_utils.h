@@ -29,7 +29,9 @@
 #include "src/core/util/ref_counted_ptr.h"
 
 #ifdef GRPC_POSIX_SOCKET_UTILS_COMMON
+#ifndef NN_x64
 #include <sys/socket.h>
+#endif
 #endif
 
 #ifdef GRPC_LINUX_ERRQUEUE

@@ -24,7 +24,10 @@
 #define GRPC_EVENT_ENGINE_POSIX
 
 #ifdef NN_x64
-#include <nn/socket.h>
+// #include <nn/socket.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
 #else
 #include <arpa/inet.h>
 #include <netdb.h>

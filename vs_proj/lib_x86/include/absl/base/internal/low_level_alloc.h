@@ -49,6 +49,8 @@
 #elif defined(_WIN32) || defined(__asmjs__) || defined(__wasm__) || \
     defined(__hexagon__)
 #define ABSL_LOW_LEVEL_ALLOC_ASYNC_SIGNAL_SAFE_MISSING 1
+#elif NN_NINTENDO_SDK
+#define ABSL_LOW_LEVEL_ALLOC_ASYNC_SIGNAL_SAFE_MISSING 1
 #endif
 
 #include <cstddef>
@@ -61,7 +63,7 @@ namespace base_internal {
 
 class LowLevelAlloc {
  public:
-  struct Arena;       // an arena from which memory may be allocated
+  struct Arena;  // an arena from which memory may be allocated
 
   // Returns a pointer to a block of at least "request" bytes
   // that have been newly allocated from the specific arena.
@@ -117,7 +119,7 @@ class LowLevelAlloc {
   static Arena *DefaultArena();
 
  private:
-  LowLevelAlloc();      // no instances
+  LowLevelAlloc();  // no instances
 };
 
 }  // namespace base_internal

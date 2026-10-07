@@ -22,8 +22,17 @@
 
 #ifdef ABSL_HAVE_MMAP
 
+#ifdef NN_x64
+#include <sys/types.h>
+#define MAP_FAILED ((void*)-1)
+#define PROT_READ 1
+#define PROT_WRITE 2
+#define MAP_PRIVATE 0x02
+#define MAP_ANON 0x20
+#define MAP_ANONYMOUS MAP_ANON
+#else
 #include <sys/mman.h>
-
+#endif
 #ifdef __linux__
 
 #include <sys/types.h>
@@ -35,6 +44,7 @@
 
 #include <linux/unistd.h>
 #include <unistd.h>
+
 #include <cerrno>
 #include <cstdarg>
 #include <cstdint>
@@ -145,6 +155,17 @@ ABSL_NAMESPACE_END
 
 // For non-linux platforms where we have mmap, just dispatch directly to the
 // actual mmap()/munmap() methods.
+
+#ifdef NN_NINTENDO_SDK
+extern "C" {
+
+void* mmap(void* addr, size_t length, int prot, int flags, int fd,
+           off_t offset);
+int munmap(void* addr, size_t length);
+int mprotect(void* addr, size_t len, int prot);
+
+}  // extern "C"
+#endif
 
 namespace absl {
 ABSL_NAMESPACE_BEGIN

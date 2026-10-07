@@ -926,7 +926,11 @@ extern void gpr_unreachable_code(const char* reason, const char* file,
 #ifdef GPR_WINDOWS
 #define GPR_MSVC_EMPTY_BASE_CLASS_WORKAROUND __declspec(empty_bases)
 #else
+#ifdef NN_x64
+#define GPR_MSVC_EMPTY_BASE_CLASS_WORKAROUND __declspec(empty_bases)
+#else
 #define GPR_MSVC_EMPTY_BASE_CLASS_WORKAROUND
+#endif
 #endif
 #endif
 

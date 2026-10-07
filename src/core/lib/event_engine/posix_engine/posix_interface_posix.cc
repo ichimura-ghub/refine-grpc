@@ -1126,6 +1126,7 @@ PosixErrorOr<int64_t> EventEnginePosixInterface::Write(const FileDescriptor& fd,
                    buf.size());
 }
 #else
+#if !defined(WIN32)
 
 void EventEnginePosixInterface::Close(const FileDescriptor& fd) {
   if (descriptors_.Remove(fd)) {
@@ -1143,7 +1144,7 @@ bool EventEnginePosixInterface::IsCorrectGeneration(
 #endif  // GRPC_ENABLE_FORK_SUPPORT
   return true;
 }
-
+#endif
 #endif  // defined (GRPC_POSIX_WAKEUP_FD) || defined (GRPC_LINUX_EVENTFD)
 
 }  // namespace grpc_event_engine::experimental

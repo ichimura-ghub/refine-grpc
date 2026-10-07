@@ -49,8 +49,16 @@
 
 #ifdef GRPC_POSIX_SOCKET_TCP
 
+#ifndef NN_x64
 #include <sys/socket.h>  // IWYU pragma: keep
-#include <sys/types.h>   // IWYU pragma: keep
+#else
+struct iovec {
+  void* iov_base;
+  size_t iov_len;
+};
+#endif
+
+#include <sys/types.h>  // IWYU pragma: keep
 
 #ifdef GRPC_MSG_IOVLEN_TYPE
 typedef GRPC_MSG_IOVLEN_TYPE msg_iovlen_type;

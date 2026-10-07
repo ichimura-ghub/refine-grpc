@@ -22,8 +22,17 @@
 
 #ifdef ABSL_HAVE_MMAP
 
+#ifdef NN_x64
+#include <sys/types.h>
+#define MAP_FAILED ((void*)-1)
+#define PROT_READ 1
+#define PROT_WRITE 2
+#define MAP_PRIVATE 0x02
+#define MAP_ANON 0x20
+#define MAP_ANONYMOUS MAP_ANON
+#else
 #include <sys/mman.h>
-
+#endif
 #ifdef __linux__
 
 #include <sys/types.h>

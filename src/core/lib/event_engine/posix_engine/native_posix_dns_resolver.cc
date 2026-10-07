@@ -18,9 +18,11 @@
 
 #ifdef GRPC_POSIX_SOCKET_RESOLVE_ADDRESS
 
-#include <netdb.h>
 #include <string.h>
+#ifndef NN_x64
+#include <netdb.h>
 #include <sys/socket.h>
+#endif
 
 #include <string>
 #include <type_traits>

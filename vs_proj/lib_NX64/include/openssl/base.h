@@ -219,6 +219,8 @@ enum ssl_verify_result_t BORINGSSL_ENUM_INT;
 #define BORINGSSL_ENUM_INT
 #endif
 
+
+
 // ossl_ssize_t is a signed type which is large enough to fit the size of any
 // valid memory allocation. We prefer using |size_t|, but sometimes we need a
 // signed type for OpenSSL API compatibility. This type can be used in such

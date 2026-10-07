@@ -61,7 +61,19 @@
 #include <sys/prctl.h>         // IWYU pragma: keep
 #include <sys/resource.h>      // IWYU pragma: keep
 #endif
+#ifndef NN_x64
 #include <netinet/in.h>  // IWYU pragma: keep
+#else
+struct msghdr {
+  void* msg_name;           /* optional address */
+  socklen_t msg_namelen;    /* size of address */
+  struct iovec* msg_iov;    /* scatter/gather array */
+  int msg_iovlen;           /* # elements in msg_iov */
+  void* msg_control;        /* ancillary data, see below */
+  socklen_t msg_controllen; /* ancillary data buffer len */
+  int msg_flags;            /* flags on received message */
+};
+#endif
 
 #ifndef SOL_TCP
 #define SOL_TCP IPPROTO_TCP

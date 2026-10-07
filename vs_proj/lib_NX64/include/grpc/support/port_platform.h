@@ -42,6 +42,7 @@
 #endif  // GPR_DISABLE_ABSEIL_SYNC
 
 /* Get windows.h included everywhere (we need it) */
+#ifndef NN_NINTENDO_SDK
 #if defined(_WIN64) || defined(WIN64) || defined(_WIN32) || defined(WIN32)
 #ifndef WIN32_LEAN_AND_MEAN
 #define GRPC_WIN32_LEAN_AND_MEAN_WAS_NOT_DEFINED
@@ -131,6 +132,11 @@
 #define GRPCXX_DLL
 #define GPR_DLL
 #endif /* defined(_WIN32_WINNT) */
+#else
+#define GRPC_DLL
+#define GRPCXX_DLL
+#define GPR_DLL
+#endif
 
 /* Override this file with one for your platform if you need to redefine
    things.  */
@@ -144,17 +150,25 @@
 #define GPR_ARCH_64 1  // NX target (64-bit ARM) の場合.
 
 // 3. OS / CPU 関連.
-#define GPR_CPU_POSIX 1  // POSIX系CPU実装を利用.
+// #ifdef NN_x64
+// #define GPR_WINDOWS 1
+// #else
+#define GPR_CPU_POSIX 1      // POSIX系CPU実装を利用.
+#define GPR_HAS_PTHREAD_H 1  // SDKのpthreadヘッダーを利用.
+// #endif
 #define GPR_POSIX_ENV 1
 #define GPR_POSIX_STAT 1
 #define GPR_POSIX_STRING 1
 #define GPR_POSIX_SYNC 1
 #define GPR_POSIX_TIME 1
 #define GPR_POSIX_LOG 1
-#define GPR_HAS_PTHREAD_H 1  // SDKのpthreadヘッダーを利用.
 
 // 4. アトミックと同期.
+// #ifdef NN_x64
+// #define GPR_WINDOWS_ATOMIC 1
+// #else
 #define GPR_GCC_ATOMIC 1  // Clang/GCCコンパイラを利用するため.
+// #endif
 
 // 5. ソケットとイベントエンジン（重要）.
 #define GRPC_POSIX_SOCKET 1
@@ -912,7 +926,11 @@ extern void gpr_unreachable_code(const char* reason, const char* file,
 #ifdef GPR_WINDOWS
 #define GPR_MSVC_EMPTY_BASE_CLASS_WORKAROUND __declspec(empty_bases)
 #else
+#ifdef NN_x64
+#define GPR_MSVC_EMPTY_BASE_CLASS_WORKAROUND __declspec(empty_bases)
+#else
 #define GPR_MSVC_EMPTY_BASE_CLASS_WORKAROUND
+#endif
 #endif
 #endif
 

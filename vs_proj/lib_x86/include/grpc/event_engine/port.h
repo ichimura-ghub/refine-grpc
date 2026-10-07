@@ -22,11 +22,20 @@
     defined(GPR_AIX) || defined(GPR_NACL) || defined(GPR_FUCHSIA) ||        \
     defined(GRPC_POSIX_SOCKET) || defined(GPR_NETBSD)
 #define GRPC_EVENT_ENGINE_POSIX
+
+#ifdef NN_x64
+// #include <nn/socket.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
+#else
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#endif
+
 #elif defined(GPR_WINDOWS)
 #include <winsock2.h>
 #include <ws2tcpip.h>

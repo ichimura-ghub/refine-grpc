@@ -47,6 +47,10 @@
 
 #if ABSL_USE_UNSCALED_CYCLECLOCK
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/os.h>
+#endif
+
 namespace absl {
 ABSL_NAMESPACE_BEGIN
 namespace time_internal {
@@ -97,9 +101,13 @@ inline int64_t UnscaledCycleClock::Now() {
 // It can be read at CNTFRQ special register.  We assume the OS has set up the
 // virtual timer properly.
 inline int64_t UnscaledCycleClock::Now() {
+#ifdef NN_NINTENDO_SDK
+  return static_cast<int64_t>(::nn::os::GetSystemTick().GetInt64Value());
+#else
   int64_t virtual_timer_value;
   asm volatile("mrs %0, cntvct_el0" : "=r"(virtual_timer_value));
   return virtual_timer_value;
+#endif
 }
 
 #endif

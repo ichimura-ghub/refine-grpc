@@ -170,8 +170,11 @@ bool WindowsEndpoint::Write(absl::AnyInvocable<void(absl::Status)> on_writable,
   }
   // First, let's try a synchronous, non-blocking write.
   DWORD bytes_sent;
-  int status = WSASend(io_state_->socket->raw_socket(), buffers.data(),
-                       (DWORD)buffers.size(), &bytes_sent, 0, nullptr, nullptr);
+  DWORD send_size = buffers.size();
+  auto send_buffer = buffers.data();
+
+  int status = WSASend(io_state_->socket->raw_socket(), send_buffer, send_size,
+                       &bytes_sent, 0, nullptr, nullptr);
   size_t async_buffers_offset = 0;
   if (status == 0) {
     if (bytes_sent == data->Length()) {

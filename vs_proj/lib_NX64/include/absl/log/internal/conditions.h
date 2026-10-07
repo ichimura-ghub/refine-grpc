@@ -38,10 +38,12 @@
 #include "absl/log/internal/voidify.h"
 
 #ifdef NN_NINTENDO_SDK
+#ifndef NN_x64
 extern "C" {
-// _exit のスタブ実装
+// _exit のスタブ実装.
 void _exit(int status);
 }  // extern "C"
+#endif
 #endif
 
 // `ABSL_LOG_INTERNAL_CONDITION` prefixes another macro that expands to a
