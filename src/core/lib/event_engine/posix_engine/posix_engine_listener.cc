@@ -23,8 +23,12 @@
 #include <errno.h>  // IWYU pragma: keep
 #include <grpc/event_engine/event_engine.h>
 #include <grpc/event_engine/memory_allocator.h>
+#ifdef NN_x64
+#include <nn/socket.h>
+#else
 #include <sys/socket.h>  // IWYU pragma: keep
 #include <unistd.h>      // IWYU pragma: keep
+#endif
 
 #include <atomic>
 #include <optional>

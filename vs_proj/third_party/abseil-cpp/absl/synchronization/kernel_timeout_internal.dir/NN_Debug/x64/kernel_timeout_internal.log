@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/synchronization/CMakeLists.txt
-  kernel_timeout.cc
-  kernel_timeout_internal.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\synchronization\NN_Debug\x64\absl_kernel_timeout_internal_d_nx.lib
+﻿  kernel_timeout_internal.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\synchronization\NN_Debug\x64\absl_kernel_timeout_internal_d_nx.lib

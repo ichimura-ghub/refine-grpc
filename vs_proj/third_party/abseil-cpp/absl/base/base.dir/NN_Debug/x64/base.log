@@ -1,7 +1,1 @@
-﻿  cycleclock.cc
-  spinlock.cc
-  sysinfo.cc
-  thread_identity.cc
-  unscaledcycleclock.cc
-  コードを生成中...
-  base.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\absl_base_d_nx.lib
+﻿  base.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\absl_base_d_nx.lib

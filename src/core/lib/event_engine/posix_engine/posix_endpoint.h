@@ -52,10 +52,7 @@
 #ifndef NN_x64
 #include <sys/socket.h>  // IWYU pragma: keep
 #else
-struct iovec {
-  void* iov_base;
-  size_t iov_len;
-};
+#include <nn/socket.h>
 #endif
 
 #include <sys/types.h>  // IWYU pragma: keep
@@ -97,10 +94,15 @@ class TcpZerocopySendRecord {
   //   sendmsg.
   //  Returns: the number of entries in the iovec array.
   //
+#ifdef NN_x64
+  msg_iovlen_type PopulateIovs(size_t* unwind_slice_idx,
+                               size_t* unwind_byte_idx, size_t* sending_length,
+                               nn::socket::Iovec* iov);
+#else
   msg_iovlen_type PopulateIovs(size_t* unwind_slice_idx,
                                size_t* unwind_byte_idx, size_t* sending_length,
                                iovec* iov);
-
+#endif
   // A sendmsg() may not be able to send the bytes that we requested at this
   // time, returning EAGAIN (possibly due to backpressure). In this case,
   // unwind the offset into the slice buffer so we retry sending these bytes.
@@ -522,9 +524,15 @@ class PosixEndpointImpl : public grpc_core::RefCounted<PosixEndpointImpl> {
   void TcpShutdownTracedBufferList();
   void UnrefMaybePutZerocopySendRecord(TcpZerocopySendRecord* record);
   void ZerocopyDisableAndWaitForRemaining();
+#ifdef NN_x64
+  bool WriteWithTimestamps(nn::socket::MsgHdr* msg, size_t sending_length,
+                           PosixErrorOr<int64_t>* sent_length, int* saved_errno,
+                           int additional_flags);
+#else
   bool WriteWithTimestamps(struct msghdr* msg, size_t sending_length,
                            PosixErrorOr<int64_t>* sent_length, int* saved_errno,
                            int additional_flags);
+#endif
 #ifdef GRPC_LINUX_ERRQUEUE
   bool ProcessErrors();
   // Reads a cmsg to process zerocopy control messages.

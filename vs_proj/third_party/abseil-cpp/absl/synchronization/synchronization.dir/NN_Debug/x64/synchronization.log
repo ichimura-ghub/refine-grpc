@@ -1,15 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/synchronization/CMakeLists.txt
-  barrier.cc
-  blocking_counter.cc
-  create_thread_identity.cc
-  futex_waiter.cc
-  per_thread_sem.cc
-  pthread_waiter.cc
-  sem_waiter.cc
-  stdcpp_waiter.cc
-  waiter_base.cc
-  win32_waiter.cc
-  notification.cc
-  mutex.cc
-  コードを生成中...
-  synchronization.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\synchronization\NN_Debug\x64\absl_synchronization_d_nx.lib
+﻿  synchronization.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\synchronization\NN_Debug\x64\absl_synchronization_d_nx.lib

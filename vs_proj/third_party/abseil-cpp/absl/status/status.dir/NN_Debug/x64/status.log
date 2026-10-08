@@ -1,6 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/status/CMakeLists.txt
-  status_internal.cc
-  status.cc
-  status_payload_printer.cc
-  コードを生成中...
-  status.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\status\NN_Debug\x64\absl_status_d_nx.lib
+﻿  status.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\status\NN_Debug\x64\absl_status_d_nx.lib

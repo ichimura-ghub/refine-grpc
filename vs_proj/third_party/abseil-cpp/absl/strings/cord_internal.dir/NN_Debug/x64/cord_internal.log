@@ -1,9 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/strings/CMakeLists.txt
-  cord_internal.cc
-  cord_rep_btree.cc
-  cord_rep_btree_navigator.cc
-  cord_rep_btree_reader.cc
-  cord_rep_crc.cc
-  cord_rep_consume.cc
-  コードを生成中...
-  cord_internal.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\strings\NN_Debug\x64\absl_cord_internal_d_nx.lib
+﻿  cord_internal.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\strings\NN_Debug\x64\absl_cord_internal_d_nx.lib

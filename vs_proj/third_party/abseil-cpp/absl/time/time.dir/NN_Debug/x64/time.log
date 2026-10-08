@@ -1,8 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/time/CMakeLists.txt
-  civil_time.cc
-  clock.cc
-  duration.cc
-  format.cc
-  time.cc
-  コードを生成中...
-  time.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\time\NN_Debug\x64\absl_time_d_nx.lib
+﻿  time.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\time\NN_Debug\x64\absl_time_d_nx.lib

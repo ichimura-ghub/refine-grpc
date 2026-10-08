@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/base/CMakeLists.txt
-  strerror.cc
-  strerror.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\absl_strerror_d_nx.lib
+﻿  strerror.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\absl_strerror_d_nx.lib

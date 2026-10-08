@@ -1,4 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/protobuf/third_party/utf8_range/CMakeLists.txt
-  utf8_range.c
-D:\Projects\Refine\Comm\Grpc\refine-grpc\third_party\protobuf\third_party\utf8_range\utf8_range.c(44,34): warning C4310: キャストによって定数値が切り捨てられました。
-  utf8_validity.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\third_party\utf8_range\NN_Debug\x64\libutf8_validity_d_nx.lib
+﻿  utf8_validity.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\protobuf\third_party\utf8_range\NN_Debug\x64\libutf8_validity_d_nx.lib

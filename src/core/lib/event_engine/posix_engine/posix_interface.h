@@ -28,6 +28,10 @@
 #include "src/core/util/grpc_check.h"
 #include "absl/status/status.h"
 
+#ifdef NN_x64
+#include <nn/socket.h>
+#endif
+
 namespace grpc_event_engine::experimental {
 
 class EventEnginePosixInterface {
@@ -122,10 +126,17 @@ class EventEnginePosixInterface {
   PosixError Connect(const FileDescriptor& sockfd, const struct sockaddr* addr,
                      socklen_t addrlen);
   PosixErrorOr<int64_t> Read(const FileDescriptor& fd, absl::Span<char> buffer);
+#ifdef NN_x64
+  PosixErrorOr<int64_t> RecvMsg(const FileDescriptor& fd,
+                                nn::socket::MsgHdr* message, int flags);
+  PosixErrorOr<int64_t> SendMsg(const FileDescriptor& fd,
+                                const nn::socket::MsgHdr* message, int flags);
+#else
   PosixErrorOr<int64_t> RecvMsg(const FileDescriptor& fd,
                                 struct msghdr* message, int flags);
   PosixErrorOr<int64_t> SendMsg(const FileDescriptor& fd,
                                 const struct msghdr* message, int flags);
+#endif
   PosixError Shutdown(const FileDescriptor& fd, int how);
   PosixErrorOr<int64_t> Write(const FileDescriptor& fd,
                               absl::Span<char> buffer);

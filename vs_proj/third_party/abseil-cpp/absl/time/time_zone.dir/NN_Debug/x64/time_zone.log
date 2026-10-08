@@ -1,11 +1,1 @@
-﻿  time_zone_fixed.cc
-  time_zone_format.cc
-  time_zone_if.cc
-  time_zone_impl.cc
-  time_zone_info.cc
-  time_zone_libc.cc
-  time_zone_lookup.cc
-  time_zone_posix.cc
-  zone_info_source.cc
-  コードを生成中...
-  time_zone.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\time\NN_Debug\x64\absl_time_zone_d_nx.lib
+﻿  time_zone.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\time\NN_Debug\x64\absl_time_zone_d_nx.lib

@@ -56,11 +56,16 @@
 #include "absl/strings/str_cat.h"
 
 #ifdef GRPC_POSIX_SOCKET_TCP
-#include <errno.h>       // IWYU pragma: keep
+#include <errno.h>   // IWYU pragma: keep
+#include <stdint.h>  // IWYU pragma: keep
+#ifdef NN_x64
+#include <nn/socket.h>
+#else
 #include <pthread.h>     // IWYU pragma: keep
 #include <stdint.h>      // IWYU pragma: keep
 #include <sys/socket.h>  // IWYU pragma: keep
 #include <unistd.h>      // IWYU pragma: keep
+#endif
 
 #include "src/core/lib/event_engine/posix_engine/event_poller.h"
 #include "src/core/lib/event_engine/posix_engine/event_poller_posix_default.h"

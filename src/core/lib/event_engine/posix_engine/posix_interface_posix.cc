@@ -45,15 +45,19 @@
 #include "absl/strings/string_view.h"
 
 #ifdef GRPC_POSIX_SOCKET_UTILS_COMMON
+#ifndef NN_x64
 #include <arpa/inet.h>  // IWYU pragma: keep
+#endif
 
 #ifdef NN_NINTENDO_SDK
 #include <fcntl.h>
+#ifndef NN_x64
 #include <netinet/in.h>  // IWYU pragma: keep
 #include <netinet/tcp.h>
-#include <nn/socket.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#endif
+#include <nn/socket.h>
 
 #else
 #ifdef GRPC_LINUX_TCP_H
@@ -115,19 +119,35 @@ PosixErrorOr<int64_t> Int64Wrap(bool correct_gen, int fd, const Fn& fn,
 
 // Set a socket to non blocking mode
 absl::Status SetSocketNonBlocking(int fd, int non_blocking) {
+#ifdef NN_x64
+  int oldflags = nn::socket::Fcntl(fd, nn::socket::FcntlCommand::F_GetFl, 0);
+#else
   int oldflags = fcntl(fd, F_GETFL, 0);
+#endif
   if (oldflags < 0) {
     return absl::Status(absl::StatusCode::kInternal,
                         absl::StrCat("fcntl: ", grpc_core::StrError(errno)));
   }
 
+#ifdef NN_x64
+  if (non_blocking) {
+    oldflags |= (int)nn::socket::FcntlFlag::O_NonBlock;
+  } else {
+    oldflags &= ~(int)nn::socket::FcntlFlag::O_NonBlock;
+  }
+#else
   if (non_blocking) {
     oldflags |= O_NONBLOCK;
   } else {
     oldflags &= ~O_NONBLOCK;
   }
+#endif
 
+#ifdef NN_x64
+  if (nn::socket::Fcntl(fd, nn::socket::FcntlCommand::F_SetFl, oldflags) != 0) {
+#else
   if (fcntl(fd, F_SETFL, oldflags) != 0) {
+#endif
     return absl::Status(absl::StatusCode::kInternal,
                         absl::StrCat("fcntl: ", grpc_core::StrError(errno)));
   }
@@ -192,7 +212,12 @@ int CreateSocket(std::function<int(int, int, int)> socket_factory, int family,
 
 // Tries to set the socket's receive buffer to given size.
 absl::Status SetSocketRcvBuf(int fd, int buffer_size_bytes) {
+#ifdef NN_x64
+  return 0 == setsockopt(fd, SOL_SOCKET, SO_RCVBUF,
+                         (const char*)&buffer_size_bytes,
+#else
   return 0 == setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &buffer_size_bytes,
+#endif
                          sizeof(buffer_size_bytes))
              ? absl::OkStatus()
              : absl::Status(absl::StatusCode::kInternal,
@@ -234,19 +259,29 @@ int GetMaxAcceptQueueSize() {
 
 // Set a socket to close on exec
 absl::Status SetSocketCloexec(int fd, int close_on_exec) {
+#ifdef NN_x64
+  int oldflags = nn::socket::Fcntl(fd, nn::socket::FcntlCommand::F_GetFl, 0);
+#else
   int oldflags = fcntl(fd, F_GETFD, 0);
+#endif
   if (oldflags < 0) {
     return absl::Status(absl::StatusCode::kInternal,
                         absl::StrCat("fcntl: ", grpc_core::StrError(errno)));
   }
 
+#ifndef NN_x64
   if (close_on_exec) {
     oldflags |= FD_CLOEXEC;
   } else {
     oldflags &= ~FD_CLOEXEC;
   }
+#endif
 
+#ifdef NN_x64
+  if (nn::socket::Fcntl(fd, nn::socket::FcntlCommand::F_SetFl, oldflags) != 0) {
+#else
   if (fcntl(fd, F_SETFD, oldflags) != 0) {
+#endif
     return absl::Status(absl::StatusCode::kInternal,
                         absl::StrCat("fcntl: ", grpc_core::StrError(errno)));
   }
@@ -666,7 +701,17 @@ PosixError EventEnginePosixInterface::Connect(const FileDescriptor& sockfd,
   return PosixResultWrap(
       sockfd, [&](int sockfd) { return connect(sockfd, addr, addrlen); });
 }
+#ifdef NN_x64
+PosixErrorOr<int64_t> EventEnginePosixInterface::RecvMsg(
+    const FileDescriptor& fd, nn::socket::MsgHdr* message, int flags) {
+  return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), recvmsg, message, flags);
+}
 
+PosixErrorOr<int64_t> EventEnginePosixInterface::SendMsg(
+    const FileDescriptor& fd, const nn::socket::MsgHdr* message, int flags) {
+  return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), sendmsg, message, flags);
+}
+#else
 PosixErrorOr<int64_t> EventEnginePosixInterface::RecvMsg(
     const FileDescriptor& fd, struct msghdr* message, int flags) {
   return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), recvmsg, message, flags);
@@ -676,6 +721,7 @@ PosixErrorOr<int64_t> EventEnginePosixInterface::SendMsg(
     const FileDescriptor& fd, const struct msghdr* message, int flags) {
   return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), sendmsg, message, flags);
 }
+#endif
 
 PosixError EventEnginePosixInterface::Shutdown(const FileDescriptor& fd,
                                                int how) {

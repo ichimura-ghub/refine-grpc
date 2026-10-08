@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/status/CMakeLists.txt
-  statusor.cc
-  statusor.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\status\NN_Debug\x64\absl_statusor_d_nx.lib
+﻿  statusor.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\status\NN_Debug\x64\absl_statusor_d_nx.lib

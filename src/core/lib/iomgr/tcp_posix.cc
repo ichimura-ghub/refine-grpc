@@ -1526,10 +1526,17 @@ void tcp_shutdown_buffer_list(grpc_tcp* tcp) {
 #else
 #define MAX_WRITE_IOVEC 260
 #endif
+#ifdef NN_x64
+msg_iovlen_type TcpZerocopySendRecord::PopulateIovs(size_t* unwind_slice_idx,
+                                                    size_t* unwind_byte_idx,
+                                                    size_t* sending_length,
+                                                    nn::socket::Iovec* iov) {
+#else
 msg_iovlen_type TcpZerocopySendRecord::PopulateIovs(size_t* unwind_slice_idx,
                                                     size_t* unwind_byte_idx,
                                                     size_t* sending_length,
                                                     iovec* iov) {
+#endif
   msg_iovlen_type iov_size;
   *unwind_slice_idx = out_offset_.slice_idx;
   *unwind_byte_idx = out_offset_.byte_idx;

@@ -38,11 +38,15 @@
 #include "absl/strings/str_cat.h"
 
 #ifdef GRPC_POSIX_SOCKET_UTILS_COMMON
-#include <errno.h>       // IWYU pragma: keep
+#include <errno.h>  // IWYU pragma: keep
+#ifdef NN_x64
+#include <nn/socket.h>
+#else
 #include <ifaddrs.h>     // IWYU pragma: keep
 #include <netinet/in.h>  // IWYU pragma: keep
 #include <sys/socket.h>  // IWYU pragma: keep
 #include <unistd.h>      // IWYU pragma: keep
+#endif
 #endif
 
 namespace grpc_event_engine::experimental {

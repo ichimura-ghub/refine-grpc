@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/crc/CMakeLists.txt
-  cpu_detect.cc
-  crc_cpu_detect.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\crc\NN_Debug\x64\absl_crc_cpu_detect_d_nx.lib
+﻿  crc_cpu_detect.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\crc\NN_Debug\x64\absl_crc_cpu_detect_d_nx.lib

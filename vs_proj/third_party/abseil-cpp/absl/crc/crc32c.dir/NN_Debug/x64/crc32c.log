@@ -1,7 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/crc/CMakeLists.txt
-  crc32c.cc
-  crc_memcpy_fallback.cc
-  crc_memcpy_x86_arm_combined.cc
-  crc_non_temporal_memcpy.cc
-  コードを生成中...
-  crc32c.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\crc\NN_Debug\x64\absl_crc32c_d_nx.lib
+﻿  crc32c.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\crc\NN_Debug\x64\absl_crc32c_d_nx.lib

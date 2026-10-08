@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/base/CMakeLists.txt
-  spinlock_wait.cc
-  spinlock_wait.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\absl_spinlock_wait_d_nx.lib
+﻿  spinlock_wait.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\base\NN_Debug\x64\absl_spinlock_wait_d_nx.lib

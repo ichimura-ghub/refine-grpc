@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/log/CMakeLists.txt
-  log_sink.cc
-  log_sink.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\log\NN_Debug\x64\absl_log_sink_d_nx.lib
+﻿  log_sink.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\log\NN_Debug\x64\absl_log_sink_d_nx.lib

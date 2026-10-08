@@ -64,15 +64,7 @@
 #ifndef NN_x64
 #include <netinet/in.h>  // IWYU pragma: keep
 #else
-struct msghdr {
-  void* msg_name;           /* optional address */
-  socklen_t msg_namelen;    /* size of address */
-  struct iovec* msg_iov;    /* scatter/gather array */
-  int msg_iovlen;           /* # elements in msg_iov */
-  void* msg_control;        /* ancillary data, see below */
-  socklen_t msg_controllen; /* ancillary data buffer len */
-  int msg_flags;            /* flags on received message */
-};
+#include <nn/socket.h>
 #endif
 
 #ifndef SOL_TCP
@@ -107,10 +99,17 @@ namespace {
 
 // A wrapper around sendmsg. It sends \a msg over \a fd and returns the number
 // of bytes sent.
+#ifdef NN_x64
+PosixErrorOr<int64_t> TcpSend(EventEnginePosixInterface* posix_interface,
+                              const FileDescriptor& fd,
+                              const nn::socket::MsgHdr* msg, int* saved_errno,
+                              int additional_flags = 0) {
+#else
 PosixErrorOr<int64_t> TcpSend(EventEnginePosixInterface* posix_interface,
                               const FileDescriptor& fd,
                               const struct msghdr* msg, int* saved_errno,
                               int additional_flags = 0) {
+#endif
   GRPC_LATENT_SEE_ALWAYS_ON_SCOPE("TcpSend");
   PosixErrorOr<int64_t> send_result;
   do {
@@ -242,10 +241,17 @@ absl::Status PosixOSError(const PosixErrorOr<int64_t>& error_no,
 #else
 #define MAX_WRITE_IOVEC 260
 #endif
+#ifdef NN_x64
+msg_iovlen_type TcpZerocopySendRecord::PopulateIovs(size_t* unwind_slice_idx,
+                                                    size_t* unwind_byte_idx,
+                                                    size_t* sending_length,
+                                                    nn::socket::Iovec* iov) {
+#else
 msg_iovlen_type TcpZerocopySendRecord::PopulateIovs(size_t* unwind_slice_idx,
                                                     size_t* unwind_byte_idx,
                                                     size_t* sending_length,
                                                     iovec* iov) {
+#endif
   msg_iovlen_type iov_size;
   *unwind_slice_idx = out_offset_.slice_idx;
   *unwind_byte_idx = out_offset_.byte_idx;
@@ -307,8 +313,13 @@ void PosixEndpointImpl::FinishEstimate() {
 bool PosixEndpointImpl::TcpDoRead(absl::Status& status) {
   GRPC_LATENT_SEE_ALWAYS_ON_SCOPE("TcpDoRead");
 
+#ifdef NN_x64
+  nn::socket::MsgHdr msg;
+  nn::socket::Iovec iov[MAX_READ_IOVEC];
+#else
   struct msghdr msg;
   struct iovec iov[MAX_READ_IOVEC];
+#endif
   size_t total_read_bytes = 0;
   size_t iov_len = std::min<size_t>(MAX_READ_IOVEC, incoming_buffer_->Count());
   size_t slice_idx = iov_len;
@@ -346,7 +357,11 @@ bool PosixEndpointImpl::TcpDoRead(absl::Status& status) {
       msg.msg_control = nullptr;
       msg.msg_controllen = 0;
     }
+#ifdef NN_x64
+    msg.msg_flags = (nn::socket::MsgFlag)0;
+#else
     msg.msg_flags = 0;
+#endif
 
     grpc_core::global_stats().IncrementTcpReadOffer(incoming_buffer_->Length());
     grpc_core::global_stats().IncrementTcpReadOfferIovSize(
@@ -890,11 +905,19 @@ void PosixEndpointImpl::HandleError(absl::Status status) {
   handle_->NotifyOnError(on_error_);
 }
 
+#ifdef NN_x64
+bool PosixEndpointImpl::WriteWithTimestamps(nn::socket::MsgHdr* msg,
+                                            size_t sending_length,
+                                            PosixErrorOr<int64_t>* sent_length,
+                                            int* saved_errno,
+                                            int additional_flags) {
+#else
 bool PosixEndpointImpl::WriteWithTimestamps(struct msghdr* msg,
                                             size_t sending_length,
                                             PosixErrorOr<int64_t>* sent_length,
                                             int* saved_errno,
                                             int additional_flags) {
+#endif
   auto& posix_interface = poller_->posix_interface();
   if (!socket_ts_enabled_) {
     if (!posix_interface
@@ -939,7 +962,7 @@ bool PosixEndpointImpl::WriteWithTimestamps(struct msghdr* msg,
   return true;
 }
 
-#else   // GRPC_LINUX_ERRQUEUE
+#else  // GRPC_LINUX_ERRQUEUE
 TcpZerocopySendRecord* PosixEndpointImpl::TcpGetSendZerocopyRecord(
     SliceBuffer& /*buf*/) {
   return nullptr;
@@ -951,10 +974,17 @@ void PosixEndpointImpl::HandleError(absl::Status /*status*/) {
 
 void PosixEndpointImpl::ZerocopyDisableAndWaitForRemaining() {}
 
+#ifdef NN_x64
+bool PosixEndpointImpl::WriteWithTimestamps(
+    nn::socket::MsgHdr* /*msg*/, size_t /*sending_length*/,
+    PosixErrorOr<int64_t>* /*sent_length*/, int* /*saved_errno*/,
+    int /*additional_flags*/) {
+#else
 bool PosixEndpointImpl::WriteWithTimestamps(
     struct msghdr* /*msg*/, size_t /*sending_length*/,
     PosixErrorOr<int64_t>* /*sent_length*/, int* /*saved_errno*/,
     int /*additional_flags*/) {
+#endif
   grpc_core::Crash("Write with timestamps not supported for this platform");
 }
 #endif  // GRPC_LINUX_ERRQUEUE
@@ -986,13 +1016,21 @@ bool PosixEndpointImpl::DoFlushZerocopy(TcpZerocopySendRecord* record,
   size_t unwind_byte_idx;
   bool tried_sending_message;
   int saved_errno;
+#ifdef NN_x64
+  nn::socket::MsgHdr msg;
+#else
   msghdr msg;
+#endif
   bool constrained;
   status = absl::OkStatus();
   // iov consumes a large space. Keep it as the last item on the stack to
   // improve locality. After all, we expect only the first elements of it
   // being populated in most cases.
+#ifdef NN_x64
+  nn::socket::Iovec iov[MAX_WRITE_IOVEC];
+#else
   iovec iov[MAX_WRITE_IOVEC];
+#endif
   while (true) {
     PosixErrorOr<int64_t> send_status;
     sending_length = 0;
@@ -1002,7 +1040,11 @@ bool PosixEndpointImpl::DoFlushZerocopy(TcpZerocopySendRecord* record,
     msg.msg_namelen = 0;
     msg.msg_iov = iov;
     msg.msg_iovlen = iov_size;
+#ifdef NN_x64
+    msg.msg_flags = (nn::socket::MsgFlag)0;
+#else
     msg.msg_flags = 0;
+#endif
     tried_sending_message = false;
     constrained = false;
     // Before calling sendmsg (with or without timestamps): we
@@ -1090,8 +1132,13 @@ bool PosixEndpointImpl::TcpFlushZerocopy(TcpZerocopySendRecord* record,
 }
 
 bool PosixEndpointImpl::TcpFlush(absl::Status& status) {
+#ifdef NN_x64
+  nn::socket::MsgHdr msg;
+  nn::socket::Iovec iov[MAX_WRITE_IOVEC];
+#else
   struct msghdr msg;
   struct iovec iov[MAX_WRITE_IOVEC];
+#endif
   msg_iovlen_type iov_size;
   size_t sending_length;
   size_t trailing;
@@ -1127,7 +1174,11 @@ bool PosixEndpointImpl::TcpFlush(absl::Status& status) {
     msg.msg_namelen = 0;
     msg.msg_iov = iov;
     msg.msg_iovlen = iov_size;
+#ifdef NN_x64
+    msg.msg_flags = (nn::socket::MsgFlag)0;
+#else
     msg.msg_flags = 0;
+#endif
     bool tried_sending_message = false;
     saved_errno = 0;
     if (outgoing_buffer_write_event_sink_.has_value()) {

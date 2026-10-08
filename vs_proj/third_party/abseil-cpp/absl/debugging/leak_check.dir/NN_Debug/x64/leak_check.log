@@ -1,3 +1,1 @@
-﻿  Building Custom Rule D:/Projects/Refine/Comm/Grpc/refine-grpc/third_party/abseil-cpp/absl/debugging/CMakeLists.txt
-  leak_check.cc
-  leak_check.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\NN_Debug\x64\absl_leak_check_d_nx.lib
+﻿  leak_check.vcxproj -> D:\Projects\Refine\Comm\Grpc\refine-grpc\vs_proj\third_party\abseil-cpp\absl\debugging\NN_Debug\x64\absl_leak_check_d_nx.lib
