@@ -50,6 +50,11 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_format.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+// #define _EV_POLL_POSIX_LOG
+#endif
+
 #define GRPC_POLLSET_KICK_BROADCAST ((grpc_pollset_worker*)1)
 
 //******************************************************************************
@@ -928,6 +933,10 @@ static void work_combine_error(grpc_error_handle* composite,
 static grpc_error_handle pollset_work(grpc_pollset* pollset,
                                       grpc_pollset_worker** worker_hdl,
                                       grpc_core::Timestamp deadline) {
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+  NN_LOG("pollset_work-0\n");
+#endif
+
   grpc_pollset_worker worker;
   if (worker_hdl) *worker_hdl = &worker;
   grpc_error_handle error;
@@ -958,11 +967,21 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
       return error;
     }
   }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+  NN_LOG("pollset_work-1\n");
+#endif
+
   worker.kicked_specifically = 0;
   // If we're shutting down then we don't execute any extended work
   if (pollset->shutting_down) {
     goto done;
   }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+  NN_LOG("pollset_work-2\n");
+#endif
+
   // Start polling, and keep doing so while we're being asked to
   // re-evaluate our pollers (this allows poll() based pollers to
   // ensure they don't miss wakeups)
@@ -972,6 +991,10 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
     keep_polling = 0;
     if (!pollset->kicked_without_pollers ||
         deadline <= grpc_core::Timestamp::Now()) {
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+      NN_LOG("pollset_work-3\n");
+#endif
+
       if (!added_worker) {
         push_front_worker(pollset, &worker);
         added_worker = 1;
@@ -1001,6 +1024,10 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
         watchers = static_cast<grpc_fd_watcher*>(
             static_cast<void*>((static_cast<char*>(buf) + pfd_size)));
       }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+      NN_LOG("pollset_work-4\n");
+#endif
 
       fd_count = 0;
       pfd_count = 1;
@@ -1032,6 +1059,10 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
         }
       }
 
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+      NN_LOG("pollset_work-5\n");
+#endif
+
       // TODO(vpai): Consider first doing a 0 timeout poll here to avoid
       // even going into the blocking annotation if possible
       GRPC_SCHEDULING_START_BLOCKING_REGION;
@@ -1040,7 +1071,15 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
 
       GRPC_TRACE_LOG(polling, INFO) << pollset << " poll=" << r;
 
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+      NN_LOG("pollset_work-6\n");
+#endif
+
       if (r < 0) {
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+        NN_LOG("pollset_work-7\n");
+#endif
+
         if (errno != EINTR) {
           work_combine_error(&error, GRPC_OS_ERROR(errno, "poll"));
         }
@@ -1055,10 +1094,18 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
           }
         }
       } else if (r == 0) {
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+        NN_LOG("pollset_work-8\n");
+#endif
+
         for (i = 1; i < pfd_count; i++) {
           fd_end_poll(&watchers[i], 0, 0);
         }
       } else {
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+        NN_LOG("pollset_work-9\n");
+#endif
+
         if (pfds[0].revents & POLLIN_CHECK) {
           GRPC_TRACE_LOG(polling, INFO) << pollset << ": got_wakeup";
           work_combine_error(
@@ -1088,6 +1135,10 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
           }
         }
       }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+      NN_LOG("pollset_work-10\n");
+#endif
 
       if (pfds != pollfd_space) {
         // pfds and watchers are in the same memory block pointed to by pfds
@@ -1119,9 +1170,19 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
         // immediate so we get back out of the polling loop quickly
         deadline = grpc_core::Timestamp();
       }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+      NN_LOG("pollset_work-29\n");
+#endif
+
       keep_polling = 1;
     }
   }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+  NN_LOG("pollset_work-30\n");
+#endif
+
   g_current_thread_poller = nullptr;
   if (added_worker) {
     remove_worker(pollset, &worker);
@@ -1146,6 +1207,11 @@ static grpc_error_handle pollset_work(grpc_pollset* pollset,
       gpr_mu_lock(&pollset->mu);
     }
   }
+
+#if defined(NN_NINTENDO_SDK) && defined(_EV_POLL_POSIX_LOG)
+  NN_LOG("pollset_work-99\n");
+#endif
+
   if (worker_hdl) *worker_hdl = nullptr;
   GRPC_LOG_IF_ERROR("pollset_work", error);
   return error;

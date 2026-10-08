@@ -33,15 +33,71 @@
 #include "src/core/util/strerror.h"
 #include "absl/log/log.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/socket.h>
+#endif
+
 static grpc_error_handle pipe_init(grpc_wakeup_fd* fd_info) {
 #ifdef NN_NINTENDO_SDK
-  // とりあえず、OKにする.
-  int pipefd[2];
-  pipefd[0] = 1;
-  pipefd[1] = 2;
 
-  fd_info->read_fd = pipefd[0];
-  fd_info->write_fd = pipefd[1];
+  // 1. 受信用と送信用の UDP ソケットを作成.
+  auto read_fd = nn::socket::Socket(nn::socket::Family::Af_Inet,
+                                    nn::socket::Type::Sock_Dgram,
+                                    nn::socket::Protocol::IpProto_Udp);
+  auto write_fd = nn::socket::Socket(nn::socket::Family::Af_Inet,
+                                     nn::socket::Type::Sock_Dgram,
+                                     nn::socket::Protocol::IpProto_Udp);
+  if (read_fd < 0 || write_fd < 0) {
+    if (read_fd >= 0) nn::socket::Close(read_fd);
+    if (write_fd >= 0) nn::socket::Close(write_fd);
+    return GRPC_OS_ERROR((int)nn::socket::GetLastError(),
+                         "socket creation failed");
+  }
+
+  // 2.
+  // 受信側ソケットをループバック（127.0.0.1:0）にバインドしてポートを自動割り当て.
+  nn::socket::SockAddrIn inaddr;
+  memset(&inaddr, 0, sizeof(inaddr));
+  inaddr.sin_family = nn::socket::Family::Af_Inet;
+  inaddr.sin_addr.S_addr = htonl(INADDR_LOOPBACK);
+  inaddr.sin_port = 0;
+
+  if (nn::socket::Bind(read_fd,
+                       reinterpret_cast<const nn::socket::SockAddr*>(&inaddr),
+                       sizeof(inaddr)) < 0) {
+    int err = (int)nn::socket::GetLastError();
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    return GRPC_OS_ERROR(err, "bind failed");
+  }
+
+  // 3. バインドされたポート番号を取得.
+  u_int addrlen = sizeof(inaddr);
+  if (nn::socket::GetSockName(read_fd,
+                              reinterpret_cast<nn::socket::SockAddr*>(&inaddr),
+                              &addrlen) < 0) {
+    int err = (int)nn::socket::GetLastError();
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    return GRPC_OS_ERROR(err, "getsockname failed");
+  }
+
+  // 4. 送信側ソケットを受信側のアドレスに connect (送信先の固定),
+  if (nn::socket::Connect(write_fd,
+                          reinterpret_cast<nn::socket::SockAddr*>(&inaddr),
+                          sizeof(inaddr)) < 0) {
+    int err = (int)nn::socket::GetLastError();
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    return GRPC_OS_ERROR(err, "connect failed");
+  }
+
+  // 5. 両方のソケットをノンブロッキングに設定.
+  grpc_set_socket_nonblocking(read_fd, 1);
+  grpc_set_socket_nonblocking(write_fd, 1);
+
+  fd_info->read_fd = read_fd;
+  fd_info->write_fd = write_fd;
   return absl::OkStatus();
 
   // とりあえず、エラーにする.
@@ -77,6 +133,15 @@ static grpc_error_handle pipe_consume(grpc_wakeup_fd* fd_info) {
   char buf[128];
   ssize_t r;
 
+#ifdef NN_NINTENDO_SDK
+  // 送信されたウェイクアップ用データを空読みしてクリアする.
+  do {
+    r = nn::socket::Recv(fd_info->read_fd, buf, sizeof(buf),
+                         nn::socket::MsgFlag::Msg_None);
+  } while (r > 0);
+
+  return absl::OkStatus();
+#else
   for (;;) {
     r = read(fd_info->read_fd, buf, sizeof(buf));
     if (r > 0) continue;
@@ -90,18 +155,31 @@ static grpc_error_handle pipe_consume(grpc_wakeup_fd* fd_info) {
         return GRPC_OS_ERROR(errno, "read");
     }
   }
+#endif
 }
 
 static grpc_error_handle pipe_wakeup(grpc_wakeup_fd* fd_info) {
   char c = 0;
+#ifdef NN_NINTENDO_SDK
+  if (nn::socket::Send(fd_info->write_fd, &c, 1,
+                       nn::socket::MsgFlag::Msg_None) < 0) {
+    return GRPC_OS_ERROR((int)nn::socket::GetLastError(), "send failed");
+  }
+#else
   while (write(fd_info->write_fd, &c, 1) != 1 && errno == EINTR) {
   }
+#endif
   return absl::OkStatus();
 }
 
 static void pipe_destroy(grpc_wakeup_fd* fd_info) {
+#ifdef NN_NINTENDO_SDK
+  if (fd_info->read_fd >= 0) nn::socket::Close(fd_info->read_fd);
+  if (fd_info->write_fd >= 0) nn::socket::Close(fd_info->write_fd);
+#else
   if (fd_info->read_fd != 0) close(fd_info->read_fd);
   if (fd_info->write_fd != 0) close(fd_info->write_fd);
+#endif
 }
 
 static int pipe_check_availability(void) {

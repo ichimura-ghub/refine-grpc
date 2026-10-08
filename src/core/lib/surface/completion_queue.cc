@@ -51,6 +51,10 @@
 #include "absl/strings/str_format.h"
 #include "absl/strings/str_join.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#endif
+
 namespace {
 
 // Specifies a cq thread local cache.
@@ -1267,6 +1271,11 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       tag,
       true};
   ExecCtxPluck exec_ctx(&is_finished_arg);
+
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+  NN_LOG("cq_pluck-0\n");
+#endif
+
   for (;;) {
     if (is_finished_arg.stolen_completion != nullptr) {
       gpr_mu_unlock(cq->mu);
@@ -1278,6 +1287,10 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       c->done(c->done_arg, c);
       break;
     }
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+    NN_LOG("cq_pluck-1\n");
+#endif
+
     prev = &cqd->completed_head;
     while ((c = reinterpret_cast<grpc_cq_completion*>(
                 prev->next & ~uintptr_t{1})) != &cqd->completed_head) {
@@ -1295,12 +1308,21 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       }
       prev = c;
     }
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+    NN_LOG("cq_pluck-2\n");
+#endif
+
     if (cqd->shutdown.load(std::memory_order_relaxed)) {
       gpr_mu_unlock(cq->mu);
       ret.type = GRPC_QUEUE_SHUTDOWN;
       ret.success = 0;
       break;
     }
+
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+    NN_LOG("cq_pluck-3\n");
+#endif
+
     if (!add_plucker(cq, tag, &worker)) {
       VLOG(2) << "Too many outstanding grpc_completion_queue_pluck calls: "
                  "maximum is "
@@ -1312,6 +1334,11 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       dump_pending_tags(cq);
       break;
     }
+
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+    NN_LOG("cq_pluck-4\n");
+#endif
+
     if (!is_finished_arg.first_loop &&
         grpc_core::Timestamp::Now() >= deadline_millis) {
       del_plucker(cq, tag, &worker);
@@ -1323,11 +1350,20 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
     }
     cq->num_polls++;
 
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+    NN_LOG("cq_pluck-5\n");
+#endif
+
     grpc_pollset* pollset = POLLSET_FROM_CQ(cq);
     auto grpc_completion_queue_size = sizeof(grpc_completion_queue);
 
     grpc_error_handle err =
         cq->poller_vtable->work(POLLSET_FROM_CQ(cq), &worker, deadline_millis);
+
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+    NN_LOG("cq_pluck-6\n");
+#endif
+
     if (!err.ok()) {
       del_plucker(cq, tag, &worker);
       gpr_mu_unlock(cq->mu);
