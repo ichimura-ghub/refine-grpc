@@ -49,7 +49,7 @@
 
 #ifdef NN_NINTENDO_SDK
 #include <nn/nn_Log.h>
-// #define _COMPLETION_QUEUE_LOG
+#define _COMPLETION_QUEUE_LOG
 #endif
 
 struct grpc_completion_queue;

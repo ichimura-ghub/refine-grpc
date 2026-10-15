@@ -53,6 +53,7 @@
 
 #ifdef NN_NINTENDO_SDK
 #include <nn/nn_Log.h>
+#define _COMPLETION_QUEUE_LOG2
 #endif
 
 namespace {
@@ -1272,7 +1273,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       true};
   ExecCtxPluck exec_ctx(&is_finished_arg);
 
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
   NN_LOG("cq_pluck-0\n");
 #endif
 
@@ -1287,7 +1288,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       c->done(c->done_arg, c);
       break;
     }
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
     NN_LOG("cq_pluck-1\n");
 #endif
 
@@ -1308,7 +1309,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       }
       prev = c;
     }
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
     NN_LOG("cq_pluck-2\n");
 #endif
 
@@ -1319,7 +1320,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       break;
     }
 
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
     NN_LOG("cq_pluck-3\n");
 #endif
 
@@ -1335,7 +1336,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
       break;
     }
 
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
     NN_LOG("cq_pluck-4\n");
 #endif
 
@@ -1350,7 +1351,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
     }
     cq->num_polls++;
 
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
     NN_LOG("cq_pluck-5\n");
 #endif
 
@@ -1360,7 +1361,7 @@ static grpc_event cq_pluck(grpc_completion_queue* cq, void* tag,
     grpc_error_handle err =
         cq->poller_vtable->work(POLLSET_FROM_CQ(cq), &worker, deadline_millis);
 
-#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG)
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
     NN_LOG("cq_pluck-6\n");
 #endif
 
@@ -1382,6 +1383,10 @@ done:
   GRPC_CQ_INTERNAL_UNREF(cq, "pluck");
 
   GRPC_CHECK_EQ(is_finished_arg.stolen_completion, nullptr);
+
+#if defined(NN_NINTENDO_SDK) && defined(_COMPLETION_QUEUE_LOG2)
+  NN_LOG("cq_pluck-99\n");
+#endif
 
   return ret;
 }

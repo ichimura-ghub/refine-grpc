@@ -295,12 +295,20 @@ absl::Status SetSocketOption(int fd, int level, int option, int value,
   int val = (value != 0);
   int newval;
   socklen_t intlen = sizeof(newval);
+#ifdef NN_x64
+  if (0 != setsockopt(fd, level, option, (const char*)&val, sizeof(val))) {
+#else
   if (0 != setsockopt(fd, level, option, &val, sizeof(val))) {
+#endif
     return absl::Status(absl::StatusCode::kInternal,
                         absl::StrCat("setsockopt(", debug_label,
                                      "): ", grpc_core::StrError(errno)));
   }
+#ifdef NN_x64
+  if (0 != getsockopt(fd, level, option, (char*)&newval, &intlen)) {
+#else
   if (0 != getsockopt(fd, level, option, &newval, &intlen)) {
+#endif
     return absl::Status(absl::StatusCode::kInternal,
                         absl::StrCat("setsockopt(", debug_label,
                                      "): ", grpc_core::StrError(errno)));
@@ -335,19 +343,37 @@ absl::Status SetSocketDscp(int fdesc, int dscp) {
   int val;
   socklen_t intlen = sizeof(val);
   // Get ECN bits from current IP_TOS value unless IPv6 only
+#ifdef NN_x64
+  if (0 == getsockopt(fdesc, IPPROTO_IP, IP_TOS, (char*)&val, &intlen)) {
+#else
   if (0 == getsockopt(fdesc, IPPROTO_IP, IP_TOS, &val, &intlen)) {
+#endif
     newval |= (val & 0x3);
+#ifdef NN_x64
+    if (0 != setsockopt(fdesc, IPPROTO_IP, IP_TOS, (const char*)&newval,
+                        sizeof(newval))) {
+#else
     if (0 != setsockopt(fdesc, IPPROTO_IP, IP_TOS, &newval, sizeof(newval))) {
+#endif
       return absl::Status(
           absl::StatusCode::kInternal,
           absl::StrCat("setsockopt(IP_TOS): ", grpc_core::StrError(errno)));
     }
   }
   // Get ECN from current Traffic Class value if IPv6 is available
+#ifdef NN_x64
+  if (0 == getsockopt(fdesc, IPPROTO_IPV6, IPV6_TCLASS, (char*)&val, &intlen)) {
+#else
   if (0 == getsockopt(fdesc, IPPROTO_IPV6, IPV6_TCLASS, &val, &intlen)) {
+#endif
     newval |= (val & 0x3);
+#ifdef NN_x64
+    if (0 != setsockopt(fdesc, IPPROTO_IPV6, IPV6_TCLASS, (const char*)&newval,
+                        sizeof(newval))) {
+#else
     if (0 !=
         setsockopt(fdesc, IPPROTO_IPV6, IPV6_TCLASS, &newval, sizeof(newval))) {
+#endif
       return absl::Status(absl::StatusCode::kInternal,
                           absl::StrCat("setsockopt(IPV6_TCLASS): ",
                                        grpc_core::StrError(errno)));
@@ -389,7 +415,12 @@ void TrySetSocketTcpUserTimeout(int fd, const PosixTcpOptions& options,
     // If this is the first time to use TCP_USER_TIMEOUT, try to check
     // if it is available.
     if (g_socket_supports_tcp_user_timeout.load() == 0) {
+#ifdef NN_x64
+      if (0 !=
+          getsockopt(fd, IPPROTO_TCP, TCP_USER_TIMEOUT, (char*)&newval, &len)) {
+#else
       if (0 != getsockopt(fd, IPPROTO_TCP, TCP_USER_TIMEOUT, &newval, &len)) {
+#endif
         // This log is intentionally not protected behind a flag, so that
         // users know that TCP_USER_TIMEOUT is not being used.
         GRPC_TRACE_LOG(tcp, INFO)
@@ -404,13 +435,23 @@ void TrySetSocketTcpUserTimeout(int fd, const PosixTcpOptions& options,
       }
     }
     if (g_socket_supports_tcp_user_timeout.load() > 0) {
+#ifdef NN_x64
+      if (0 != setsockopt(fd, IPPROTO_TCP, TCP_USER_TIMEOUT,
+                          (const char*)&timeout, sizeof(timeout))) {
+#else
       if (0 != setsockopt(fd, IPPROTO_TCP, TCP_USER_TIMEOUT, &timeout,
                           sizeof(timeout))) {
+#endif
         LOG(ERROR) << "setsockopt(TCP_USER_TIMEOUT) "
                    << grpc_core::StrError(errno);
         return;
       }
+#ifdef NN_x64
+      if (0 !=
+          getsockopt(fd, IPPROTO_TCP, TCP_USER_TIMEOUT, (char*)&newval, &len)) {
+#else
       if (0 != getsockopt(fd, IPPROTO_TCP, TCP_USER_TIMEOUT, &newval, &len)) {
+#endif
         LOG(ERROR) << "getsockopt(TCP_USER_TIMEOUT) "
                    << grpc_core::StrError(errno);
         return;
@@ -454,7 +495,11 @@ absl::StatusOr<int> InternalCreateDualStackSocket(
     }
     // Fall back to AF_INET.
     if (newfd >= 0) {
+#ifdef NN_x64
+      nn::socket::Close(newfd);
+#else
       close(newfd);
+#endif
     }
     family = AF_INET;
   }
@@ -654,15 +699,27 @@ PosixErrorOr<FileDescriptor> EventEnginePosixInterface::Accept4(
   }
   int raw_fd = fd->fd();
   if (nonblock) {
+#ifdef NN_x64
+    flags = nn::socket::Fcntl(raw_fd, nn::socket::FcntlCommand::F_GetFl, 0);
+#else
     flags = fcntl(raw_fd, F_GETFL, 0);
+#endif
     if (flags < 0) goto close_and_error;
+#ifdef NN_x64
+    if (nn::socket::Fcntl(raw_fd, nn::socket::FcntlCommand::F_SetFl,
+                          flags | (int)nn::socket::FcntlFlag::O_NonBlock) != 0)
+      goto close_and_error;
+#else
     if (fcntl(raw_fd, F_SETFL, flags | O_NONBLOCK) != 0) goto close_and_error;
+#endif
   }
+#ifndef NN_x64
   if (cloexec) {
     flags = fcntl(raw_fd, F_GETFD, 0);
     if (flags < 0) goto close_and_error;
     if (fcntl(raw_fd, F_SETFD, flags | FD_CLOEXEC) != 0) goto close_and_error;
   }
+#endif
   addr = EventEngine::ResolvedAddress(peer_addr.address(), len);
   return fd;
 
@@ -704,12 +761,22 @@ PosixError EventEnginePosixInterface::Connect(const FileDescriptor& sockfd,
 #ifdef NN_x64
 PosixErrorOr<int64_t> EventEnginePosixInterface::RecvMsg(
     const FileDescriptor& fd, nn::socket::MsgHdr* message, int flags) {
-  return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), recvmsg, message, flags);
+  if (!IsCorrectGeneration(fd)) return PosixError::WrongGeneration();
+
+  auto result =
+      nn::socket::RecvMsg(fd.fd(), message, (nn::socket::MsgFlag)flags);
+  if (result < 0) return PosixError::Error(errno);
+  return result;
 }
 
 PosixErrorOr<int64_t> EventEnginePosixInterface::SendMsg(
     const FileDescriptor& fd, const nn::socket::MsgHdr* message, int flags) {
-  return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), sendmsg, message, flags);
+  if (!IsCorrectGeneration(fd)) return PosixError::WrongGeneration();
+
+  auto result =
+      nn::socket::SendMsg(fd.fd(), message, (nn::socket::MsgFlag)flags);
+  if (result < 0) return PosixError::Error(errno);
+  return result;
 }
 #else
 PosixErrorOr<int64_t> EventEnginePosixInterface::RecvMsg(
@@ -775,8 +842,13 @@ PosixError EventEnginePosixInterface::GetSockOpt(const FileDescriptor& fd,
                                                  int level, int optname,
                                                  void* optval, void* optlen) {
   return PosixResultWrap(fd, [&](int fd) {
+#ifdef NN_x64
+    return getsockopt(fd, level, optname, (char*)optval,
+                      static_cast<socklen_t*>(optlen));
+#else
     return getsockopt(fd, level, optname, optval,
                       static_cast<socklen_t*>(optlen));
+#endif
   });
 }
 
@@ -791,17 +863,29 @@ absl::StatusOr<int> EventEnginePosixInterface::GetUnusedPort() {
     wild = ResolvedAddressMakeWild4(0);
   }
   if (bind(*fd, wild.address(), wild.size()) != 0) {
+#ifdef NN_NINTENDO_SDK
+    nn::socket::Close(*fd);
+#else
     close(*fd);
+#endif
     return absl::FailedPreconditionError(
         absl::StrCat("bind(GetUnusedPort): ", grpc_core::StrError(errno)));
   }
   socklen_t len = wild.size();
   if (getsockname(*fd, const_cast<sockaddr*>(wild.address()), &len) != 0) {
+#ifdef NN_NINTENDO_SDK
+    nn::socket::Close(*fd);
+#else
     close(*fd);
+#endif
     return absl::FailedPreconditionError(absl::StrCat(
         "getsockname(GetUnusedPort): ", grpc_core::StrError(errno)));
   }
+#ifdef NN_NINTENDO_SDK
+  nn::socket::Close(*fd);
+#else
   close(*fd);
+#endif
   int port = ResolvedAddressGetPort(wild);
   if (port <= 0) {
     return absl::FailedPreconditionError("Bad port");
@@ -809,10 +893,20 @@ absl::StatusOr<int> EventEnginePosixInterface::GetUnusedPort() {
   return port;
 }
 
+#ifdef NN_x64
+PosixError EventEnginePosixInterface::Ioctl(const FileDescriptor& fd, int op,
+                                            void* arg, size_t arg_size) {
+  return PosixResultWrap(fd, [&](int fd) {
+    return nn::socket::Ioctl(fd, (nn::socket::IoctlCommand)op, arg, arg_size);
+  });
+}
+#else
+
 PosixError EventEnginePosixInterface::Ioctl(const FileDescriptor& fd, int op,
                                             void* arg) {
   return PosixResultWrap(fd, [&](int fd) { return ioctl(fd, op, arg); });
 }
+#endif
 
 absl::StatusOr<EventEngine::ResolvedAddress>
 EventEnginePosixInterface::LocalAddress(const FileDescriptor& fd) {
@@ -966,7 +1060,12 @@ PosixErrorOr<int64_t> EventEnginePosixInterface::SetSockOpt(
   if (!IsCorrectGeneration(fd)) {
     return PosixError::WrongGeneration();
   }
+#ifdef NN_x64
+  if (setsockopt(fd.fd(), level, optname, (const char*)&optval,
+                 sizeof(optval)) < 0) {
+#else
   if (setsockopt(fd.fd(), level, optname, &optval, sizeof(optval)) < 0) {
+#endif
     return PosixError::Error(errno);
   }
   return optval;
@@ -1053,7 +1152,11 @@ absl::Status EventEnginePosixInterface::PrepareTcpClientSocket(
   bool close_fd = true;
   auto sock_cleanup = absl::MakeCleanup([&close_fd, &fd]() -> void {
     if (close_fd && fd >= 0) {
+#ifdef NN_NINTENDO_SDK
+      nn::socket::Close(fd);
+#else
       close(fd);
+#endif
     }
   });
   GRPC_RETURN_IF_ERROR(SetSocketNonBlocking(fd, 1));
@@ -1108,7 +1211,11 @@ PosixErrorOr<FileDescriptor> EventEnginePosixInterface::RegisterPosixResult(
 
 void EventEnginePosixInterface::Close(const FileDescriptor& fd) {
   if (descriptors_.Remove(fd)) {
+#ifdef NN_NINTENDO_SDK
+    nn::socket::Close(fd.fd());
+#else
     close(fd.fd());
+#endif
   }
 }
 
@@ -1127,12 +1234,77 @@ absl::StatusOr<std::pair<FileDescriptor, FileDescriptor> >
 EventEnginePosixInterface::Pipe() {
 #ifdef NN_NINTENDO_SDK
 
-  // とりあえずOKにする.
-  int pipefd[2];
-  pipefd[0] = 1;
-  pipefd[1] = 2;
+  // 1. 受信用と送信用の UDP ソケットを作成.
+  auto read_fd = nn::socket::Socket(nn::socket::Family::Af_Inet,
+                                    nn::socket::Type::Sock_Dgram,
+                                    nn::socket::Protocol::IpProto_Udp);
+  auto write_fd = nn::socket::Socket(nn::socket::Family::Af_Inet,
+                                     nn::socket::Type::Sock_Dgram,
+                                     nn::socket::Protocol::IpProto_Udp);
+  if (read_fd < 0 || write_fd < 0) {
+    if (read_fd >= 0) nn::socket::Close(read_fd);
+    if (write_fd >= 0) nn::socket::Close(write_fd);
+    // Error.
+    return std::pair(descriptors_.Add(0), descriptors_.Add(0));
+  }
 
-  return std::pair(descriptors_.Add(pipefd[0]), descriptors_.Add(pipefd[1]));
+  // 2.
+  // 受信側ソケットをループバック（127.0.0.1:0）にバインドしてポートを自動割り当て.
+  nn::socket::SockAddrIn inaddr;
+  memset(&inaddr, 0, sizeof(inaddr));
+  inaddr.sin_family = nn::socket::Family::Af_Inet;
+  inaddr.sin_addr.S_addr = htonl(INADDR_LOOPBACK);
+  inaddr.sin_port = 0;
+
+  if (nn::socket::Bind(read_fd,
+                       reinterpret_cast<const nn::socket::SockAddr*>(&inaddr),
+                       sizeof(inaddr)) < 0) {
+    int err = (int)nn::socket::GetLastError();
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    // bind failed.
+    return std::pair(descriptors_.Add(0), descriptors_.Add(0));
+  }
+
+  // 3. バインドされたポート番号を取得.
+  u_int addrlen = sizeof(inaddr);
+  if (nn::socket::GetSockName(read_fd,
+                              reinterpret_cast<nn::socket::SockAddr*>(&inaddr),
+                              &addrlen) < 0) {
+    int err = (int)nn::socket::GetLastError();
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    // getsockname failed
+    return std::pair(descriptors_.Add(0), descriptors_.Add(0));
+  }
+
+  // GetSockName で S_addr が 0 (INADDR_ANY) に書き換わっている場合は 127.0.0.1
+  // を再設定.
+  inaddr.sin_addr.S_addr = htonl(INADDR_LOOPBACK);
+
+  // 4. 送信側ソケットを受信側のアドレスに connect (送信先の固定),
+  if (nn::socket::Connect(write_fd,
+                          reinterpret_cast<nn::socket::SockAddr*>(&inaddr),
+                          sizeof(inaddr)) < 0) {
+    int err = (int)nn::socket::GetLastError();
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    // connect failed
+    return std::pair(descriptors_.Add(0), descriptors_.Add(0));
+  }
+
+  // 5. 両方のソケットをノンブロッキングに設定.
+  auto status = SetSocketNonBlocking(read_fd, 1);
+  if (status.ok()) {
+    status = SetSocketNonBlocking(write_fd, 1);
+  }
+  if (!status.ok()) {
+    nn::socket::Close(read_fd);
+    nn::socket::Close(write_fd);
+    return std::pair(descriptors_.Add(0), descriptors_.Add(0));
+  }
+
+  return std::pair(descriptors_.Add(read_fd), descriptors_.Add(write_fd));
 
 //  return absl::Status(absl::StatusCode::kInternal,
 //                      absl::StrCat("pipe: ", grpc_core::StrError(errno)));
@@ -1157,19 +1329,36 @@ EventEnginePosixInterface::Pipe() {
   close(pipefd[0]);
   close(pipefd[1]);
   return status;
-#endif
+#endif  // NN_NINTENDO_SDK
 }
 
 PosixErrorOr<int64_t> EventEnginePosixInterface::Read(const FileDescriptor& fd,
                                                       absl::Span<char> buf) {
+#ifdef NN_NINTENDO_SDK
+  if (!IsCorrectGeneration(fd)) return PosixError::WrongGeneration();
+
+  auto result = nn::socket::Read(fd.fd(), buf.data(), buf.size());
+  if (result < 0) return PosixError::Error(errno);
+  return result;
+
+#else
   return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), read, buf.data(),
                    buf.size());
+#endif
 }
 
 PosixErrorOr<int64_t> EventEnginePosixInterface::Write(const FileDescriptor& fd,
                                                        absl::Span<char> buf) {
+#ifdef NN_NINTENDO_SDK
+  if (!IsCorrectGeneration(fd)) return PosixError::WrongGeneration();
+
+  auto result = nn::socket::Write(fd.fd(), buf.data(), buf.size());
+  if (result < 0) return PosixError::Error(errno);
+  return result;
+#else
   return Int64Wrap(IsCorrectGeneration(fd), fd.fd(), write, buf.data(),
                    buf.size());
+#endif
 }
 #else
 #if !defined(WIN32)

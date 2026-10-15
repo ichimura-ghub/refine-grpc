@@ -75,9 +75,11 @@ namespace grpc_core {
 
 // Converts grpc_slice to absl::string_view.
 inline absl::string_view StringViewFromSlice(const grpc_slice& slice) {
-  return absl::string_view(
-      reinterpret_cast<const char*>(GRPC_SLICE_START_PTR(slice)),
-      GRPC_SLICE_LENGTH(slice));
+  const char* start_ptr =
+      reinterpret_cast<const char*>(GRPC_SLICE_START_PTR(slice));
+  size_t length = GRPC_SLICE_LENGTH(slice);
+
+  return absl::string_view(start_ptr, length);
 }
 
 }  // namespace grpc_core

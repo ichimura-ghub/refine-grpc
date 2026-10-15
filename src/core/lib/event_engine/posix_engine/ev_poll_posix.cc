@@ -57,6 +57,12 @@
 #include "src/core/util/sync.h"
 #include "src/core/util/time.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#include <nn/os.h>
+#include <nn/socket.h>
+#endif
+
 static const intptr_t kClosureNotReady = 0;
 static const intptr_t kClosureReady = 1;
 static const int kPollinCheck = POLLIN | POLLHUP | POLLERR;
@@ -561,6 +567,12 @@ Poller::WorkResult PollPoller::Work(
     pfds[0].fd = *wakeup_fd;
     pfds[0].events = POLLIN;
     pfds[0].revents = 0;
+
+    //    char dummy = 'W';
+    //    auto wakeup_w_fd = posix_interface().GetFd(wakeup_fd_->WriteFd());
+    //    int rrr = nn::socket::Send(*wakeup_w_fd, &dummy, 1,
+    //    (nn::socket::MsgFlag)0);
+
     // Event handles from before fork, need to be notified
     PollEventHandle* head = poll_handles_list_head_;
     while (head != nullptr) {
@@ -697,6 +709,10 @@ Poller::WorkResult PollPoller::Work(
       was_kicked_ext = true;
       break;
     }
+
+#ifdef NN_NINTENDO_SDK
+    nn::os::SleepThread(nn::TimeSpan::FromMilliSeconds(100));
+#endif
   }
   mu_.Unlock();
   if (pending_events.empty()) {

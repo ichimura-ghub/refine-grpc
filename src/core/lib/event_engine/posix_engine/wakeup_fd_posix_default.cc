@@ -32,6 +32,39 @@ absl::StatusOr<std::unique_ptr<WakeupFd>> NotSupported(
   return absl::NotFoundError("Wakeup-fd is not supported on this system");
 }
 
+#ifdef NN_NINTENDO_SDK
+namespace {
+
+using WakeupFdFactory = absl::StatusOr<std::unique_ptr<WakeupFd>> (*)(
+    EventEnginePosixInterface* posix_interface);
+
+// 静的変数による即時呼び出しを行わず、遅延初期化関数にする
+WakeupFdFactory GetWakeupFdFactory() {
+  static WakeupFdFactory factory = []() -> WakeupFdFactory {
+#ifndef GRPC_POSIX_NO_SPECIAL_WAKEUP_FD
+    if (EventFdWakeupFd::IsSupported()) {
+      return &EventFdWakeupFd::CreateEventFdWakeupFd;
+    }
+#endif  // GRPC_POSIX_NO_SPECIAL_WAKEUP_FD
+    // nn::socket::Initialize() が完了した後に安全に IsSupported() が呼ばれる
+    if (PipeWakeupFd::IsSupported()) {
+      return &PipeWakeupFd::CreatePipeWakeupFd;
+    }
+    return NotSupported;
+  }();
+  return factory;
+}
+}  // namespace
+
+bool SupportsWakeupFd() { return GetWakeupFdFactory() != NotSupported; }
+
+absl::StatusOr<std::unique_ptr<WakeupFd>> CreateWakeupFd(
+    EventEnginePosixInterface* posix_interface) {
+  return GetWakeupFdFactory()(posix_interface);
+}
+
+#else
+
 namespace {
 absl::StatusOr<std::unique_ptr<WakeupFd>> (*g_wakeup_fd_fn)(
     EventEnginePosixInterface* posix_interface) =
@@ -55,6 +88,7 @@ absl::StatusOr<std::unique_ptr<WakeupFd>> CreateWakeupFd(
     EventEnginePosixInterface* posix_interface) {
   return g_wakeup_fd_fn(posix_interface);
 }
+#endif  // NN_NINTENDO_SDK
 
 #else  // GRPC_POSIX_WAKEUP_FD
 

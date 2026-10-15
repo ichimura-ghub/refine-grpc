@@ -47,6 +47,13 @@
 #include "absl/log/check.h"
 #include "absl/log/log.h"
 
+#ifdef NN_NINTENDO_SDK
+#include <nn/nn_Log.h>
+#include <nn/os/os_Thread.h>
+
+#define _NNTHREAD_BASE
+#endif
+
 namespace grpc_core {
 namespace {
 
@@ -59,6 +66,9 @@ struct thd_arg {
   const char* name;         // name of thread. Can be nullptr.
   bool joinable;
   bool tracked;
+#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
+  void* stack_men_ptr;
+#endif
 };
 
 size_t RoundUpToPageSize(size_t size) {
@@ -109,6 +119,9 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     info->name = thd_name;
     info->joinable = options.joinable();
     info->tracked = options.tracked();
+#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
+    info->stack_men_ptr = nullptr;
+#endif
     if (options.tracked()) {
       Fork::IncThreadCount();
     }
@@ -181,6 +194,68 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
       }
     }
 #else
+
+#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
+    const size_t stack_size = 0x4000 * 8;  // 32KB
+    auto stack_mem = malloc(RoundUpToPageSize(stack_size));
+    info->stack_men_ptr = stack_mem;
+
+    auto result = nn::os::CreateThread(
+        &pthread_id_,
+        [](void* v) -> void {
+          thd_arg arg = *static_cast<thd_arg*>(v);
+          free(v);
+          if (arg.name != nullptr) {
+#if GPR_APPLE_PTHREAD_NAME
+            // Apple supports 64 characters, and will
+            // truncate if it's longer.
+            pthread_setname_np(arg.name);
+#elif GPR_LINUX_PTHREAD_NAME
+            // Linux supports 16 characters max, and will
+            // error if it's longer.
+            char buf[16];
+            size_t buf_len = GPR_ARRAY_SIZE(buf) - 1;
+            strncpy(buf, arg.name, buf_len);
+            buf[buf_len] = '\0';
+            pthread_setname_np(pthread_self(), buf);
+#endif  // GPR_APPLE_PTHREAD_NAME
+#ifdef NN_NINTENDO_SDK
+            NN_LOG("Thread::Name(%s)\n", arg.name);
+#endif
+          } else {
+#ifdef NN_NINTENDO_SDK
+            NN_LOG("Thread:: No Name\n");
+#endif
+          }
+
+          gpr_mu_lock(&arg.thread->mu_);
+          while (!arg.thread->started_) {
+            gpr_cv_wait(&arg.thread->ready_, &arg.thread->mu_,
+                        gpr_inf_future(GPR_CLOCK_MONOTONIC));
+          }
+          gpr_mu_unlock(&arg.thread->mu_);
+
+          if (!arg.joinable) {
+            delete arg.thread;
+          }
+
+          (*arg.body)(arg.arg);
+          if (arg.tracked) {
+            Fork::DecThreadCount();
+            if (arg.stack_men_ptr) {
+              free(arg.stack_men_ptr);
+            }
+          }
+        },
+        info, stack_mem, stack_size, 0);
+
+    uint64_t affinity_mask = 4;
+    nn::os::SetThreadCoreMask(&pthread_id_, nn::os::IdealCoreDontCare,
+                              affinity_mask);
+
+    *success = result.IsSuccess();
+
+#else
     pthread_attr_t attr;
     CHECK_EQ(pthread_attr_init(&attr), 0);
     if (options.joinable()) {
@@ -233,13 +308,23 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
           return nullptr;
         },
         info);
+
     *success = (pthread_create_err == 0);
 
     CHECK_EQ(pthread_attr_destroy(&attr), 0);
+#endif
 
     if (!(*success)) {
+#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
+      NN_LOG("pthread_create failed: ");
+      if (info->stack_men_ptr) {
+        free(info->stack_men_ptr);
+      }
+#else
       LOG(ERROR) << "pthread_create failed: " << StrError(pthread_create_err);
+#endif
       // don't use gpr_free, as this was allocated using malloc (see above)
+
       free(info);
       if (options.tracked()) {
         Fork::DecThreadCount();
@@ -257,6 +342,11 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     gpr_mu_lock(&mu_);
     started_ = true;
     gpr_cv_signal(&ready_);
+
+#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
+    nn::os::StartThread(&pthread_id_);
+#endif
+
     gpr_mu_unlock(&mu_);
   }
 
@@ -271,10 +361,12 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
       pthread_id_ = NULL;
     }
 #else
+#ifndef NN_NINTENDO_SDK
     int pthread_join_err = pthread_join(pthread_id_, nullptr);
     if (pthread_join_err != 0) {
       Crash("pthread_join failed: " + StrError(pthread_join_err));
     }
+#endif
 #endif
   }
 
@@ -282,11 +374,15 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
   gpr_mu mu_;
   gpr_cv ready_;
   bool started_;
+#ifdef NN_NINTENDO_SDK
 #ifdef NN_x64
   HANDLE pthread_id_;
 #else
+  nn::os::ThreadType pthread_id_;
+#endif  // NN_x64
+#else
   pthread_t pthread_id_;
-#endif
+#endif  // NN_NINTENDO_SDK
 };
 
 }  // namespace
@@ -309,6 +405,17 @@ void Thread::Kill(gpr_thd_id tid) {
     LOG(ERROR) << "pthread_cancel for tid " << tid
                << " failed: " << StrError(cancel_err);
   }
+#else
+
+  // TODO:ichi Threadを管理するマネージャが必要.
+//  nn::os::WaitThread(&pthread_id_);
+//  nn::os::DestroyThread(&pthread_id_);
+
+//  if (thread_stack_ptr_ != nullptr) {
+//    INNDevice::GetInstance()->MemAllocateFree(thread_stack_ptr_);
+
+//    thread_stack_ptr_ = nullptr;
+//  }
 #endif
 }
 #else  // GPR_ANDROID

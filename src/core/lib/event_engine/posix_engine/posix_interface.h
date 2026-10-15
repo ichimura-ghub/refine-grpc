@@ -160,7 +160,13 @@ class EventEnginePosixInterface {
   // Finds and returns an unused network port.
   absl::StatusOr<int> GetUnusedPort();
   // Performs an ioctl operation on a file descriptor.
+#ifdef NN_x64
+  PosixError Ioctl(const FileDescriptor& fd, int op, void* arg,
+                   size_t arg_size);
+#else
   PosixError Ioctl(const FileDescriptor& fd, int op, void* arg);
+#endif
+
   // Retrieves the local address of a socket as an EventEngine::ResolvedAddress.
   absl::StatusOr<EventEngine::ResolvedAddress> LocalAddress(
       const FileDescriptor& fd);

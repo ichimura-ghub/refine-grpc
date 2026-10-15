@@ -24,15 +24,21 @@
 #include "src/core/util/crash.h"  // IWYU pragma: keep
 
 #ifdef GRPC_POSIX_SOCKET_UTILS_COMMON
+#ifndef NN_x64
 #include <arpa/inet.h>  // IWYU pragma: keep
+#endif
 #ifdef GRPC_LINUX_TCP_H
 #include <linux/tcp.h>
 #else
+#ifndef NN_x64
 #include <netinet/in.h>  // IWYU pragma: keep
 #include <netinet/tcp.h>
 #endif
+#endif
 #include <fcntl.h>
+#ifndef NN_x64
 #include <sys/socket.h>
+#endif
 #include <unistd.h>
 #endif  //  GRPC_POSIX_SOCKET_UTILS_COMMON
 
