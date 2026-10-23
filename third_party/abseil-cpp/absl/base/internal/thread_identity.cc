@@ -143,7 +143,11 @@ void ClearCurrentThreadIdentity() {
 #elif ABSL_THREAD_IDENTITY_MODE == \
     ABSL_THREAD_IDENTITY_MODE_USE_POSIX_SETSPECIFIC
   // pthread_setspecific expected to clear value on destruction
+#ifdef NN_NINTENDO_SDK
+  pthread_setspecific(thread_identity_pthread_key, nullptr);
+#else
   assert(CurrentThreadIdentityIfPresent() == nullptr);
+#endif
 #endif
 }
 

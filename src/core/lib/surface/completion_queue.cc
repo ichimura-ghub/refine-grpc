@@ -53,7 +53,7 @@
 
 #ifdef NN_NINTENDO_SDK
 #include <nn/nn_Log.h>
-#define _COMPLETION_QUEUE_LOG2
+// #define _COMPLETION_QUEUE_LOG2
 #endif
 
 namespace {

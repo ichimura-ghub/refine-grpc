@@ -49,9 +49,14 @@
 
 #ifdef NN_NINTENDO_SDK
 #include <nn/nn_Log.h>
+#include <nn/os.h>
 #include <nn/os/os_Thread.h>
 
+#include "absl/base/internal/thread_identity.h"
+
 #define _NNTHREAD_BASE
+#define _MALLOC_BASE
+
 #endif
 
 namespace grpc_core {
@@ -67,7 +72,8 @@ struct thd_arg {
   bool joinable;
   bool tracked;
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
-  void* stack_men_ptr;
+  void* stack_mem_ptr;
+  size_t stack_mem_size;
 #endif
 };
 
@@ -120,7 +126,8 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     info->joinable = options.joinable();
     info->tracked = options.tracked();
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
-    info->stack_men_ptr = nullptr;
+    info->stack_mem_ptr = nullptr;
+    info->stack_mem_size = 0;
 #endif
     if (options.tracked()) {
       Fork::IncThreadCount();
@@ -197,8 +204,18 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
 
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
     const size_t stack_size = 0x4000 * 8;  // 32KB
-    auto stack_mem = malloc(RoundUpToPageSize(stack_size));
-    info->stack_men_ptr = stack_mem;
+    uintptr_t stack_mem;
+
+    auto aligned_stack_size =
+        nn::util::align_up(stack_size, nn::os::MemoryPageSize);
+#ifndef _MALLOC_BASE
+    nn::os::AllocateMemoryBlock(&stack_mem, aligned_stack_size);
+#else
+    stack_mem = (uintptr_t)malloc(aligned_stack_size);
+#endif
+    info->stack_mem_ptr = (void*)stack_mem;
+    info->stack_mem_size = aligned_stack_size;
+    NN_LOG("Thread::Stack Alloc (%lX)\n", stack_mem);
 
     auto result = nn::os::CreateThread(
         &pthread_id_,
@@ -220,7 +237,8 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
             pthread_setname_np(pthread_self(), buf);
 #endif  // GPR_APPLE_PTHREAD_NAME
 #ifdef NN_NINTENDO_SDK
-            NN_LOG("Thread::Name(%s)\n", arg.name);
+            auto id = nn::os::GetCurrentThread();
+            NN_LOG("Thread::Name[%ld](%s)\n", id->_threadId, arg.name);
 #endif
           } else {
 #ifdef NN_NINTENDO_SDK
@@ -242,12 +260,19 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
           (*arg.body)(arg.arg);
           if (arg.tracked) {
             Fork::DecThreadCount();
-            if (arg.stack_men_ptr) {
-              free(arg.stack_men_ptr);
-            }
+          }
+
+          if (arg.stack_mem_ptr) {
+            NN_LOG("Thread::Stack Free (%lX)\n", arg.stack_mem_ptr);
+#ifndef _MALLOC_BASE
+            nn::os::FreeMemoryBlock((uintptr_t)arg.stack_mem_ptr,
+                                    arg.stack_mem_size);
+#else
+            free(arg.stack_mem_ptr);
+#endif
           }
         },
-        info, stack_mem, stack_size, 0);
+        info, info->stack_mem_ptr, info->stack_mem_size, 0);
 
     uint64_t affinity_mask = 4;
     nn::os::SetThreadCoreMask(&pthread_id_, nn::os::IdealCoreDontCare,
@@ -316,9 +341,15 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
 
     if (!(*success)) {
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
-      NN_LOG("pthread_create failed: ");
-      if (info->stack_men_ptr) {
-        free(info->stack_men_ptr);
+      NN_LOG("pthread_create failed: \n");
+      if (info->stack_mem_ptr) {
+        NN_LOG("Thread::Stack Free (%lX)\n", info->stack_mem_ptr);
+#ifndef _MALLOC_BASE
+        nn::os::FreeMemoryBlock((uintptr_t)info->stack_mem_ptr,
+                                info->stack_mem_size);
+#else
+        free(info->stack_mem_ptr);
+#endif
       }
 #else
       LOG(ERROR) << "pthread_create failed: " << StrError(pthread_create_err);
@@ -366,6 +397,10 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     if (pthread_join_err != 0) {
       Crash("pthread_join failed: " + StrError(pthread_join_err));
     }
+#else
+
+    nn::os::WaitThread(&pthread_id_);
+    NN_LOG("Thread::Join\n");
 #endif
 #endif
   }
@@ -394,6 +429,9 @@ void Thread::Signal(gpr_thd_id tid, int sig) {
     LOG(ERROR) << "pthread_kill for tid " << tid
                << " failed: " << StrError(kill_err);
   }
+#else
+  NN_LOG("Thread::Signal\n");
+
 #endif
 }
 
@@ -406,16 +444,13 @@ void Thread::Kill(gpr_thd_id tid) {
                << " failed: " << StrError(cancel_err);
   }
 #else
+  NN_LOG("Thread::Kill\n");
 
-  // TODO:ichi Threadを管理するマネージャが必要.
-//  nn::os::WaitThread(&pthread_id_);
-//  nn::os::DestroyThread(&pthread_id_);
+  nn::os::ThreadType* id = (nn::os::ThreadType*)tid;
 
-//  if (thread_stack_ptr_ != nullptr) {
-//    INNDevice::GetInstance()->MemAllocateFree(thread_stack_ptr_);
+  nn::os::WaitThread(id);
+  nn::os::DestroyThread(id);
 
-//    thread_stack_ptr_ = nullptr;
-//  }
 #endif
 }
 #else  // GPR_ANDROID
@@ -448,10 +483,11 @@ gpr_thd_id gpr_thd_currentid(void) {
   // Use C-style casting because Linux and OSX have different definitions
   // of pthread_t so that a single C++ cast doesn't handle it.
   // NOLINTNEXTLINE(google-readability-casting)
-#ifdef NN_x64
-  return static_cast<gpr_thd_id>(GetCurrentThreadId());
-#else
+
+#ifndef NN_NINTENDO_SDK
   return (gpr_thd_id)pthread_self();
+#else
+  return (gpr_thd_id)nn::os::GetCurrentThread();
 #endif
 }
 

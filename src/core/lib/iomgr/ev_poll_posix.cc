@@ -52,7 +52,7 @@
 
 #ifdef NN_NINTENDO_SDK
 #include <nn/nn_Log.h>
-#define _EV_POLL_POSIX_LOG
+// #define _EV_POLL_POSIX_LOG
 #endif
 
 #define GRPC_POLLSET_KICK_BROADCAST ((grpc_pollset_worker*)1)
