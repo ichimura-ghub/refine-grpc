@@ -188,6 +188,11 @@ class Thread {
   Options options_;
 };
 
+#if defined(NN_NINTENDO_SDK)
+extern void ThreadInitialize();
+extern void ThreadShutDown();
+#endif
+
 }  // namespace grpc_core
 
 #endif  // GRPC_SRC_CORE_UTIL_THD_H

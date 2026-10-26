@@ -105,6 +105,10 @@ static void do_basic_init(void) {
 }
 
 void grpc_init(void) {
+#if defined(NN_NINTENDO_SDK)
+  grpc_core::ThreadInitialize();
+#endif
+
   gpr_once_init(&g_basic_init, do_basic_init);
 
   grpc_core::MutexLock lock(g_init_mu);
@@ -184,6 +188,10 @@ void grpc_shutdown(void) {
           "grpc_shutdown", grpc_shutdown_from_cleanup_thread, nullptr, nullptr,
           grpc_core::Thread::Options().set_joinable(false).set_tracked(false));
       cleanup_thread.Start();
+
+#if defined(NN_NINTENDO_SDK)
+      grpc_core::ThreadShutDown();
+#endif
     }
   }
 }

@@ -60,6 +60,9 @@
 #endif
 
 namespace grpc_core {
+#if defined(NN_NINTENDO_SDK)
+bool is_shut_down = false;
+#endif
 namespace {
 
 class ThreadInternalsPosix;
@@ -215,7 +218,7 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
 #endif
     info->stack_mem_ptr = (void*)stack_mem;
     info->stack_mem_size = aligned_stack_size;
-    NN_LOG("Thread::Stack Alloc (%lX)\n", stack_mem);
+    NN_LOG("Thread::Stack Alloc (%lX)(%s)\n", stack_mem, info->name);
 
     auto result = nn::os::CreateThread(
         &pthread_id_,
@@ -263,7 +266,8 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
           }
 
           if (arg.stack_mem_ptr) {
-            NN_LOG("Thread::Stack Free (%lX)\n", arg.stack_mem_ptr);
+            NN_LOG("Thread::Stack Free (%lX)(%s)\n", arg.stack_mem_ptr,
+                   arg.name);
 #ifndef _MALLOC_BASE
             nn::os::FreeMemoryBlock((uintptr_t)arg.stack_mem_ptr,
                                     arg.stack_mem_size);
@@ -463,6 +467,17 @@ Thread::Thread(const char* thd_name, void (*thd_body)(void* arg), void* arg,
                bool* success, const Options& options)
     : options_(options) {
   bool outcome = false;
+#if defined(NN_NINTENDO_SDK)
+  if (is_shut_down) {
+    state_ = FAILED;
+    impl_ = nullptr;
+    if (success != nullptr) {
+      *success = outcome;
+    }
+    return;
+  }
+#endif
+
   impl_ = new ThreadInternalsPosix(thd_name, thd_body, arg, &outcome, options);
   if (outcome) {
     state_ = ALIVE;
@@ -476,6 +491,12 @@ Thread::Thread(const char* thd_name, void (*thd_body)(void* arg), void* arg,
     *success = outcome;
   }
 }
+
+#if defined(NN_NINTENDO_SDK)
+void ThreadInitialize() { is_shut_down = false; }
+void ThreadShutDown() { is_shut_down = true; }
+#endif
+
 }  // namespace grpc_core
 
 // The following is in the external namespace as it is exposed as C89 API
