@@ -135,6 +135,12 @@ void grpc_init(void) {
   GRPC_TRACE_LOG(api, INFO) << "grpc_init(void)";
 }
 
+void grpc_finalize(void) {
+#if defined(NN_NINTENDO_SDK)
+  grpc_core::ThreadRelease();
+#endif
+}
+
 void grpc_shutdown_internal_locked(void)
     ABSL_EXCLUSIVE_LOCKS_REQUIRED(g_init_mu) {
   {
@@ -150,6 +156,9 @@ void grpc_shutdown_internal_locked(void)
   }
   g_shutting_down = false;
   g_shutting_down_cv->SignalAll();
+#if defined(NN_NINTENDO_SDK)
+  grpc_core::ThreadShutDownEnd();
+#endif
 }
 
 void grpc_shutdown_from_cleanup_thread(void* /*ignored*/) {

@@ -57,11 +57,16 @@
 #define _NNTHREAD_BASE
 #define _MALLOC_BASE
 
+#ifdef _ND_PROFILE
+#include <nn/profiler.h>
+#endif
+
 #endif
 
 namespace grpc_core {
 #if defined(NN_NINTENDO_SDK)
 bool is_shut_down = false;
+bool is_shut_down_end = false;
 #endif
 namespace {
 
@@ -74,15 +79,121 @@ struct thd_arg {
   const char* name;         // name of thread. Can be nullptr.
   bool joinable;
   bool tracked;
-#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
-  void* stack_mem_ptr;
-  size_t stack_mem_size;
-#endif
 };
 
+#if defined(NN_NINTENDO_SDK)
+class ThreadManager {
+ public:
+  struct Info {
+    nn::os::ThreadType thread_id;
+    void* stack_mem_ptr = nullptr;
+    size_t stack_mem_size = 0;
+    bool release_request = false;
+    const char* name = nullptr;
+  };
+
+ private:
+  gpr_mu mu_;
+  std::vector<Info*> thread_infos_;
+
+  void ReleaseThread(Info* info, nn::os::ThreadType* thread_id) {
+    NN_LOG("Thread::ReleaseThread WaitThread (%s)\n", info->name);
+
+    nn::os::WaitThread(&info->thread_id);
+    nn::os::DestroyThread(&info->thread_id);
+
+    if (info->stack_mem_ptr != nullptr) {
+#ifdef _ND_PROFILE
+      nn::profiler::TrackDeallocation(info->stack_mem_ptr, nullptr);
+#endif
+      NN_LOG("Thread::Stack Free (%lX)(%s)\n", info->stack_mem_ptr, info->name);
+
+      free(info->stack_mem_ptr);
+      info->stack_mem_ptr = nullptr;
+    }
+  }
+
+ public:
+  ThreadManager() { gpr_mu_init(&mu_); }
+  virtual ~ThreadManager() { ReleaseCheck(); }
+
+  void Add(const Info* info) {
+    gpr_mu_lock(&mu_);
+    thread_infos_.push_back(const_cast<Info*>(info));
+    gpr_mu_unlock(&mu_);
+  }
+
+  void ReleaseRequest(const nn::os::ThreadType* thread_id) {
+    gpr_mu_lock(&mu_);
+    for (auto info : thread_infos_) {
+      if (info->thread_id._threadId == thread_id->_threadId) {
+        info->release_request = true;
+        break;
+      }
+    }
+    gpr_mu_unlock(&mu_);
+  }
+
+  void Release(const nn::os::ThreadType* thread_id) {
+    gpr_mu_lock(&mu_);
+    NN_LOG("Thread::Release-Start(%d)\n", thread_infos_.size());
+
+    if (thread_infos_.size() == 0) {
+      gpr_mu_unlock(&mu_);
+      return;
+    }
+
+    for (auto i = static_cast<int>(thread_infos_.size()) - 1; i >= 0; --i) {
+      auto info = thread_infos_[i];
+      if (info->thread_id._threadId == thread_id->_threadId) {
+        ReleaseThread(info, const_cast<nn::os::ThreadType*>(thread_id));
+
+        thread_infos_.erase(thread_infos_.begin() + i);
+        delete info;
+        break;
+      }
+    }
+
+    NN_LOG("Thread::Release-End(%d)\n", thread_infos_.size());
+    gpr_mu_unlock(&mu_);
+  }
+
+  void ReleaseCheck(bool force_release = false) {
+    gpr_mu_lock(&mu_);
+    NN_LOG("Thread::ReleaseCheck-Start(%d)(%d)\n", thread_infos_.size(),
+           force_release);
+
+    if (thread_infos_.size() == 0) {
+      gpr_mu_unlock(&mu_);
+      return;
+    }
+
+    std::vector<Info*> thread_release_infos;
+
+    for (auto i = static_cast<int>(thread_infos_.size()) - 1; i >= 0; --i) {
+      auto info = thread_infos_[i];
+      if (info->release_request || force_release) {
+        thread_release_infos.push_back(info);
+        thread_infos_.erase(thread_infos_.begin() + i);
+      }
+    }
+    gpr_mu_unlock(&mu_);
+
+    for (auto info : thread_release_infos) {
+      ReleaseThread(info, &info->thread_id);
+      delete info;
+    }
+    thread_release_infos.clear();
+
+    NN_LOG("Thread::ReleaseCheck-End(%d)\n", thread_infos_.size());
+  }
+};
+static ThreadManager g_thread_manager;
+#endif
+
 size_t RoundUpToPageSize(size_t size) {
-  // TODO(yunjiaw): Change this variable (page_size) to a function-level static
-  // when possible
+  // TODO(yunjiaw): Change this variable (page_size) to a function-level
+  // static when possible
 
 #ifdef NN_x64
   SYSTEM_INFO sysInfo;
@@ -111,6 +222,10 @@ size_t MinValidStackSize(size_t request_size) {
   return RoundUpToPageSize(request_size);
 }
 
+#ifdef _ND_PROFILE
+nn::profiler::HeapIdentifier heap_id;
+#endif
+
 class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
  public:
   ThreadInternalsPosix(const char* thd_name, void (*thd_body)(void* arg),
@@ -118,6 +233,9 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
       : started_(false) {
     gpr_mu_init(&mu_);
     gpr_cv_init(&ready_);
+
+    g_thread_manager.ReleaseCheck();
+
     // don't use gpr_malloc as we may cause an infinite recursion with
     // the profiling code
     thd_arg* info = static_cast<thd_arg*>(malloc(sizeof(*info)));
@@ -128,10 +246,6 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     info->name = thd_name;
     info->joinable = options.joinable();
     info->tracked = options.tracked();
-#if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
-    info->stack_mem_ptr = nullptr;
-    info->stack_mem_size = 0;
-#endif
     if (options.tracked()) {
       Fork::IncThreadCount();
     }
@@ -203,7 +317,7 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
         Fork::DecThreadCount();
       }
     }
-#else
+#else  // NN_x64
 
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
     const size_t stack_size = 0x4000 * 8;  // 32KB
@@ -213,15 +327,34 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
         nn::util::align_up(stack_size, nn::os::MemoryPageSize);
 #ifndef _MALLOC_BASE
     nn::os::AllocateMemoryBlock(&stack_mem, aligned_stack_size);
-#else
+#else  // _MALLOC_BASE
     stack_mem = (uintptr_t)malloc(aligned_stack_size);
-#endif
-    info->stack_mem_ptr = (void*)stack_mem;
-    info->stack_mem_size = aligned_stack_size;
+#ifdef _ND_PROFILE
+    //    nn::profiler::TrackingId id = nn::profiler::GenerateNextTrackingId();
+    nn::profiler::AdditionalAllocationInformation allocInfo;
+    //    allocInfo.actualSize = aligned_stack_size;
+    //    allocInfo.actualAddress = (const void*)stack_mem;
+    //    allocInfo.heap = heap_id;
+    //    allocInfo.trackingId = id;
+
+    std::string profile_label = "grp.th-stack";
+    strncpy(allocInfo.label, profile_label.c_str(), sizeof(allocInfo.label));
+    std::string profile_scope = "Dynamic Module";
+    strncpy(allocInfo.scope, profile_scope.c_str(), sizeof(allocInfo.scope));
+    nn::profiler::TrackAllocation((const void*)stack_mem, aligned_stack_size,
+                                  &allocInfo);
+#endif  // _ND_PROFILE
+
+#endif  // _MALLOC_BASE
+    auto thread_info = new ThreadManager::Info();
+
+    thread_info->stack_mem_ptr = (void*)stack_mem;
+    thread_info->stack_mem_size = aligned_stack_size;
+    thread_info->name = info->name;
     NN_LOG("Thread::Stack Alloc (%lX)(%s)\n", stack_mem, info->name);
 
     auto result = nn::os::CreateThread(
-        &pthread_id_,
+        &thread_info->thread_id,
         [](void* v) -> void {
           thd_arg arg = *static_cast<thd_arg*>(v);
           free(v);
@@ -239,14 +372,11 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
             buf[buf_len] = '\0';
             pthread_setname_np(pthread_self(), buf);
 #endif  // GPR_APPLE_PTHREAD_NAME
-#ifdef NN_NINTENDO_SDK
             auto id = nn::os::GetCurrentThread();
-            NN_LOG("Thread::Name[%ld](%s)\n", id->_threadId, arg.name);
-#endif
+            NN_LOG("Thread::Name[%ld](%s)(%d)\n", id->_threadId, arg.name,
+                   arg.joinable);
           } else {
-#ifdef NN_NINTENDO_SDK
             NN_LOG("Thread:: No Name\n");
-#endif
           }
 
           gpr_mu_lock(&arg.thread->mu_);
@@ -265,26 +395,28 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
             Fork::DecThreadCount();
           }
 
-          if (arg.stack_mem_ptr) {
-            NN_LOG("Thread::Stack Free (%lX)(%s)\n", arg.stack_mem_ptr,
-                   arg.name);
-#ifndef _MALLOC_BASE
-            nn::os::FreeMemoryBlock((uintptr_t)arg.stack_mem_ptr,
-                                    arg.stack_mem_size);
-#else
-            free(arg.stack_mem_ptr);
-#endif
+          if (!arg.joinable) {
+            auto thread_id = nn::os::GetCurrentThread();
+            g_thread_manager.ReleaseRequest(thread_id);
           }
         },
-        info, info->stack_mem_ptr, info->stack_mem_size, 0);
-
-    uint64_t affinity_mask = 4;
-    nn::os::SetThreadCoreMask(&pthread_id_, nn::os::IdealCoreDontCare,
-                              affinity_mask);
+        info, thread_info->stack_mem_ptr, thread_info->stack_mem_size,
+        nn::os::DefaultThreadPriority);
 
     *success = result.IsSuccess();
 
-#else
+    if ((*success)) {
+      nn::os::SetThreadName(&thread_info->thread_id, thread_info->name);
+
+      uint64_t affinity_mask = 4;
+      nn::os::SetThreadCoreMask(&thread_info->thread_id,
+                                nn::os::IdealCoreDontCare, affinity_mask);
+
+      pthread_id_ = &thread_info->thread_id;
+      g_thread_manager.Add(thread_info);
+    }
+
+#else  // NN_NINTENDO_SDK
     pthread_attr_t attr;
     CHECK_EQ(pthread_attr_init(&attr), 0);
     if (options.joinable()) {
@@ -341,31 +473,36 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     *success = (pthread_create_err == 0);
 
     CHECK_EQ(pthread_attr_destroy(&attr), 0);
-#endif
+#endif  // NN_NINTENDO_SDK
+#endif  // NN_x64
 
     if (!(*success)) {
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
       NN_LOG("pthread_create failed: \n");
-      if (info->stack_mem_ptr) {
-        NN_LOG("Thread::Stack Free (%lX)\n", info->stack_mem_ptr);
 #ifndef _MALLOC_BASE
-        nn::os::FreeMemoryBlock((uintptr_t)info->stack_mem_ptr,
-                                info->stack_mem_size);
-#else
-        free(info->stack_mem_ptr);
+      nn::os::FreeMemoryBlock((uintptr_t)info->stack_mem_ptr,
+                              info->stack_mem_size);
+#else  // _MALLOC_BASE
+#ifdef _ND_PROFILE
+      nn::profiler::TrackDeallocation(thread_info->stack_mem_ptr, nullptr);
 #endif
-      }
-#else
+      NN_LOG("Thread::Stack Free (%lX)(%s)\n", thread_info->stack_mem_ptr,
+             thread_info->name);
+
+      free(thread_info->stack_mem_ptr);
+      delete thread_info;
+
+#endif  // _MALLOC_BASE
+#else   // NN_NINTENDO_SDK
       LOG(ERROR) << "pthread_create failed: " << StrError(pthread_create_err);
-#endif
-      // don't use gpr_free, as this was allocated using malloc (see above)
+#endif  // NN_NINTENDO_SDK
+        // don't use gpr_free, as this was allocated using malloc (see above)
 
       free(info);
       if (options.tracked()) {
         Fork::DecThreadCount();
       }
     }
-#endif
   }
 
   ~ThreadInternalsPosix() override {
@@ -379,7 +516,9 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     gpr_cv_signal(&ready_);
 
 #if defined(NN_NINTENDO_SDK) && defined(_NNTHREAD_BASE)
-    nn::os::StartThread(&pthread_id_);
+    nn::os::StartThread(pthread_id_);
+    NN_LOG("Thread::Start---(%X)\n", pthread_id_->_threadId);
+
 #endif
 
     gpr_mu_unlock(&mu_);
@@ -403,8 +542,11 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
     }
 #else
 
-    nn::os::WaitThread(&pthread_id_);
-    NN_LOG("Thread::Join\n");
+    NN_LOG("Thread::Join-Start\n");
+    g_thread_manager.Release(pthread_id_);
+    g_thread_manager.ReleaseCheck();
+    NN_LOG("Thread::Join-End\n");
+
 #endif
 #endif
   }
@@ -417,7 +559,7 @@ class ThreadInternalsPosix : public internal::ThreadInternalsInterface {
 #ifdef NN_x64
   HANDLE pthread_id_;
 #else
-  nn::os::ThreadType pthread_id_;
+  nn::os::ThreadType* pthread_id_ = nullptr;
 #endif  // NN_x64
 #else
   pthread_t pthread_id_;
@@ -452,8 +594,7 @@ void Thread::Kill(gpr_thd_id tid) {
 
   nn::os::ThreadType* id = (nn::os::ThreadType*)tid;
 
-  nn::os::WaitThread(id);
-  nn::os::DestroyThread(id);
+  g_thread_manager.ReleaseRequest(id);
 
 #endif
 }
@@ -474,6 +615,7 @@ Thread::Thread(const char* thd_name, void (*thd_body)(void* arg), void* arg,
     if (success != nullptr) {
       *success = outcome;
     }
+    g_thread_manager.ReleaseCheck();
     return;
   }
 #endif
@@ -493,8 +635,36 @@ Thread::Thread(const char* thd_name, void (*thd_body)(void* arg), void* arg,
 }
 
 #if defined(NN_NINTENDO_SDK)
-void ThreadInitialize() { is_shut_down = false; }
-void ThreadShutDown() { is_shut_down = true; }
+void ThreadInitialize() {
+  is_shut_down = false;
+  is_shut_down_end = false;
+}
+void ThreadRelease() {
+  const nn::TimeSpan timeout_limit = nn::TimeSpan::FromMilliSeconds(2000);
+  nn::os::Tick tick = nn::os::GetSystemTick();
+  nn::TimeSpan start_time = nn::os::ConvertToTimeSpan(tick);
+  auto is_time_out = false;
+
+  while (!is_shut_down_end) {
+    nn::os::SleepThread(nn::TimeSpan::FromMilliSeconds(17));
+
+    tick = nn::os::GetSystemTick();
+    auto current_time = nn::os::ConvertToTimeSpan(tick);
+    auto delta = current_time - start_time;
+    if (delta > timeout_limit) {
+      is_time_out = true;
+      NN_LOG("Thread::Release-Timeout\n");
+      break;
+    }
+  }
+
+  g_thread_manager.ReleaseCheck(!is_time_out);
+}
+void ThreadShutDown() { is_shut_down = false; }
+void ThreadShutDownEnd() {
+  is_shut_down_end = true;
+  g_thread_manager.ReleaseCheck();
+}
 #endif
 
 }  // namespace grpc_core

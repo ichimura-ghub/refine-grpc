@@ -55,6 +55,7 @@ GRPCAPI void grpc_call_details_destroy(grpc_call_details* details);
     do not warrant that they will continue to do so in future revisions of this
     library). */
 GRPCAPI void grpc_init(void);
+GRPCAPI void grpc_finalize(void);
 
 /** Shut down the grpc library.
 

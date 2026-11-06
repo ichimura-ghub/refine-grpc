@@ -190,7 +190,9 @@ class Thread {
 
 #if defined(NN_NINTENDO_SDK)
 extern void ThreadInitialize();
+extern void ThreadRelease();
 extern void ThreadShutDown();
+extern void ThreadShutDownEnd();
 #endif
 
 }  // namespace grpc_core
